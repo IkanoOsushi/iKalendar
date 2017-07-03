@@ -2,6 +2,7 @@ package org.t_robop.ikalendar;
 
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,6 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import com.roomorama.caldroid.CaldroidFragment;
+
+import java.util.Calendar;
 
 public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -19,6 +24,19 @@ public class CalendarActivity extends AppCompatActivity
         setContentView(R.layout.activity_calendar);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //ここからカレンダーのやつ
+        CaldroidFragment caldroidFragment = new CaldroidFragment();
+        Bundle args = new Bundle();
+        Calendar cal = Calendar.getInstance();
+        args.putInt(CaldroidFragment.MONTH, cal.get(Calendar.MONTH) + 1);
+        args.putInt(CaldroidFragment.YEAR, cal.get(Calendar.YEAR));
+        caldroidFragment.setArguments(args);
+
+        FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+        t.add(R.id.calender_layout, caldroidFragment);
+        t.commit();
+        //ここまでカレンダーのやつ
 
         //ここからNavigation Drawerのやつ
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
