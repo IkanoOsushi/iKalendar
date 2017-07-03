@@ -2,20 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:title="Activites">
+    <item android:title="Activities">
         <menu>
             <item
                 android:id="@+id/nav_main"
-                android:title="Main" />
+                android:title="Main"
+                android:icon="@drawable/ic_home"/>
             <item
                 android:id="@+id/nav_calendar"
-                android:title="Calendar" />
+                android:title="Calendar"
+                android:icon="@drawable/ic_calendar"/>
             <item
                 android:id="@+id/nav_timetable"
-                android:title="TimeTable" />
+                android:title="TimeTable"
+                android:icon="@drawable/ic_timetable"/>
             <item
                 android:id="@+id/nav_reminder"
-                android:title="Reminder" />
+                android:title="Reminder"
+                android:icon="@drawable/ic_reminder"/>
         </menu>
     </item>
 
