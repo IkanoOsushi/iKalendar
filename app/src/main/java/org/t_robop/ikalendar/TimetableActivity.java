@@ -31,6 +31,9 @@ public class TimetableActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //ここまでNavigation Drawerのやつ
 
+
+        //ここから各自動作
+
     }
     //Navigation Drawer内のメニューを押した時の動作
     @Override
