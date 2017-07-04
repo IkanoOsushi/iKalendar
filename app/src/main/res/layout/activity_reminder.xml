@@ -36,15 +36,44 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <!-- ↓ここに各アクティビティのxmlを書く↓ -->
+            <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="org.t_robop.urano.ikarenda_.ReminderActivity"
+            android:weightSum="1"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="308dp"
+                android:layout_weight="0.74" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="0.15"
+                android:onClick="add"
+                android:text="追加" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello World!"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_weight="0.09"
+                android:onClick="reset"
+                android:text="リセット" />
+
+        </LinearLayout>
+
+
+
+
+
 
             <!-- ↑ここに各アクティビティのxmlを書く↑ -->
 
