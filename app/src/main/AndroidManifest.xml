@@ -21,7 +21,8 @@
         <activity android:name=".ReminderActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".DBTest" />
-        <activity android:name=".ReminderEditActivity"></activity>
+        <activity android:name=".ReminderEditActivity" />
+        <activity android:name=".TableTimeTableActivity"></activity>
     </application>
 
 </manifest>
