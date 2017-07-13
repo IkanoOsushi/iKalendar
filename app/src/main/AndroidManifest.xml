@@ -22,7 +22,11 @@
         <activity android:name=".CalendarActivity" />
         <activity android:name=".DBTest" />
         <activity android:name=".ReminderEditActivity" />
-        <activity android:name=".TableTimeTableActivity"></activity>
+        <activity android:name=".TableTimeTableActivity" />
+        <activity
+            android:name=".CalenderDayViewActivity"
+            android:label="@string/title_activity_calender_day_view"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
