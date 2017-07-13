@@ -89,4 +89,3 @@ public class DebugActivity extends AppCompatActivity
         return true;
     }
 }
-
