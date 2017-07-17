@@ -69,9 +69,4 @@ public class DataBase extends RealmObject {
     public void   setTimeTableTea(String time_table_tea){this.time_table_tea = time_table_tea;}
     public String getTimeTableColor(){return time_table_color;}
     public void   setTimeTableColor(String time_table_color){this.time_table_color = time_table_color;}
-
-
-
-
-
 }
