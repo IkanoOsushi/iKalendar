@@ -76,5 +76,6 @@ public class TimetableActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+    
 
 }
