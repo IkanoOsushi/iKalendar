@@ -22,7 +22,8 @@
         <activity android:name=".CalendarActivity" />
         <activity android:name=".DBTest" />
         <activity android:name=".ReminderEditActivity" />
-        <activity android:name=".TableTimeTableActivity"></activity>
+        <activity android:name=".TableTimeTodayActivity" />
+        <activity android:name=".TimetableEditActivity"></activity>
     </application>
 
 </manifest>

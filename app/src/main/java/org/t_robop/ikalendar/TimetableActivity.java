@@ -1,109 +1,80 @@
 package org.t_robop.ikalendar;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-//test
-public class TimetableActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+public class TimetableActivity extends AppCompatActivity {
     private View inputView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        //ここからNavigation Drawerのやつ
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        //ここまでNavigation Drawerのやつ
-
-
-        //ここから各自動作
 
     }
 
-    public void onClick(final View view){
+    /* ここは詳細を表示するだけなので下の処理はSubjectEditActivityに書いて
+    *  OKとかのボタンも消して閉じるボタンと編集ボタンだけ置きましょう
+    *  setPositiveButtonの中には何も処理を書かない、setNegativeButtonには編集場面アクティビティに飛ぶ処理を書く
+    *
+    *  レイアウトのEditTextをTextViewにする
+    *  ここを表示する時に、前に入力した情報を表示しておくように*/
+
+    public void onClick(final View view) {
         //showDialog(CustomViewCallback)
         LayoutInflater factory = LayoutInflater.from(this);
-        inputView = factory.inflate(R.layout.timetable_dialog, null);
+        inputView = factory.inflate(R.layout.activity_timetable_dialog, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(inputView);
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
 
-                EditText sub = (EditText) inputView.findViewById(R.id.subEdit);
-                String text = sub.getText().toString();
-                EditText room = (EditText) inputView.findViewById(R.id.roomEdit);
-                String text2 = room.getText().toString();
-                EditText teac = (EditText) inputView.findViewById(R.id.teacEdit);
-                String text3 = teac.getText().toString();
-                EditText memo = (EditText) inputView.findViewById(R.id.memoEdit);
-                String text4 = memo.getText().toString();
+                TextView subjectname = (EditText) inputView.findViewById(R.id.subEdit);
+                String subjecttext = subjectname.getText().toString();
+                TextView roomname = (EditText) inputView.findViewById(R.id.roomEdit);
+                String roomtext = roomname.getText().toString();
+                TextView teachername = (EditText) inputView.findViewById(R.id.teacEdit);
+                String teachertext = teachername.getText().toString();
+                TextView memo = (EditText) inputView.findViewById(R.id.memoEdit);
+                String memotext = memo.getText().toString();
 
-                Button button = (Button)findViewById(view.getId());
-                button.setText(text);
+                Button button = (Button) findViewById(view.getId());
+                button.setText(subjecttext + "\n\n" + roomtext);
 
 
             }
         });
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("戻る", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        builder.setNeutralButton("編集", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent myintent = new Intent(getApplicationContext(), TimetableEditActivity.class);
+                myintent.putExtra("TimetableEditActivity", "");
+                startActivity(myintent);
+
             }
         });
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
-
-
-    //Navigation Drawer内のメニューを押した時の動作
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this,CalendarActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_timetable) {
-            Intent intent = new Intent(this,TimetableActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_reminder) {
-            Intent intent = new Intent(this,ReminderActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_setting) {
-
-        }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }
