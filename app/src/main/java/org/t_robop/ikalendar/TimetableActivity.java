@@ -1,8 +1,6 @@
 package org.t_robop.ikalendar;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -42,7 +40,7 @@ public class TimetableActivity extends AppCompatActivity {
         builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
-
+                //教科名、先生、教室をとってきて表示
                 TextView subjectname = (EditText) inputView.findViewById(R.id.subEdit);
                 String subjecttext = subjectname.getText().toString();
                 TextView roomname = (EditText) inputView.findViewById(R.id.roomEdit);
@@ -76,6 +74,4 @@ public class TimetableActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-    
-
 }
