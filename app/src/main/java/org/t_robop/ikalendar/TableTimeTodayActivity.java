@@ -16,8 +16,10 @@ public class TableTimeTodayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taimetable_today);
         TextView texv = (TextView) findViewById(R.id.textView8);
-    }
 
+    }
+/*文字数よりは比率を固定する処理を書く。
+ *10文字以上は省略する処理を書く。
         //文字数を省略する処理
     /*public TextView getTextView() {
         //文字数省略の処理
