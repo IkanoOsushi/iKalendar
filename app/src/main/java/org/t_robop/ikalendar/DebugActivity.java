@@ -25,7 +25,7 @@ public class DebugActivity extends AppCompatActivity
     ArrayList<Class> arrayList;
 
     //ここに入れればデバッグアクティビティのリストに追加される
-    Class[] DebugClass={CalendarActivity.class,CalenderDayViewActivity.class,MainActivity.class,ReminderActivity.class,TimetableActivity.class,DBTest.class,ReminderEditActivity.class,TableTimeTableActivity.class};
+    Class[] DebugClass={CalendarActivity.class,CalenderDayViewActivity.class,MainActivity.class,ReminderActivity.class,TimetableActivity.class,DBTest.class,ReminderEditActivity.class,TableTimeTodayActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,5 +87,8 @@ public class DebugActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private class TimetableWeekActivity {
     }
 }

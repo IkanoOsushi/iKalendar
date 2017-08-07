@@ -22,7 +22,8 @@
         <activity android:name=".CalendarActivity" />
         <activity android:name=".DBTest" />
         <activity android:name=".ReminderEditActivity" />
-        <activity android:name=".TableTimeTableActivity" />
+        <activity android:name=".TableTimeTodayActivity" />
+        <activity android:name=".TimetableEditActivity"/>
         <activity
             android:name=".CalenderDayViewActivity"
             android:label="@string/title_activity_calender_day_view"
