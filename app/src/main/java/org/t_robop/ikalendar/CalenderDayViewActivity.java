@@ -1,12 +1,8 @@
 package org.t_robop.ikalendar;
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.RectF;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,12 +10,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.framgia.library.calendardayview.CalendarDayView;
 import com.framgia.library.calendardayview.EventView;
@@ -71,7 +64,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
                     @Override
                     public void onEventViewClick(View view, EventView eventView, IEvent data) {
                         Log.e("TAG", "onEventViewClick:" + data.getName());
-                        if (data instanceof Event) {
+                        if (data instanceof CalenderEvent) {
                             // change event (ex: set event color)
                             dayView.setEvents(events);
                         }
@@ -107,7 +100,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
             Calendar timeEnd = (Calendar) timeStart.clone();
             timeEnd.set(Calendar.HOUR_OF_DAY, 15);
             timeEnd.set(Calendar.MINUTE, 30);
-            Event event = new Event(1, timeStart, timeEnd, "Event", "Hockaido", eventColor);
+            CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, "CalenderEvent", "Hockaido", eventColor);
 
             events.add(event);
         }
@@ -120,7 +113,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
             Calendar timeEnd = (Calendar) timeStart.clone();
             timeEnd.set(Calendar.HOUR_OF_DAY, 22);
             timeEnd.set(Calendar.MINUTE, 00);
-            Event event = new Event(1, timeStart, timeEnd, "Another event", "Hockaido", eventColor);
+            CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, "Another event", "Hockaido", eventColor);
 
             events.add(event);
         }
@@ -135,7 +128,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
             timeEnd.set(Calendar.HOUR_OF_DAY, 13);
             timeEnd.set(Calendar.MINUTE, 30);
 
-            Popup popup = new Popup();
+            CalenderPopup popup = new CalenderPopup();
             popup.setStartTime(timeStart);
             popup.setEndTime(timeEnd);
             popup.setImageStart("http://sample.com/image.png");
@@ -152,7 +145,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
             timeEnd.set(Calendar.HOUR_OF_DAY, 21);
             timeEnd.set(Calendar.MINUTE, 30);
 
-            Popup popup = new Popup();
+            CalenderPopup popup = new CalenderPopup();
             popup.setStartTime(timeStart);
             popup.setEndTime(timeEnd);
             popup.setImageStart("http://sample.com/image.png");
