@@ -1,53 +1,43 @@
 package org.t_robop.ikalendar;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.alamkanak.weekview.DateTimeInterpreter;
-import com.alamkanak.weekview.MonthLoader;
-import com.alamkanak.weekview.WeekView;
-import com.alamkanak.weekview.WeekViewEvent;
-
-import java.text.SimpleDateFormat;
+import com.framgia.library.calendardayview.CalendarDayView;
+import com.framgia.library.calendardayview.EventView;
+import com.framgia.library.calendardayview.PopupView;
+import com.framgia.library.calendardayview.data.IEvent;
+import com.framgia.library.calendardayview.data.IPopup;
+import com.framgia.library.calendardayview.decoration.CdvDecorationDefault;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
 public class CalenderDayViewActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
-        WeekView.EventClickListener,
-        WeekView.EmptyViewLongPressListener,
-        MonthLoader.MonthChangeListener,
-        WeekView.EventLongPressListener{
+        implements NavigationView.OnNavigationItemSelectedListener{
 
-    private static final int TYPE_DAY_VIEW = 1;
-    private static final int TYPE_THREE_DAY_VIEW = 2;
-    private static final int TYPE_WEEK_VIEW = 3;
-    private int mWeekViewType = TYPE_THREE_DAY_VIEW;
-    private WeekView mWeekView;
+    CalendarDayView dayView;
 
-    MonthLoader.MonthChangeListener mMonthChangeListener = new MonthLoader.MonthChangeListener() {
-        @Override
-        public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
-            // Populate the week view with some events.
-            List<WeekViewEvent> events = getEvents(newYear, newMonth);
-            return events;
-        }
-    };
+    ArrayList<IEvent> events;
+    ArrayList<IPopup> popups;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,29 +58,113 @@ public class CalenderDayViewActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //ここまでNavigation Drawerのやつ
 
-        // Get a reference for the week view in the layout.
-        mWeekView = (WeekView) findViewById(R.id.weekView);
+        dayView = (CalendarDayView) findViewById(R.id.calendar);
+        dayView.setLimitTime(9, 22);
 
-        // Set an action when any event is clicked.
-        mWeekView.setOnEventClickListener(this);
+        ((CdvDecorationDefault) (dayView.getDecoration())).setOnEventClickListener(
+                new EventView.OnEventClickListener() {
+                    @Override
+                    public void onEventClick(EventView view, IEvent data) {
+                        Log.e("TAG", "onEventClick:" + data.getName());
+                    }
 
-        // The week view has infinite scrolling horizontally. We have to provide the events of a
-        // month every time the month changes on the week view.
-        mWeekView.setMonthChangeListener(this);
+                    @Override
+                    public void onEventViewClick(View view, EventView eventView, IEvent data) {
+                        Log.e("TAG", "onEventViewClick:" + data.getName());
+                        if (data instanceof Event) {
+                            // change event (ex: set event color)
+                            dayView.setEvents(events);
+                        }
+                    }
+                });
 
-        // Set long press listener for events.
-        mWeekView.setEventLongPressListener(this);
+        ((CdvDecorationDefault) (dayView.getDecoration())).setOnPopupClickListener(
+                new PopupView.OnEventPopupClickListener() {
+                    @Override
+                    public void onPopupClick(PopupView view, IPopup data) {
+                        Log.e("TAG", "onPopupClick:" + data.getTitle());
+                    }
 
-        // Set long press listener for empty view
-        mWeekView.setEmptyViewLongPressListener(this);
+                    @Override
+                    public void onQuoteClick(PopupView view, IPopup data) {
+                        Log.e("TAG", "onQuoteClick:" + data.getTitle());
+                    }
 
-        setupDateTimeInterpreter(false);
-    }
+                    @Override
+                    public void onLoadData(PopupView view, ImageView start, ImageView end,
+                                           IPopup data) {
+                        start.setImageResource(R.drawable.ic_main);
+                    }
+                });
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        events = new ArrayList<>();
+
+        {
+            int eventColor = ContextCompat.getColor(this, R.color.eventColor);
+            Calendar timeStart = Calendar.getInstance();
+            timeStart.set(Calendar.HOUR_OF_DAY, 11);
+            timeStart.set(Calendar.MINUTE, 0);
+            Calendar timeEnd = (Calendar) timeStart.clone();
+            timeEnd.set(Calendar.HOUR_OF_DAY, 15);
+            timeEnd.set(Calendar.MINUTE, 30);
+            Event event = new Event(1, timeStart, timeEnd, "Event", "Hockaido", eventColor);
+
+            events.add(event);
+        }
+
+        {
+            int eventColor = ContextCompat.getColor(this, R.color.eventColor);
+            Calendar timeStart = Calendar.getInstance();
+            timeStart.set(Calendar.HOUR_OF_DAY, 20);
+            timeStart.set(Calendar.MINUTE, 00);
+            Calendar timeEnd = (Calendar) timeStart.clone();
+            timeEnd.set(Calendar.HOUR_OF_DAY, 22);
+            timeEnd.set(Calendar.MINUTE, 00);
+            Event event = new Event(1, timeStart, timeEnd, "Another event", "Hockaido", eventColor);
+
+            events.add(event);
+        }
+
+        popups = new ArrayList<>();
+
+        {
+            Calendar timeStart = Calendar.getInstance();
+            timeStart.set(Calendar.HOUR_OF_DAY, 12);
+            timeStart.set(Calendar.MINUTE, 0);
+            Calendar timeEnd = (Calendar) timeStart.clone();
+            timeEnd.set(Calendar.HOUR_OF_DAY, 13);
+            timeEnd.set(Calendar.MINUTE, 30);
+
+            Popup popup = new Popup();
+            popup.setStartTime(timeStart);
+            popup.setEndTime(timeEnd);
+            popup.setImageStart("http://sample.com/image.png");
+            popup.setTitle("event 1 with title");
+            popup.setDescription("Yuong alsdf");
+            popups.add(popup);
+        }
+
+        {
+            Calendar timeStart = Calendar.getInstance();
+            timeStart.set(Calendar.HOUR_OF_DAY, 20);
+            timeStart.set(Calendar.MINUTE, 30);
+            Calendar timeEnd = (Calendar) timeStart.clone();
+            timeEnd.set(Calendar.HOUR_OF_DAY, 21);
+            timeEnd.set(Calendar.MINUTE, 30);
+
+            Popup popup = new Popup();
+            popup.setStartTime(timeStart);
+            popup.setEndTime(timeEnd);
+            popup.setImageStart("http://sample.com/image.png");
+            popup.setTitle("event 2 with title");
+            popup.setDescription("Yuong alsdf");
+            popups.add(popup);
+        }
+
+        dayView.setEvents(events);
+        dayView.setPopups(popups);
+
+
     }
 
 
@@ -100,16 +174,16 @@ public class CalenderDayViewActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this,CalendarActivity.class);
+            Intent intent = new Intent(this, CalendarActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_timetable) {
-            Intent intent = new Intent(this,TimetableActivity.class);
+            Intent intent = new Intent(this, TimetableActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_reminder) {
-            Intent intent = new Intent(this,ReminderActivity.class);
+            Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_setting) {
 
@@ -118,107 +192,4 @@ public class CalenderDayViewActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        setupDateTimeInterpreter(id == R.id.action_week_view);
-        switch (id){
-            case R.id.action_today:
-                mWeekView.goToToday();
-                return true;
-            case R.id.action_day_view:
-                if (mWeekViewType != TYPE_DAY_VIEW) {
-                    item.setChecked(!item.isChecked());
-                    mWeekViewType = TYPE_DAY_VIEW;
-                    mWeekView.setNumberOfVisibleDays(1);
-
-                    // Lets change some dimensions to best fit the view.
-                    mWeekView.setColumnGap((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
-                    mWeekView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-                    mWeekView.setEventTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-                }
-                return true;
-            case R.id.action_three_day_view:
-                if (mWeekViewType != TYPE_THREE_DAY_VIEW) {
-                    item.setChecked(!item.isChecked());
-                    mWeekViewType = TYPE_THREE_DAY_VIEW;
-                    mWeekView.setNumberOfVisibleDays(3);
-
-                    // Lets change some dimensions to best fit the view.
-                    mWeekView.setColumnGap((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
-                    mWeekView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-                    mWeekView.setEventTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
-                }
-                return true;
-            case R.id.action_week_view:
-                if (mWeekViewType != TYPE_WEEK_VIEW) {
-                    item.setChecked(!item.isChecked());
-                    mWeekViewType = TYPE_WEEK_VIEW;
-                    mWeekView.setNumberOfVisibleDays(7);
-
-                    // Lets change some dimensions to best fit the view.
-                    mWeekView.setColumnGap((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()));
-                    mWeekView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics()));
-                    mWeekView.setEventTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics()));
-                }
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * Set up a date time interpreter which will show short date values when in week view and long
-     * date values otherwise.
-     * @param shortDate True if the date values should be short.
-     */
-    private void setupDateTimeInterpreter(final boolean shortDate) {
-        mWeekView.setDateTimeInterpreter(new DateTimeInterpreter() {
-            @Override
-            public String interpretDate(Calendar date) {
-                SimpleDateFormat weekdayNameFormat = new SimpleDateFormat("EEE", Locale.getDefault());
-                String weekday = weekdayNameFormat.format(date.getTime());
-                SimpleDateFormat format = new SimpleDateFormat(" M/d", Locale.getDefault());
-
-                // All android api level do not have a standard way of getting the first letter of
-                // the week day name. Hence we get the first char programmatically.
-                // Details: http://stackoverflow.com/questions/16959502/get-one-letter-abbreviation-of-week-day-of-a-date-in-java#answer-16959657
-                if (shortDate)
-                    weekday = String.valueOf(weekday.charAt(0));
-                return weekday.toUpperCase() + format.format(date.getTime());
-            }
-
-            @Override
-            public String interpretTime(int hour) {
-                return hour > 11 ? (hour - 12) + " PM" : (hour == 0 ? "12 AM" : hour + " AM");
-            }
-        });
-    }
-
-    protected String getEventTitle(Calendar time) {
-        return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
-    }
-
-    @Override
-    public void onEventClick(WeekViewEvent event, RectF eventRect) {
-        Toast.makeText(this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
-        Toast.makeText(this, "Long pressed event: " + event.getName(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onEmptyViewLongPress(Calendar time) {
-        Toast.makeText(this, "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
-    }
-
-    public WeekView getWeekView() {
-        return mWeekView;
-    }
-
-
 }

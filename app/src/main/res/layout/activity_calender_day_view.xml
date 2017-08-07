@@ -37,23 +37,18 @@
 
             <!-- ↓ここに各アクティビティのxmlを書く↓ -->
 
-
-            <com.alamkanak.weekview.WeekView
-                android:id="@+id/weekView"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:eventTextColor="@android:color/white"
-                app:textSize="12sp"
-                app:hourHeight="60dp"
-                app:headerColumnPadding="8dp"
-                app:headerColumnTextColor="#8f000000"
-                app:headerRowPadding="12dp"
-                app:columnGap="8dp"
-                app:noOfVisibleDays="3"
-                app:headerRowBackgroundColor="#ffefefef"
-                app:dayBackgroundColor="#05000000"
-                app:todayBackgroundColor="#1848adff"
-                app:headerColumnBackground="#ffffffff"/>
+                >
+                <com.framgia.library.calendardayview.CalendarDayView
+                    android:id="@+id/calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dayHeight="@dimen/dayHeight"/>
+            </ScrollView>
+
+
 
             <!-- ↑ここに各アクティビティのxmlを書く↑ -->
 

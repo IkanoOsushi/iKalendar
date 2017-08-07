@@ -33,6 +33,7 @@ dependencies {
     //caldroidというカレンダーのライブラリです
     compile 'com.roomorama:caldroid:3.0.1'
     //Android Week ViewというDayviewも可能なカレンダーのライブラリです
-    compile 'com.github.alamkanak:android-week-view:1.2.6'
+    //compile 'com.github.alamkanak:android-week-view:1.2.6'
+    compile 'com.framgia.library.calendardayview:library:1.0.4'
     testCompile 'junit:junit:4.12'
 }
