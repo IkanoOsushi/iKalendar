@@ -22,12 +22,15 @@ public class ReminderActivity extends AppCompatActivity
     static ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         //ここからNavigation Drawerのやつ
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -43,10 +46,10 @@ public class ReminderActivity extends AppCompatActivity
 
     listView = (ListView)findViewById(R.id.list);
     arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1);
-
     Intent intent = getIntent();
     final String memo = intent.getStringExtra("memo");
     int listpos = intent.getIntExtra("pos",-1);
+
 
     //初回起動時のみ
         if(arrayList==null){
@@ -66,6 +69,7 @@ public class ReminderActivity extends AppCompatActivity
 
         for(int i = 0; i<arrayList.size();i++){
         arrayAdapter.add(arrayList.get(i));
+
     }
         listView.setAdapter(arrayAdapter);
 
@@ -80,8 +84,6 @@ public class ReminderActivity extends AppCompatActivity
             intent.putExtra("memo",selectedText);
 
             startActivity(intent);
-
-
         }
     });
 }
@@ -91,9 +93,6 @@ public class ReminderActivity extends AppCompatActivity
         intent.putExtra("memo","");
         startActivity(intent);
     }
-
-
-
 
     //Navigation Drawer内のメニューを押した時の動作
     @Override
