@@ -1,7 +1,9 @@
 package org.t_robop.ikalendar;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -32,7 +35,7 @@ import java.util.Date;
 public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-    final SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+    final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年 MMM dd日");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,17 +80,29 @@ public class CalendarActivity extends AppCompatActivity
 
             @Override
             public void onLongClickDate(Date date, View view) {
-                Toast.makeText(getApplicationContext(),
-                        "Long click " + formatter.format(date),
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),
+//                        "Long click " + formatter.format(date),
+//                        Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(CalendarActivity.this)
+                        .setTitle(formatter.format(date))
+                        .setMessage("message")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // OK button pressed
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+
             }
 
-            @Override
-            public void onCaldroidViewCreated() {
-                Toast.makeText(getApplicationContext(),
-                        "Caldroid view is created",
-                        Toast.LENGTH_SHORT).show();
-            }
+//            @Override
+//            public void onCaldroidViewCreated() {
+//                Toast.makeText(getApplicationContext(),
+//                        "Caldroid view is created",
+//                        Toast.LENGTH_SHORT).show();
+//            }
 
         };
 
