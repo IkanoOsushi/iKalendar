@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 import com.framgia.library.calendardayview.data.IEvent;
 import java.util.Calendar;
 
-public class Event implements IEvent {
+public class CalenderEvent implements IEvent {
 
     private long mId;
     private Calendar mStartTime;
@@ -17,12 +17,12 @@ public class Event implements IEvent {
     private String mLocation;
     private int mColor;
 
-    public Event() {
+    public CalenderEvent() {
 
     }
 
-    public Event(long mId, Calendar mStartTime, Calendar mEndTime, String mName, String mLocation,
-                 int mColor) {
+    public CalenderEvent(long mId, Calendar mStartTime, Calendar mEndTime, String mName, String mLocation,
+                         int mColor) {
         this.mId = mId;
         this.mStartTime = mStartTime;
         this.mEndTime = mEndTime;
