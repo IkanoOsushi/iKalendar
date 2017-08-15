@@ -3,6 +3,7 @@ package org.t_robop.ikalendar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
+import static android.R.attr.id;
+
 public class TimetableActivity extends AppCompatActivity {
     Realm realm;
     private View inputView;
@@ -23,8 +26,13 @@ public class TimetableActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
-      //  Realm.init(this);
-      //  realm = Realm.getDefaultInstance();
+        Realm.init(this);
+//        realm = Realm.getDefaultInstance();
+        int Rid[] = {R.id.button37,R.id.button36,R.id.button};
+
+
+//        final RealmResults<DataBase> timeid = realm.where(DataBase.class).equalTo("time_table_id","").findAll();
+
     }
 
     /* ここは詳細を表示するだけなので下の処理はSubjectEditActivityに書いて

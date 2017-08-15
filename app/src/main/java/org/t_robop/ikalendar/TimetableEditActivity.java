@@ -4,41 +4,61 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 import static org.t_robop.ikalendar.R.*;
 import static org.t_robop.ikalendar.R.id.editText;
+import static org.t_robop.ikalendar.R.id.subEdit;
+import static org.t_robop.ikalendar.R.id.time;
 
 public class TimetableEditActivity extends AppCompatActivity {
-  //  Realm realm;
-    EditText editText;
+      Realm realm;
+    EditText subText;
+    EditText roomText;
+    EditText teacText;
     private View inputView;
+    int timeTableColor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //戻るボタンの処理
         setContentView(layout.activity_timetable_edit);
-         //Realm.init(this);
-        final Button buckbuttom = (Button)findViewById (R.id.button17);
-        final Button savebutton=(Button)findViewById(id.button24);
-        editText=(EditText)findViewById(id.subEdit);
-      //  realm = Realm.getDefaultInstance();
-        savebutton.setOnClickListener(new View.OnClickListener(){
-            public  void onClick(View v){
-//                //トランザクション開始
-//                realm.beginTransaction();
-//                //インスタンスを生成
-//                DataBase model = realm.createObject(DataBase.class);
-//
+        Realm.init(this);
+
+        realm = Realm.getDefaultInstance();
+        final Button buckbuttom = (Button) findViewById(R.id.button17);
+        final Button savebutton = (Button) findViewById(id.button24);
+        subText = (EditText) findViewById(id.subEdit);
+        roomText = (EditText)findViewById(id.roomEdit);
+        teacText =(EditText)findViewById(id.teacEdit);
+        savebutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String subtext = subText.getText().toString();
+                String roomtext = roomText.getText().toString();
+                String teactext = teacText.getText().toString();
+
+                realm.beginTransaction();
+
+                DataBase model = realm.createObject(DataBase.class);
+
+                model.setTimeTableId(1);
+                model.setTimeTableSub(subtext);
+                model.setTimeTableClass(roomtext);
+                model.setTimeTableTea(teactext);
+
+                realm.commitTransaction();
+
 //                //書き込みたいデータをインスタンスに入れる
 //                model.setSessionId(1);
 //                model.setTimeTableSub(editText.getText().toString());
@@ -50,18 +70,75 @@ public class TimetableEditActivity extends AppCompatActivity {
         });
 
 
-
         buckbuttom.setOnClickListener(new View.OnClickListener() {
 
-                public void onClick(View v) {
+            public void onClick(View v) {
 
-                    //ボタン押した後の処理
-                    Intent intent = new Intent(getApplication(),TimetableActivity.class);
-                    startActivity(intent);
-                }
+                //ボタン押した後の処理
+                Intent intent = new Intent(getApplication(), TimetableActivity.class);
+                startActivity(intent);
+            }
 
         });
     }
+
+    public void colerSelected(View v) {
+        switch (v.getId()) {
+            case R.id.button44:
+                timeTableColor = 0;
+                 Toast.makeText(this, "赤を選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.button45:
+                timeTableColor = 1;
+                Toast.makeText(this, "ピンクを選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.button46:
+                timeTableColor = 2;
+                Toast.makeText(this, "オレンジを選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.button47:
+                timeTableColor = 3;
+                Toast.makeText(this, "黄色を選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.button48:
+                timeTableColor = 4;
+                Toast.makeText(this, "黄緑を選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.button49:
+                timeTableColor = 5;
+                Toast.makeText(this, "緑を選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.button50:
+                timeTableColor = 6;
+                Toast.makeText(this, "水色を選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.button51:
+                timeTableColor = 7;
+                Toast.makeText(this, "青を選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.button52:
+                timeTableColor = 8;
+                Toast.makeText(this, "紫を選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.button53:
+                timeTableColor = 9;
+                Toast.makeText(this, "グレーを選択しました。", Toast.LENGTH_LONG).show();
+
+                break;
+        }
+    }
+}
+
+
 
 
 //ボタン処理を書く
@@ -104,5 +181,3 @@ public class TimetableEditActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }*/
-}
-

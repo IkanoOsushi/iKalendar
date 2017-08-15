@@ -23,6 +23,7 @@ public class DataBase extends RealmObject {
     private Date            reminder_time;
     private String          reminder_memo;
     private int             time_table_id;
+    private int             time_table_color_id;
     private String          time_table_sub;
     private String          time_table_memo;
     private String          time_table_class;
@@ -59,6 +60,8 @@ public class DataBase extends RealmObject {
 
     public int    getTimeTableId(){return time_table_id;}
     public void   setTimeTableId(int time_table_id){this.time_table_id=time_table_id;}
+    public int    getTimeTableColorId(){return time_table_color_id;}
+    public void   setTimeTableColorId(int time_table_color_id){this.time_table_color_id=time_table_color_id;}
     public String getTimeTableSub(){return time_table_sub;}
     public void   setTimeTableSub(String time_table_sub){this.time_table_sub = time_table_sub;}
     public String getTimeTableMemo(){return time_table_memo;}
