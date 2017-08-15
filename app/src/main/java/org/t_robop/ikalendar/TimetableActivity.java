@@ -7,16 +7,19 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 import static android.R.attr.id;
+import static android.R.attr.switchMinWidth;
 
 public class TimetableActivity extends AppCompatActivity {
     Realm realm;
@@ -26,9 +29,36 @@ public class TimetableActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
+
+        //Database初期化
         Realm.init(this);
-//        realm = Realm.getDefaultInstance();
-        int Rid[] = {R.id.button37,R.id.button36,R.id.button};
+        realm = Realm.getDefaultInstance();
+
+        //検索用のクエリ作成
+        RealmQuery<TimeTable> folderQuery = realm.where(TimeTable.class);
+        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+        RealmResults<TimeTable> timetables = folderQuery.findAll();
+
+
+        if(timetables.size() != 0){
+            for(int i=0; i<timetables.size(); i++){
+                Log.d("aaaaa", String.valueOf(timetables));    //全教科名をDrawerのAdapterに追加
+            }
+        }
+
+
+
+//        RealmResults<DataBase.TimeTable> timetables = realm.where(DataBase.TimeTable.class).equalTo("time_table_id","").findAll();
+//
+//        if(timetables.size() != 0){
+//            for(int i=0; i<timetables.size(); i++){
+//
+//                if(timetables.get(i)==){
+//
+//                }
+//
+//            }
+//        }
 
 
 //        final RealmResults<DataBase> timeid = realm.where(DataBase.class).equalTo("time_table_id","").findAll();
@@ -85,7 +115,7 @@ public class TimetableActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent myintent = new Intent(getApplicationContext(), TimetableEditActivity.class);
-                myintent.putExtra("TimetableEditActivity", "");
+                myintent.putExtra("TTKey",view.getId());
                 startActivity(myintent);
 
             }
