@@ -11,15 +11,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 public class TimetableActivity extends AppCompatActivity {
+    Realm realm;
     private View inputView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
-
+      //  Realm.init(this);
+      //  realm = Realm.getDefaultInstance();
     }
 
     /* ここは詳細を表示するだけなので下の処理はSubjectEditActivityに書いて
@@ -40,17 +45,24 @@ public class TimetableActivity extends AppCompatActivity {
         builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
-                //教科名、先生、教室をとってきて表示
+                //TextViewの型を宣言（関連付け）
                 TextView subjectname = (EditText) inputView.findViewById(R.id.subEdit);
-                String subjecttext = subjectname.getText().toString();
                 TextView roomname = (EditText) inputView.findViewById(R.id.roomEdit);
-                String roomtext = roomname.getText().toString();
                 TextView teachername = (EditText) inputView.findViewById(R.id.teacEdit);
-                String teachertext = teachername.getText().toString();
                 TextView memo = (EditText) inputView.findViewById(R.id.memoEdit);
-                String memotext = memo.getText().toString();
-
+                //ボタンの型を関連付け
                 Button button = (Button) findViewById(view.getId());
+                //string型のTextをとってきてstring型にする
+                String subjecttext;
+                subjecttext = subjectname.getText().toString();
+                String roomtext;
+                roomtext= roomname.getText().toString();
+                String teachertext;
+                teachertext= teachername.getText().toString();
+                String memotext;
+                memotext= memo.getText().toString();
+
+                //ボタンに文字を表示される
                 button.setText(subjecttext + "\n\n" + roomtext);
 
 
@@ -61,7 +73,6 @@ public class TimetableActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-
         builder.setNeutralButton("編集", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -73,5 +84,13 @@ public class TimetableActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+        //テキストビューでダイアログのなかで表示する
+       // TextView subjectnameView=(TextView) dialog.findViewById(R.id.subEdit);
+        //TextView roomnameView=(TextView) dialog.findViewById(R.id.roomEdit);
+        //TextView teachernameView=(TextView) dialog.findViewById(R.id.teacEdit);
+        //文字を表示する
+       // subjectnameView.setText("test");
+        //roomnameView.setText("test");
+        //teachernameView.setText("test");
     }
 }

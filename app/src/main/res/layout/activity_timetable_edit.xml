@@ -18,7 +18,8 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:text="教科名"
-            android:textSize="26dp"
+            android:textSize="30dp"
+            android:background="#c7e0fd"
             android:id="@+id/subText"/>
         <EditText
             android:layout_width="match_parent"
@@ -39,15 +40,15 @@
             android:layout_weight="1"
             android:orientation="vertical">
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_width="182dp"
+                android:layout_height="43dp"
                 android:text="教室名"
-                android:textSize="20dp"
+                android:textSize="30dp"
+                android:background="#c7e0fd"
                 android:id="@+id/roomText"/>
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_width="182dp"
+                android:layout_height="match_parent"
                 android:id="@+id/roomEdit"/>
 
         </LinearLayout>
@@ -57,12 +58,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <TextView
+                android:id="@+id/teacText"
                 android:layout_width="match_parent"
-                android:layout_height="57dp"
+                android:layout_height="43dp"
+                android:background="#c7e0fd"
                 android:text="先生名"
-                android:textSize="20dp"
-                android:id="@+id/teacText"/>
+                android:textSize="30dp" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -80,14 +83,14 @@
         android:orientation="vertical">
 
 
-        <!--<LinearLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView22"
-                android:layout_width="match_parent"
+                android:layout_width="383dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="色選択"
@@ -105,7 +108,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:tag="赤"
                 android:onClick="colerSelected"
@@ -117,7 +119,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:tag="ピンク"
                 android:onClick="colerSelected"
@@ -128,7 +129,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:tag="オレンジ"
                 android:onClick="colerSelected"
@@ -139,17 +139,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:tag="黄色"
                 android:onClick="colerSelected"
                 android:background="#d5ffe449" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="72dp" >
 
             <Button
                 android:id="@+id/button48"
@@ -157,51 +150,49 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="#d5a7ff49"
                 android:onClick="colerSelected"
                 android:tag="黄緑" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="72dp">
+
             <Button
                 android:id="@+id/button49"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:tag="緑"
+                android:background="#d529c203"
                 android:onClick="colerSelected"
-                android:background="#d529c203" />
+                android:tag="緑" />
+
             <Button
                 android:id="@+id/button50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:tag="水色"
+                android:background="#d549dbff"
                 android:onClick="colerSelected"
-                android:background="#d549dbff" />
+                android:tag="水色" />
+
             <Button
                 android:id="@+id/button51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:tag="青"
+                android:background="#d53066f9"
                 android:onClick="colerSelected"
-                android:background="#d53066f9" />
-        </TableRow>
-
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="74dp" >
+                android:tag="青" />
 
             <Button
                 android:id="@+id/button52"
@@ -209,52 +200,37 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="#d59b49ff"
                 android:onClick="colerSelected"
                 android:tag="紫" />
+
             <Button
                 android:id="@+id/button53"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:tag="グレー"
+                android:background="#d5c4c4c4"
                 android:onClick="colerSelected"
-                android:background="#d5c4c4c4" />
-            <Button
-                android:id="@+id/button54"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:tag="茶色"
-                android:onClick="colerSelected"
-                android:background="#d5b2824e" />
+                android:tag="グレー" />
 
-            <Button
-                android:id="@+id/button55"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:background="#e8ffffff"
-                android:onClick="colerSelected"
-                android:tag="白" />
         </TableRow>
-        -->
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="115dp"
             android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="backbuttom"
+                android:text="戻る" />
 
             <Button
                 android:id="@+id/button24"
@@ -263,13 +239,6 @@
                 android:layout_weight="1"
                 android:text="保存" />
 
-            <Button
-                android:id="@+id/button17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="戻る"
-                android:onClick="backbuttom" />
         </LinearLayout>
 
 

@@ -47,7 +47,8 @@
                 tools:context="org.t_robop.shimomura.timetable.Activity"
                 android:orientation="vertical"
                 tools:layout_editor_absoluteY="8dp"
-                tools:layout_editor_absoluteX="8dp">
+                tools:layout_editor_absoluteX="8dp"
+                android:background="#000000">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,7 +62,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="  "
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <TextView
                         android:id="@+id/textView15"
@@ -69,7 +74,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text=" Mon"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:background="#c7e0fd"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <TextView
                         android:id="@+id/textView14"
@@ -77,7 +86,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text=" Tue"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <TextView
                         android:id="@+id/textView13"
@@ -85,7 +98,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text=" Wed"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:background="#c7e0fd"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <TextView
                         android:id="@+id/textView12"
@@ -93,7 +110,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text=" Tue"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <TextView
                         android:id="@+id/textView11"
@@ -101,7 +122,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text=" Fri"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:background="#c7e0fd"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <TextView
                         android:id="@+id/textView10"
@@ -109,7 +134,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text=" Sat"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -124,7 +153,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="1限"
-                        android:textSize="20dp"/>
+                        android:textSize="20dp"
+                        android:background="#c7e0fd"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button37"
@@ -132,7 +165,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Mon1" />
+                        android:background="#FFFFFF"
+                        android:text="Mon1"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button36"
@@ -140,7 +177,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Tus1" />
+                        android:background="#c7e0fd"
+                        android:text="Tus1"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button35"
@@ -148,7 +189,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Wed1"/>
+                        android:background="#FFFFFF"
+                        android:text="Wed1"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
 
 
@@ -158,7 +203,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Thu1" />
+                        android:text="Thu1"
+                        android:background="#c7e0fd"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button33"
@@ -166,7 +215,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Fri1" />
+                        android:background="#FFFFFF"
+                        android:text="Fri1"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button32"
@@ -174,7 +227,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Sat1" />
+                        android:background="#c7e0fd"
+                        android:text="Sat1"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -189,7 +246,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="2限"
-                        android:textSize="20dp"/>
+                        android:textSize="20dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button30"
@@ -197,7 +258,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Mon2" />
+                        android:background="#c7e0fd"
+                        android:text="Mon2"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button29"
@@ -205,7 +270,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Tus2" />
+                        android:background="#FFFFFF"
+                        android:text="Tus2"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button28"
@@ -213,7 +282,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Wed2" />
+                        android:background="#c7e0fd"
+                        android:text="Wed2"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button27"
@@ -221,7 +294,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Thu2" />
+                        android:background="#FFFFFF"
+                        android:text="Thu2"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button26"
@@ -229,7 +306,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Fri2" />
+                        android:background="#c7e0fd"
+                        android:text="Fri2"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button25"
@@ -237,7 +318,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Sat2" />
+                        android:background="#FFFFFF"
+                        android:text="Sat2"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -252,7 +337,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="3限"
-                        android:textSize="20dp"/>
+                        android:textSize="20dp"
+                        android:background="#c7e0fd"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button23"
@@ -260,7 +349,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Mon3" />
+                        android:background="#FFFFFF"
+                        android:text="Mon3"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button22"
@@ -268,7 +361,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Tus3" />
+                        android:background="#c7e0fd"
+                        android:text="Tus3"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button21"
@@ -276,7 +373,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Wed3" />
+                        android:background="#FFFFFF"
+                        android:text="Wed3"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button20"
@@ -284,7 +385,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Thu3" />
+                        android:background="#c7e0fd"
+                        android:text="Thu3"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button19"
@@ -292,7 +397,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Fri3" />
+                        android:background="#FFFFFF"
+                        android:text="Fri3"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button18"
@@ -300,7 +409,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Sat3" />
+                        android:background="#c7e0fd"
+                        android:text="Sat3"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -315,7 +428,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="4限"
-                        android:textSize="20dp"/>
+                        android:textSize="20dp"
+                        android:background="#FFFFFF"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button16"
@@ -323,7 +440,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Mon4" />
+                        android:background="#c7e0fd"
+                        android:text="Mon4"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button15"
@@ -331,7 +452,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Tus4" />
+                        android:background="#FFFFFF"
+                        android:text="Tus4"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button14"
@@ -339,7 +464,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Wed4" />
+                        android:background="#c7e0fd"
+                        android:text="Wed4"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button13"
@@ -347,7 +476,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Thu4" />
+                        android:background="#FFFFFF"
+                        android:text="Thu4"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button12"
@@ -355,7 +488,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Fri4" />
+                        android:background="#c7e0fd"
+                        android:text="Fri4"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button11"
@@ -363,7 +500,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Sat4" />
+                        android:background="#FFFFFF"
+                        android:text="Sat4"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -378,7 +519,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="5限"
-                        android:textSize="20dp"/>
+                        android:textSize="20dp"
+                        android:background="#c7e0fd"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button6"
@@ -386,7 +531,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Mon5" />
+                        android:background="#FFFFFF"
+                        android:text="Mon5"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button5"
@@ -394,7 +543,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Tus5" />
+                        android:background="#c7e0fd"
+                        android:text="Tus5"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button4"
@@ -402,7 +555,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Wed5" />
+                        android:background="#FFFFFF"
+                        android:text="Wed5"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button3"
@@ -410,7 +567,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Thu5"/>
+                        android:background="#c7e0fd"
+                        android:text="Thu5"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button2"
@@ -418,7 +579,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Fri5" />
+                        android:background="#FFFFFF"
+                        android:text="Fri5"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
 
                     <Button
                         android:id="@+id/button"
@@ -426,7 +591,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:onClick="onClick"
-                        android:text="Sat5" />
+                        android:background="#c7e0fd"
+                        android:text="Sat5"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="1dp"/>
                 </LinearLayout>
 
             </LinearLayout>

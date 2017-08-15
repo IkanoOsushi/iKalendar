@@ -14,7 +14,9 @@ android:orientation="vertical">
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="2"
+
     android:text="教科名"
+
     android:textSize="26dp"
     android:id="@+id/subText"/>
 
