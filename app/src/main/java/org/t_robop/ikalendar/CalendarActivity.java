@@ -2,6 +2,7 @@ package org.t_robop.ikalendar;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +22,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.roomorama.caldroid.CaldroidFragment;
@@ -36,6 +40,7 @@ public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年 MMM dd日");
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +89,8 @@ public class CalendarActivity extends AppCompatActivity
 //                        "Long click " + formatter.format(date),
 //                        Toast.LENGTH_SHORT).show();
                 new AlertDialog.Builder(CalendarActivity.this)
-                        .setTitle(formatter.format(date))
-                        .setMessage("message")
+                        .setTitle(formatter.format(date) + "\n予定を追加")
+                        .setView(Dialoglayout())
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -111,6 +116,7 @@ public class CalendarActivity extends AppCompatActivity
         android.support.v4.app.FragmentTransaction t = getSupportFragmentManager().beginTransaction();
         t.replace(R.id.calender_layout, caldroidFragment);
         t.commit();
+
 
     }
     //Navigation Drawer内のメニューを押した時の動作
@@ -139,5 +145,20 @@ public class CalendarActivity extends AppCompatActivity
         return true;
     }
 
+    public LinearLayout Dialoglayout(){
+
+        LinearLayout linearLayout = new LinearLayout(this);
+
+        EditText editTitleText = new EditText(this);
+        EditText editText2 = new EditText(this);
+
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        linearLayout.addView(editTitleText);
+        linearLayout.addView(editText2);
+
+        return linearLayout;
+
+    }
 
 }
