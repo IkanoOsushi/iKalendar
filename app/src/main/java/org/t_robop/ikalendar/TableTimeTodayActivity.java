@@ -6,6 +6,9 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 import java.text.CollationElementIterator;
 
@@ -15,7 +18,7 @@ public class TableTimeTodayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taimetable_today);
-        TextView texv = (TextView) findViewById(R.id.textView8);
+        TextView textView = (TextView) findViewById(R.id.textView8);
 
     }
 /*文字数よりは比率を固定する処理を書く。
@@ -30,6 +33,7 @@ public class TableTimeTodayActivity extends AppCompatActivity {
             return textView;
         }
     */
+//日付の進退のボタンの動きを書く
 }
 
 

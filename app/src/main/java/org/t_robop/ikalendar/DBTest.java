@@ -70,7 +70,7 @@ public class DBTest extends AppCompatActivity {
 
         //すべての値をログに出力
         for (DataBase test:results){
-            System.out.println(test.getName());
+            System.out.println(test.getTimeTableSub());
         }
     }
 
