@@ -2,11 +2,8 @@ package org.t_robop.ikalendar;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -21,11 +18,9 @@ public class DBTest extends AppCompatActivity {
         setContentView(R.layout.activity_dbtest);
         Realm.init(this);
 
+        realm = Realm.getDefaultInstance();
         // xmlとの関連付け
         editText = (EditText)findViewById(R.id.editText);
-
-        //realmの初期化
-        realm = Realm.getDefaultInstance();
     }
     //Addボタンを押したときの処理
     public void add (View v){

@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteX="83dp"
         tools:layout_editor_absoluteY="81dp"
         android:layout_alignParentTop="true"
