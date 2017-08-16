@@ -46,8 +46,8 @@ public class TimetableEditActivity extends AppCompatActivity {
 
 
         realm = Realm.getDefaultInstance();
-        final Button buckbuttom = (Button) findViewById(R.id.button17);
-        final Button savebutton = (Button) findViewById(id.button24);
+        final Button buckbuttom = (Button) findViewById(R.id.editback);
+        final Button savebutton = (Button) findViewById(id.editstorage);
         subText = (EditText) findViewById(id.subEdit);
         roomText = (EditText)findViewById(id.roomEdit);
         teacText =(EditText)findViewById(id.teacEdit);
@@ -148,47 +148,3 @@ public class TimetableEditActivity extends AppCompatActivity {
         }
     }
 }
-
-
-
-
-//ボタン処理を書く
-
-
-    /*public void onClick(final View view) {
-        //showDialog(CustomViewCallback)
-        LayoutInflater factory = LayoutInflater.from(this);
-        inputView = factory.inflate(R.layout.activity_timetable_edit, null);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(inputView);
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-
-                EditText sub = (EditText) inputView.findViewById(R.id.subEdit);
-                String text = sub.getText().toString();
-                EditText room = (EditText) inputView.findViewById(R.id.roomEdit);
-                String text2 = room.getText().toString();
-                EditText teac = (EditText) inputView.findViewById(R.id.teacEdit);
-                String text3 = teac.getText().toString();
-                EditText memo = (EditText) inputView.findViewById(R.id.memoEdit);
-                String text4 = memo.getText().toString();
-
-                Button button = (Button) findViewById(view.getId());
-                button.setText(text);
-
-
-            }
-        });
-
-
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }*/

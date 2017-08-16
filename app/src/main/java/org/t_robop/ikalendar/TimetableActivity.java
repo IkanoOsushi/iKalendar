@@ -3,6 +3,7 @@ package org.t_robop.ikalendar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -25,10 +26,13 @@ import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
+import static android.R.attr.entryValues;
 import static android.R.attr.id;
 import static android.R.attr.switchMinWidth;
+import static android.R.attr.value;
 import static android.R.id.button1;
 import static java.security.AccessController.getContext;
+import static org.t_robop.ikalendar.R.color.red;
 
 public class TimetableActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -73,6 +77,7 @@ public class TimetableActivity extends AppCompatActivity
                     case "button37":
                         Button button37 = (Button)findViewById(R.id.button37);
                         button37.setText(timetables.get(i).getTimeTableSub());
+                        button37.setBackgroundColor(Color.RED);
                         break;
                     case "button36":
                         Button button36 = (Button)findViewById(R.id.button36);
@@ -197,13 +202,6 @@ public class TimetableActivity extends AppCompatActivity
 
     }
 
-    /* ここは詳細を表示するだけなので下の処理はSubjectEditActivityに書いて
-    *  OKとかのボタンも消して閉じるボタンと編集ボタンだけ置きましょう
-    *  setPositiveButtonの中には何も処理を書かない、setNegativeButtonには編集場面アクティビティに飛ぶ処理を書く
-    *
-    *  レイアウトのEditTextをTextViewにする
-    *  ここを表示する時に、前に入力した情報を表示しておくように*/
-
     public void onClick(final View view) {
         //showDialog(CustomViewCallback)
         LayoutInflater factory = LayoutInflater.from(this);
@@ -212,32 +210,6 @@ public class TimetableActivity extends AppCompatActivity
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(inputView);
 
-        builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                //TextViewの型を宣言（関連付け）
-                TextView subjectname = (EditText) inputView.findViewById(R.id.subEdit);
-                TextView roomname = (EditText) inputView.findViewById(R.id.roomEdit);
-                TextView teachername = (EditText) inputView.findViewById(R.id.teacEdit);
-                TextView memo = (EditText) inputView.findViewById(R.id.memoEdit);
-                //ボタンの型を関連付け
-                Button button = (Button) findViewById(view.getId());
-                //string型のTextをとってきてstring型にする
-                String subjecttext;
-                subjecttext = subjectname.getText().toString();
-                String roomtext;
-                roomtext= roomname.getText().toString();
-                String teachertext;
-                teachertext= teachername.getText().toString();
-                String memotext;
-                memotext= memo.getText().toString();
-
-                //ボタンに文字を表示される
-                button.setText(subjecttext + "\n\n" + roomtext);
-
-
-            }
-        });
         builder.setNegativeButton("戻る", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
