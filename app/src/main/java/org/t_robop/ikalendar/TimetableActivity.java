@@ -20,6 +20,7 @@ import io.realm.RealmResults;
 
 import static android.R.attr.id;
 import static android.R.attr.switchMinWidth;
+import static android.R.id.button1;
 import static java.security.AccessController.getContext;
 
 public class TimetableActivity extends AppCompatActivity {
@@ -35,6 +36,8 @@ public class TimetableActivity extends AppCompatActivity {
         Realm.init(this);
         realm = Realm.getDefaultInstance();
 
+
+
         //検索用のクエリ作成
         RealmQuery<TimeTable> folderQuery = realm.where(TimeTable.class);
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
@@ -43,7 +46,129 @@ public class TimetableActivity extends AppCompatActivity {
 
         if(timetables.size() != 0){
             for(int i=0; i<timetables.size(); i++){
-                Log.d("aaaaa", String.valueOf(timetables.get(i)));
+                switch (String.valueOf(timetables.get(i).getTimeTableId())){
+                    case "button37":
+                        Button button37 = (Button)findViewById(R.id.button37);
+                        button37.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button36":
+                        Button button36 = (Button)findViewById(R.id.button36);
+                        button36.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button35":
+                        Button button35 = (Button)findViewById(R.id.button35);
+                        button35.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button34":
+                        Button button34 = (Button)findViewById(R.id.button34);
+                        button34.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button33":
+                        Button button33 = (Button)findViewById(R.id.button33);
+                        button33.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button32":
+                        Button button32 = (Button)findViewById(R.id.button32);
+                        button32.setText(timetables.get(i).getTimeTableSub());
+                        break;
+
+                    case "button30":
+                        Button button30 = (Button)findViewById(R.id.button30);
+                        button30.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button29":
+                        Button button29 = (Button)findViewById(R.id.button29);
+                        button29.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button28":
+                        Button button28 = (Button)findViewById(R.id.button28);
+                        button28.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button27":
+                        Button button27 = (Button)findViewById(R.id.button27);
+                        button27.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button26":
+                        Button button26 = (Button)findViewById(R.id.button26);
+                        button26.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button25":
+                        Button button25 = (Button)findViewById(R.id.button25);
+                        button25.setText(timetables.get(i).getTimeTableSub());
+                        break;
+
+                    case "button23":
+                        Button button23 = (Button)findViewById(R.id.button23);
+                        button23.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button22":
+                        Button button22 = (Button)findViewById(R.id.button22);
+                        button22.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button21":
+                        Button button21 = (Button)findViewById(R.id.button21);
+                        button21.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button20":
+                        Button button20 = (Button)findViewById(R.id.button20);
+                        button20.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button19":
+                        Button button19 = (Button)findViewById(R.id.button19);
+                        button19.setText(timetables.get(i).getTimeTableSub());
+                        break;
+
+                    case "button16":
+                        Button button16 = (Button)findViewById(R.id.button16);
+                        button16.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button15":
+                        Button button15 = (Button)findViewById(R.id.button15);
+                        button15.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button14":
+                        Button button14 = (Button)findViewById(R.id.button14);
+                        button14.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button13":
+                        Button button13 = (Button)findViewById(R.id.button13);
+                        button13.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button12":
+                        Button button12 = (Button)findViewById(R.id.button12);
+                        button12.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button11":
+                        Button button11 = (Button)findViewById(R.id.button11);
+                        button11.setText(timetables.get(i).getTimeTableSub());
+                        break;
+
+                    case "button6":
+                        Button button6 = (Button)findViewById(R.id.button6);
+                        button6.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button5":
+                        Button button5 = (Button)findViewById(R.id.button5);
+                        button5.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button4":
+                        Button button4 = (Button)findViewById(R.id.button4);
+                        button4.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button3":
+                        Button button3 = (Button)findViewById(R.id.button3);
+                        button3.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button2":
+                        Button button2 = (Button)findViewById(R.id.button2);
+                        button2.setText(timetables.get(i).getTimeTableSub());
+                        break;
+                    case "button":
+                        Button button = (Button)findViewById(R.id.button37);
+                        button.setText(timetables.get(i).getTimeTableSub());
+                        break;
+
+                }
             }
         }
 
