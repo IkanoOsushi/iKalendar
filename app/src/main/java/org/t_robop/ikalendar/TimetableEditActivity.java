@@ -53,18 +53,19 @@ public class TimetableEditActivity extends AppCompatActivity {
         teacText =(EditText)findViewById(id.teacEdit);
         savebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String subtext = subText.getText().toString();
-                String roomtext = roomText.getText().toString();
-                String teactext = teacText.getText().toString();
+//                String idtext = value;
+//                String subtext = subText.getText().toString();
+//                String roomtext = roomText.getText().toString();
+//                String teactext = teacText.getText().toString();
 
                 realm.beginTransaction();
 
                 TimeTable model = realm.createObject(TimeTable.class);
 
                 model.setTimeTableId(value);
-                model.setTimeTableSub(subtext);
-                model.setTimeTableClass(roomtext);
-                model.setTimeTableTea(teactext);
+                model.setTimeTableSub(subText.getText().toString());
+                model.setTimeTableClass(roomText.getText().toString());
+                model.setTimeTableTea(teacText.getText().toString());
                 model.setTimeTableColorId(timeTableColor);
 
                 realm.commitTransaction();
