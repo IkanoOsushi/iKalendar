@@ -13,7 +13,6 @@ public class TimeTable extends RealmObject {
     private String time_table_memo;
     private String time_table_class;
     private String time_table_tea;
-    private String time_table_color;
 
     public String getTimeTableId() {
         return time_table_id;
@@ -63,11 +62,4 @@ public class TimeTable extends RealmObject {
         this.time_table_tea = time_table_tea;
     }
 
-    public String getTimeTableColor() {
-        return time_table_color;
-    }
-
-    public void setTimeTableColor(String time_table_color) {
-        this.time_table_color = time_table_color;
-    }
 }

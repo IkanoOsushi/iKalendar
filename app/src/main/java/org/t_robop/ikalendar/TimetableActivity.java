@@ -20,6 +20,7 @@ import io.realm.RealmResults;
 
 import static android.R.attr.id;
 import static android.R.attr.switchMinWidth;
+import static java.security.AccessController.getContext;
 
 public class TimetableActivity extends AppCompatActivity {
     Realm realm;
@@ -42,26 +43,9 @@ public class TimetableActivity extends AppCompatActivity {
 
         if(timetables.size() != 0){
             for(int i=0; i<timetables.size(); i++){
-                Log.d("aaaaa", String.valueOf(timetables));    //全教科名をDrawerのAdapterに追加
+                Log.d("aaaaa", String.valueOf(timetables.get(i)));
             }
         }
-
-
-
-//        RealmResults<DataBase.TimeTable> timetables = realm.where(DataBase.TimeTable.class).equalTo("time_table_id","").findAll();
-//
-//        if(timetables.size() != 0){
-//            for(int i=0; i<timetables.size(); i++){
-//
-//                if(timetables.get(i)==){
-//
-//                }
-//
-//            }
-//        }
-
-
-//        final RealmResults<DataBase> timeid = realm.where(DataBase.class).equalTo("time_table_id","").findAll();
 
     }
 
@@ -115,9 +99,9 @@ public class TimetableActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent myintent = new Intent(getApplicationContext(), TimetableEditActivity.class);
-                myintent.putExtra("TTKey",view.getId());
+                String rsName = getResources().getResourceEntryName(view.getId());
+                myintent.putExtra("TTKey",rsName);
                 startActivity(myintent);
-
             }
         });
         AlertDialog dialog = builder.create();
