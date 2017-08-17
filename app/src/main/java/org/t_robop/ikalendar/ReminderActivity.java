@@ -1,5 +1,6 @@
 package org.t_robop.ikalendar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,14 +9,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 //package org.t_robop.urano.reminder_test;
 
 public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView tv;
+    String time = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,93 +44,31 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         navigationView.setNavigationItemSelectedListener(this);
         //ここまでNavigation Drawerのやつ
 
+        /*
         Intent intent = getIntent();
         //String text= getIntent().getStringExtra("note");
         String text= intent.getStringExtra("note");
         String note_id = getIntent().getStringExtra("note_id");
+        */
 
-        tv = (TextView)findViewById(R.id.note0000);
+        //activity_reminder.xml内ListViewのidと連携
+        ListView listView = (ListView)findViewById(R.id.customScrollListView);
 
-
-        if(text != null) {
-            switch (note_id) {
-                case "note0000":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note0100":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note0200":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note0300":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note0400":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note0500":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note0600":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note0700":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note0800":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note0900":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1000":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1100":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1200":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1300":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1400":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1500":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1600":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1700":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1800":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note1900":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note2000":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note2100":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note2200":
-                    tv.setText(String.valueOf(text));
-                    break;
-                case "note2300":
-                    tv.setText(String.valueOf(text));
-                    break;
-            }
+        //ListViewに表示する要素を設定
+        ArrayList<CustomListItem> listItems = new ArrayList<>();
+        for(int i=0; i<24; i++){
+            time = String.valueOf(i)+":00";
+            CustomListItem item = new CustomListItem(time,"予定");
+            listItems.add(item);
         }
+
+        //listItemsをカスタムアダプターに入れてlistViewにセット
+        CustomListAdapter adapter = new CustomListAdapter(this,R.layout.custom_scrollistview_item,listItems);
+        listView.setAdapter(adapter);
 
     }
 
+    /*
     public void add(View v) {
         Intent intent = new Intent(this, ReminderEditActivity.class);
         String rsName = getResources().getResourceEntryName(v.getId());
@@ -129,6 +76,7 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         intent.putExtra("note","");
         startActivity(intent);
     }
+    */
 
     //Navigation Drawer内のメニューを押した時の動作
     @Override
