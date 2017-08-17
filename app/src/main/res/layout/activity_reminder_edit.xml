@@ -1,25 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.t_robop.ikalendar.ReminderEditActivity"
-android:orientation="vertical"
-    android:weightSum="1">
+    tools:context="org.t_robop.urano.reminder_test.Edit_activity">
 
     <EditText
         android:id="@+id/edit"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_weight="0.82" />
+        android:background="#ffffffff"
+        android:layout_width="0dp"
+        android:layout_height="319dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.661"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintHorizontal_bias="0.557" />
 
     <Button
-        android:id="@+id/button7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.14"
-        android:onClick="set"
-        android:text="追加" />
-</LinearLayout>
+        android:id="@+id/add"
+        android:layout_width="129dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="6dp"
+        android:text="追加"
+        android:onClick="add2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp" />
 
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="137dp"
+        android:layout_height="30dp"
+        android:text="通知設定"
+        android:background="#ffffffff"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.922"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/edit"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="19dp" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="129dp"
+        android:layout_height="48dp"
+        android:text="キャンセル"
+        android:onClick="cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintLeft_toRightOf="@+id/add"
+        android:layout_marginLeft="71dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="71dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+
+        android:id="@+id/EditNowTime"
+        android:layout_width="327dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="5dp"
+        android:text="selTime"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="50sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.508" />
+</android.support.constraint.ConstraintLayout>

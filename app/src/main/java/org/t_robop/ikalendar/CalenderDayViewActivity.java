@@ -167,7 +167,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
             Intent intent = new Intent(this, CalendarActivity.class);

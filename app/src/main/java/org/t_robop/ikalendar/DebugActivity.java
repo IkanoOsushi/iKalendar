@@ -25,7 +25,7 @@ public class DebugActivity extends AppCompatActivity
     ArrayList<Class> arrayList;
 
     //ここに入れればデバッグアクティビティのリストに追加される
-    Class[] DebugClass={TimetableEditActivity.class,CalendarActivity.class,CalenderDayViewActivity.class,MainActivity.class,ReminderActivity.class,TimetableActivity.class,ReminderEditActivity.class,TableTimeTodayActivity.class};
+    Class[] DebugClass={TimetableEditActivity.class,CalendarActivity.class,CalenderDayViewActivity.class,ReminderActivity.class,ReminderActivity.class,TimetableActivity.class,ReminderEditActivity.class,TableTimeTodayActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,7 @@ public class DebugActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this,ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
             Intent intent = new Intent(this,CalendarActivity.class);

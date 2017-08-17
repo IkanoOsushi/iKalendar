@@ -42,25 +42,669 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="368dp"
                 android:layout_height="495dp"
+                android:layout_weight="5"
+                tools:layout_editor_absoluteY="25dp"
+                tools:layout_editor_absoluteX="0dp"
                 android:orientation="vertical"
-                android:weightSum="1"
-                tools:context="org.t_robop.urano.ikarenda_.ReminderActivity"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp">
+                android:weightSum="1">
 
-                <ListView
-                    android:id="@+id/list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="308dp"
-                    android:layout_weight="0.82" />
 
-                <Button
-                    android:id="@+id/button9"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_weight="0.15"
+                    android:layout_height="78dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:id="@+id/linearLayout"
+                    tools:layout_editor_absoluteY="25dp"
+                    tools:layout_editor_absoluteX="8dp">
+
+                    <Button
+                        android:id="@+id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BACK" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="149dp"
+                        android:layout_height="65dp"
+                        android:text="TextView"
+                        android:layout_weight="0.97" />
+
+                    <Button
+                        android:id="@+id/next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NEXT" />
+
+                </LinearLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#5b5b5b"
+                    tools:layout_editor_absoluteY="8dp"
+                    tools:layout_editor_absoluteX="8dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.2dp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/t0000"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:background="#ffffffff"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:text="0:00"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/note0000"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--0:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t0100"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="1:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note0100"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--1:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t0200"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="2:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note0200"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+
+                        </LinearLayout><!--2:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t0300"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="3:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note0300"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--3:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t0400"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="4:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+
+                            <TextView
+                                android:id="@+id/note0400"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--4:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t0500"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="5:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note0500"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--5:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t0600"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="6:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note0600"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--6:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t0700"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="7:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note0700"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--7:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t0800"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="8:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+
+                            <TextView
+                                android:id="@+id/note0800"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--8:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t0900"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="9:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note0900"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--9:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1000"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="10:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1000"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--10:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1100"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="11:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1100"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--11:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1200"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="12:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1200"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--12:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1300"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="13:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1300"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--13:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1400"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="14:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1400"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--14:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1500"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="15:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1500"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--15:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1600"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="16:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1600"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--16:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1700"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="17:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1700"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--17:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1800"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="18:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1800"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--18:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t1900"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="19:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note1900"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--19:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t2000"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="20:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note2000"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--20:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t2100"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="21:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note2100"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--21:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t2200"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="22:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note2200"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--22:00-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="0.5dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/t2300"
+                                android:layout_width="62dp"
+                                android:layout_height="60dp"
+                                android:text="23:00"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:textSize="18sp"
+                                android:background="#ffffffff"/>
+                            <TextView
+                                android:id="@+id/note2300"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#ffffffff"
+                                android:gravity="center_vertical"
+                                android:text="予定"
+                                android:onClick="add"
+                                android:textSize="18sp" />
+                        </LinearLayout><!--23:00-->
+
+                    </LinearLayout>
+
+
+                </ScrollView>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
                     android:onClick="add"
-                    android:text="追加" />
+                    app:backgroundTint="@android:color/holo_green_light"
+                    tools:layout_editor_absoluteY="25dp"
+                    tools:layout_editor_absoluteX="8dp" />
 
             </LinearLayout>
 

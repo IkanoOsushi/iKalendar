@@ -1,29 +1,21 @@
 package org.t_robop.ikalendar;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.TextView;
+//package org.t_robop.urano.reminder_test;
 
-import java.util.ArrayList;
+public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class ReminderActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
-    ListView listView;
-    static ArrayList<String> arrayList;
-    ArrayAdapter<String> arrayAdapter;
-
-
-
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,54 +35,98 @@ public class ReminderActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //ここまでNavigation Drawerのやつ
 
+        Intent intent = getIntent();
+        //String text= getIntent().getStringExtra("note");
+        String text= intent.getStringExtra("note");
+        String note_id = getIntent().getStringExtra("note_id");
 
-    listView = (ListView)findViewById(R.id.list);
-    arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1);
-    Intent intent = getIntent();
-    final String memo = intent.getStringExtra("memo");
-    int listpos = intent.getIntExtra("pos",-1);
+        tv = (TextView)findViewById(R.id.note0000);
 
 
-    //初回起動時のみ
-        if(arrayList==null){
-        arrayList = new ArrayList<>();
-        //   arrayList.add(memo);
+        if(text != null) {
+            switch (note_id) {
+                case "note0000":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note0100":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note0200":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note0300":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note0400":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note0500":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note0600":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note0700":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note0800":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note0900":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1000":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1100":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1200":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1300":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1400":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1500":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1600":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1700":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1800":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note1900":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note2000":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note2100":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note2200":
+                    tv.setText(String.valueOf(text));
+                    break;
+                case "note2300":
+                    tv.setText(String.valueOf(text));
+                    break;
+            }
+        }
 
     }
-
-        if(memo != null){
-        if(listpos == -1) {
-            arrayList.add(memo);
-        }
-        else{
-            arrayList.set(listpos,memo);
-        }
-    }
-
-        for(int i = 0; i<arrayList.size();i++){
-        arrayAdapter.add(arrayList.get(i));
-
-    }
-        listView.setAdapter(arrayAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-        @Override
-        public void onItemClick(AdapterView<?>parent, View view,int position, long id){
-
-            String[] memoText = (String[]) arrayList.toArray(new String[]{});
-            String selectedText = memoText[position];
-            Intent intent = new Intent(ReminderActivity.this, ReminderEditActivity.class);
-            intent.putExtra("pos",position);
-            intent.putExtra("memo",selectedText);
-
-            startActivity(intent);
-        }
-    });
-}
 
     public void add(View v) {
         Intent intent = new Intent(this, ReminderEditActivity.class);
-        intent.putExtra("memo","");
+        String rsName = getResources().getResourceEntryName(v.getId());
+        intent.putExtra("note_id",rsName);
+        intent.putExtra("note","");
         startActivity(intent);
     }
 
@@ -101,7 +137,7 @@ public class ReminderActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this,ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
             Intent intent = new Intent(this,CalendarActivity.class);
@@ -120,3 +156,4 @@ public class ReminderActivity extends AppCompatActivity
         return true;
     }
 }
+
