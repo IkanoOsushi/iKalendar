@@ -108,11 +108,11 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         @Override
         public void onItemClick (AdapterView < ? > parent, View view,int position, long id){
         //ListView listView =(ListView)parent;
-        CustomListItem item = (CustomListItem)listView.getItemAtPosition(position);
+        //CustomListItem item = (CustomListItem)listView.getItemAtPosition(position);
 
         Intent intent = new Intent(this, ReminderEditActivity.class);
         intent.putExtra("time", time);
-        intent.putExtra("e_time",position);//←これで配列番号を送りたいのですが上手くいきません（涙）
+        intent.putExtra("e_time",String.valueOf(position));//←これで配列番号を送りたいのですが上手くいきません（涙）
 
         startActivity(intent);
     }

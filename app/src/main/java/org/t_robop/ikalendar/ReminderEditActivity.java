@@ -21,19 +21,16 @@ public class ReminderEditActivity extends AppCompatActivity {
 
         //   String note = getIntent().getStringExtra("note");
         //   Log.d("aaaaa",note);
-        //test
 
         editText = (EditText) findViewById(R.id.edit);
         nowtime = (TextView) findViewById(R.id.EditNowTime);
 
         Intent intent = getIntent();
-        int time = intent.getIntExtra("e_time");//←ここで配列番号を受け取りたいです、positionがint型だったので合わせてみました。
+        String time = intent.getStringExtra("e_time");
 
         //note_id = getIntent().getStringExtra("note_id");
 
-        //String digitime = TextView.add(time);
-
-        nowtime.setText(String.valueOf(time)+"の予定を編集中");//←ここもint.valueにしてみたりしたのですがエラーが出たので一旦戻しました
+        nowtime.setText(String.valueOf(time)+":00の予定を編集中");
 
     }
 
