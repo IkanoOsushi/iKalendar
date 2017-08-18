@@ -44,6 +44,9 @@ public class TimetableActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
 
+        Intent intent =  getIntent();
+        int timeTableColorData =  intent.getIntExtra("colerSelect",0);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,14 +73,18 @@ public class TimetableActivity extends AppCompatActivity
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
         RealmResults<TimeTable> timetables = timetableQuery.findAll();
 
-
         if(timetables.size() != 0){
+            //timetableの配列の要素の数が0の時の実行
             for(int i=0; i<timetables.size(); i++){
+                //timetablesの要素の数だけ回す
                 switch (String.valueOf(timetables.get(i).getTimeTableId())){
+                    //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
                     case "button37":
-                        Button button37 = (Button)findViewById(R.id.button37);
-                        button37.setText(timetables.get(i).getTimeTableSub());
-                        button37.setBackgroundColor(Color.RED);
+                        Button button37 = (Button)findViewById(R.id.button37);//関連付け
+                        button37.setText(timetables.get(i).getTimeTableSub());//教科名表示
+                        //色のswitch置く予定
+                       // if(timeTableColorData==1){
+                       // button37.setBackgroundColor(Color.parseColor("#d5fc5555"));}
                         break;
                     case "button36":
                         Button button36 = (Button)findViewById(R.id.button36);
@@ -226,14 +233,6 @@ public class TimetableActivity extends AppCompatActivity
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-        //テキストビューでダイアログのなかで表示する
-       // TextView subjectnameView=(TextView) dialog.findViewById(R.id.subEdit);
-        //TextView roomnameView=(TextView) dialog.findViewById(R.id.roomEdit);
-        //TextView teachernameView=(TextView) dialog.findViewById(R.id.teacEdit);
-        //文字を表示する
-       // subjectnameView.setText("test");
-        //roomnameView.setText("test");
-        //teachernameView.setText("test");
     }
 
     //Navigation Drawer内のメニューを押した時の動作
