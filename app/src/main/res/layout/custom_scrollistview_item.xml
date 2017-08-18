@@ -19,7 +19,7 @@
         android:layout_height="60dp"
         android:background="#ffffffff"
         android:gravity="center_vertical"
-        android:text="予定"
         android:textSize="18sp" />
+        <!--android:text="予定"-->
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,8 +31,11 @@ import java.util.ArrayList;
 
 public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
-    String time = null;
+    private static final int REQUEST_CODE = 1;
 
+    ListView listView;
+    ArrayList<CustomListItem> listItems;
+    CustomListAdapter customListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,7 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
         String nowText = formatter.format(now);
 
-        TextView tv = (TextView)findViewById(R.id.date);
+        TextView tv = (TextView) findViewById(R.id.date);
         tv.setText(nowText);
         //ここまで時間取得&表示
 
@@ -57,24 +64,22 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         navigationView.setNavigationItemSelectedListener(this);
         //ここまでNavigation Drawerのやつ
 
-
         //activity_reminder.xml内ListViewのidと連携
-
-        ListView listView = (ListView)findViewById(R.id.customScrollListView);
+        listView = (ListView) findViewById(R.id.customScrollListView);
 
         listView.setOnItemClickListener(this);
 
         //ListViewに表示する要素を設定
-        ArrayList<CustomListItem> listItems = new ArrayList<>();
-        for(int i=0; i<24; i++){
-            time = String.valueOf(i)+":00";
-            CustomListItem item = new CustomListItem(time,"予定");
-            listItems.add(item);
+        listItems = new ArrayList<>();
+
+        for (int i = 0; i < 24; i++) {
+            CustomListItem defaultItem = new CustomListItem(String.valueOf(i) + ":00", "予定");
+            listItems.add(defaultItem);
         }
 
         //listItemsをカスタムアダプターに入れてlistViewにセット
-        CustomListAdapter adapter = new CustomListAdapter(this,R.layout.custom_scrollistview_item,listItems);
-        listView.setAdapter(adapter);
+        customListAdapter = new CustomListAdapter(this, R.layout.custom_scrollistview_item, listItems);
+        listView.setAdapter(customListAdapter);
 
     }
 
@@ -85,16 +90,16 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,ReminderActivity.class);
+            Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this,CalendarActivity.class);
+            Intent intent = new Intent(this, CalendarActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_timetable) {
-            Intent intent = new Intent(this,TimetableActivity.class);
+            Intent intent = new Intent(this, TimetableActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_reminder) {
-            Intent intent = new Intent(this,ReminderActivity.class);
+            Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_setting) {
 
@@ -106,12 +111,41 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //ListView listView =(ListView)parent;
-        //CustomListItem item = (CustomListItem)listView.getItemAtPosition(position);
+
+        ListView listView = (ListView) parent;
+        CustomListItem clickedItem = (CustomListItem) listView.getItemAtPosition(position);     //listViewのタップされた場所の情報を変数itemに代入
+
+        String clickedItemTime = clickedItem.getmTime();   //タップされた場所の時間を取得
 
         Intent intent = new Intent(this, ReminderEditActivity.class);
-        intent.putExtra("time",time);
-        startActivity(intent);
+        intent.putExtra("time", clickedItemTime);
+        intent.putExtra("position", position);
+        //startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case (REQUEST_CODE):
+                if (resultCode == RESULT_OK) {
+                    //OKボタンを押して戻ってきたときの処理
+                    String getResultText = data.getStringExtra("note");
+                    int getResultPosition = data.getIntExtra("position", 0);
+
+                    CustomListItem editItem = new CustomListItem(String.valueOf(getResultPosition) + ":00", getResultText);
+                    listItems.set(getResultPosition, editItem);
+
+                    customListAdapter = new CustomListAdapter(this, R.layout.custom_scrollistview_item, listItems);
+
+                    listView.setAdapter(customListAdapter);
+                } else if (resultCode == RESULT_CANCELED) {
+                    //キャンセルボタンを押して戻ってきたときの処理
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
 

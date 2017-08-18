@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomListAdapter extends ArrayAdapter<CustomListItem> {
@@ -22,7 +23,7 @@ public class CustomListAdapter extends ArrayAdapter<CustomListItem> {
      */
 
     //コンストラクタ
-    public CustomListAdapter(Context context, int resource, List<CustomListItem> items){
+    public CustomListAdapter(Context context, int resource, ArrayList<CustomListItem> items){
         super(context,resource,items);
 
         mResource = resource;
