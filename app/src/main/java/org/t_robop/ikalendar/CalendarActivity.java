@@ -80,20 +80,13 @@ public class CalendarActivity extends AppCompatActivity
 
             @Override
             public void onLongClickDate(Date date, View view) {
-//                Toast.makeText(getApplicationContext(),
-//                        "Long click " + formatter.format(date),
-//                        Toast.LENGTH_SHORT).show();
-                new AlertDialog.Builder(CalendarActivity.this)
-                        .setTitle(formatter.format(date) + "\n予定を追加")
-                        .setView(Dialoglayout())
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // OK button pressed
-                            }
-                        })
-                        .setNegativeButton("Cancel", null)
-                        .show();
+                //intentで日付を渡すためにdateをString型に変換
+                String PlanDate = formatter.format(date);
+
+                //登録画面に日付を渡しintentする
+                Intent intent = new Intent(CalendarActivity.this,org.t_robop.ikalendar.CalenderAddPlanActivity.class);
+                intent.putExtra("date",PlanDate);
+                startActivity(intent);
 
             }
 
@@ -147,33 +140,6 @@ public class CalendarActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public LinearLayout Dialoglayout(){
-
-        LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-
-        EditText editTitleText = new EditText(this);
-        EditText editText2 = new EditText(this);
-        Button button = new Button(this);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // DatePicker呼び出し
-                CalenderDatePicker timePicker = new CalenderDatePicker();
-                timePicker.show(getSupportFragmentManager(),"timePicker");
-
-            }
-        });
-
-
-        linearLayout.addView(editTitleText);
-        linearLayout.addView(editText2);
-        linearLayout.addView(button);
-
-        return linearLayout;
-
     }
 
 }

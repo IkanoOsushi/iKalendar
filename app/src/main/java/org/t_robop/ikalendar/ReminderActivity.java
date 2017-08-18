@@ -17,9 +17,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 import java.util.ArrayList;
-import java.util.List;
 //package org.t_robop.urano.reminder_test;
 
 public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
@@ -34,6 +37,14 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //ここから時間取得&表示
+        Date now = new Date(System.currentTimeMillis());
+        DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        String nowText = formatter.format(now);
+
+        TextView tv = (TextView)findViewById(R.id.date);
+        tv.setText(nowText);
+        //ここまで時間取得&表示
 
         //ここからNavigation Drawerのやつ
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

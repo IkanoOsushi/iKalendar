@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -27,6 +29,9 @@ public class CalenderDatePicker extends android.support.v4.app.DialogFragment im
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         //時刻が選択されたときの処理
+
+        CalenderAddPlanActivity callingActivity = (CalenderAddPlanActivity) getActivity();
+        callingActivity.onReturnValue(hourOfDay,minute);
     }
 
 }
