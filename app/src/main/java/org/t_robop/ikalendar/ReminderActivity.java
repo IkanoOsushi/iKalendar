@@ -72,6 +72,7 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         //ListViewに表示する要素を設定
         listItems = new ArrayList<>();
 
+        //ToDo 文字列を予定で初期化してるので、別ActivityからstartActivityで起動されたときに再初期化される　データベースからitemをgetしたい
         for (int i = 0; i < 24; i++) {
             CustomListItem defaultItem = new CustomListItem(String.valueOf(i) + ":00", "予定");
             listItems.add(defaultItem);
@@ -118,27 +119,29 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         String clickedItemTime = clickedItem.getmTime();   //タップされた場所の時間を取得
 
         Intent intent = new Intent(this, ReminderEditActivity.class);
-        intent.putExtra("time", clickedItemTime);
-        intent.putExtra("position", position);
-        //startActivity(intent);
+        intent.putExtra("time", clickedItemTime);   //タップされた場所の時間
+        intent.putExtra("position", position);      //タップされたposition
+
         startActivityForResult(intent, REQUEST_CODE);
     }
 
+    //startActivityForResultで遷移したActivityからのコールバック
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case (REQUEST_CODE):
                 if (resultCode == RESULT_OK) {
-                    //OKボタンを押して戻ってきたときの処理
-                    String getResultText = data.getStringExtra("note");
-                    int getResultPosition = data.getIntExtra("position", 0);
+                    //追加ボタンを押して戻ってきたときの処理
+                    String getResultText = data.getStringExtra("note");         //ReminderEditActivityで編集した予定(文字列)の取得
+                    int getResultPosition = data.getIntExtra("position", 0);    //onItemClickのposition
 
-                    CustomListItem editItem = new CustomListItem(String.valueOf(getResultPosition) + ":00", getResultText);
-                    listItems.set(getResultPosition, editItem);
+                    CustomListItem editItem = new CustomListItem(String.valueOf(getResultPosition) + ":00", getResultText);     //変更されるListViewを作成
+                    listItems.set(getResultPosition, editItem);     //変更されるListViewの列を更新
+                    //ToDo ここでデータベースにlistItemsを保存(set)して、onCreateでgetできるようにしたい
 
                     customListAdapter = new CustomListAdapter(this, R.layout.custom_scrollistview_item, listItems);
-
                     listView.setAdapter(customListAdapter);
+
                 } else if (resultCode == RESULT_CANCELED) {
                     //キャンセルボタンを押して戻ってきたときの処理
                 }

@@ -32,14 +32,14 @@ public class ReminderEditActivity extends AppCompatActivity {
     }
 
     public void addClick(View v) {
-        int getIntentPosition = getIntent().getIntExtra("position",0);
+        int getIntentPosition = getIntent().getIntExtra("position",0);  //ReminderActivityのListViewでタップされたpositionを取得
 
         String text = editText.getText().toString();    //editした予定(文字列)を取得
 
         Intent intent = new Intent(this, ReminderActivity.class);
         intent.putExtra("note",text);   //予定(文字列)
-        intent.putExtra("position",getIntentPosition);
-        setResult(RESULT_OK,intent);
+        intent.putExtra("position",getIntentPosition);  //position
+        setResult(RESULT_OK,intent);    //ReminderActivityのonActivityResultへ
         finish();
         //startActivity(intent);
 
