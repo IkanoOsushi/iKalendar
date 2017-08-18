@@ -20,7 +20,6 @@
         <activity android:name=".TimetableActivity" />
         <activity android:name=".ReminderActivity" />
         <activity android:name=".CalendarActivity" />
-        <activity android:name=".DBTest" />
         <activity android:name=".ReminderEditActivity" />
         <activity android:name=".TableTimeTodayActivity" />
         <activity android:name=".TimetableEditActivity" />
