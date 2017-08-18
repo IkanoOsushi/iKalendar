@@ -36,7 +36,7 @@ public class ReminderEditActivity extends AppCompatActivity {
 
         String digitime = "0:00";
 
-        time.setText(String.valueOf(digitime));
+        time.setText(String.valueOf(digitime)+"の予定を編集中");
 
     }
 

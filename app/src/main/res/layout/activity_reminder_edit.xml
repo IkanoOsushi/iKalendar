@@ -9,6 +9,7 @@
     <EditText
         android:id="@+id/edit"
         android:background="#ffffffff"
+        android:gravity="top|left"
         android:layout_width="0dp"
         android:layout_height="319dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,24 +37,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="137dp"
-        android:layout_height="30dp"
-        android:text="通知設定"
-        android:background="#ffffffff"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/edit"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="19dp" />
-
     <Button
         android:id="@+id/cancel"
         android:layout_width="129dp"
@@ -75,10 +58,10 @@
         android:id="@+id/EditNowTime"
         android:layout_width="327dp"
         android:layout_height="58dp"
-        android:layout_marginTop="5dp"
-        android:text="selTime"
+        android:layout_marginTop="7dp"
+        android:text="HH:MMの予定を編集中"
         android:gravity="center_horizontal|center_vertical"
-        android:textSize="50sp"
+        android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
