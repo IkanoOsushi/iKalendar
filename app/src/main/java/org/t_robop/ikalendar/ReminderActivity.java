@@ -28,6 +28,7 @@ import java.util.ArrayList;
 public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
     String time = null;
+    ListView listView;
 
 
     @Override
@@ -104,13 +105,15 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         return true;
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        @Override
+        public void onItemClick (AdapterView < ? > parent, View view,int position, long id){
         //ListView listView =(ListView)parent;
-        //CustomListItem item = (CustomListItem)listView.getItemAtPosition(position);
+        CustomListItem item = (CustomListItem)listView.getItemAtPosition(position);
 
         Intent intent = new Intent(this, ReminderEditActivity.class);
-        intent.putExtra("time",time);
+        intent.putExtra("time", time);
+        intent.putExtra("e_time",position);//←これで配列番号を送りたいのですが上手くいきません（涙）
+
         startActivity(intent);
     }
 }
