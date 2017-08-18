@@ -19,14 +19,16 @@ import io.realm.RealmResults;
 
 import static org.t_robop.ikalendar.R.*;
 import static org.t_robop.ikalendar.R.id.editText;
+import static org.t_robop.ikalendar.R.id.memoText;
 import static org.t_robop.ikalendar.R.id.subEdit;
 import static org.t_robop.ikalendar.R.id.time;
 
 public class TimetableEditActivity extends AppCompatActivity {
-      Realm realm;
+    Realm realm;
     EditText subText;
     EditText roomText;
     EditText teacText;
+   // EditText memoText;
     private View inputView;
     int timeTableColor =0;
 
@@ -40,7 +42,7 @@ public class TimetableEditActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-       final String value = intent.getStringExtra("TTKey");//設定したkeyで取り出す
+        final String value = intent.getStringExtra("TTKey");//設定したkeyで取り出す
 
         Realm.init(this);
 
@@ -53,10 +55,7 @@ public class TimetableEditActivity extends AppCompatActivity {
         teacText =(EditText)findViewById(id.teacEdit);
         savebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                String idtext = value;
-//                String subtext = subText.getText().toString();
-//                String roomtext = roomText.getText().toString();
-//                String teactext = teacText.getText().toString();
+
 
                 realm.beginTransaction();
 
@@ -66,16 +65,17 @@ public class TimetableEditActivity extends AppCompatActivity {
                 model.setTimeTableSub(subText.getText().toString());
                 model.setTimeTableClass(roomText.getText().toString());
                 model.setTimeTableTea(teacText.getText().toString());
+               // model.setTimeTableMemo(memoText.getText().toString());
                 model.setTimeTableColorId(timeTableColor);
 
                 realm.commitTransaction();
+                Toast.makeText(TimetableEditActivity.this,"保存しました",Toast.LENGTH_SHORT).show();
 
-//                //書き込みたいデータをインスタンスに入れる
-//                model.setSessionId(1);
-//                model.setTimeTableSub(editText.getText().toString());
-//
-//                //トランザクション終了 (データを書き込む)
-//                realm.commitTransaction();
+                Intent intent = new Intent();
+                intent.setClass(TimetableEditActivity.this,TimetableActivity.class);
+
+                intent.putExtra("colerSelect",timeTableColor);
+                startActivity(intent);
 
             }
         });
@@ -97,7 +97,7 @@ public class TimetableEditActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.button44:
                 timeTableColor = 1;
-                 Toast.makeText(this, "赤を選択しました。", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "赤を選択しました。", Toast.LENGTH_LONG).show();
 
                 break;
             case R.id.button45:
