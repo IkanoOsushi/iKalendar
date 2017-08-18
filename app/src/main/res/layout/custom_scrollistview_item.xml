@@ -20,7 +20,6 @@
         android:background="#ffffffff"
         android:gravity="center_vertical"
         android:text="予定"
-        android:onClick="add"
         android:textSize="18sp" />
 
 </LinearLayout>

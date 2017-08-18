@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,9 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 //package org.t_robop.urano.reminder_test;
 
-public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
     String time = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +46,12 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         navigationView.setNavigationItemSelectedListener(this);
         //ここまでNavigation Drawerのやつ
 
-        /*
-        Intent intent = getIntent();
-        //String text= getIntent().getStringExtra("note");
-        String text= intent.getStringExtra("note");
-        String note_id = getIntent().getStringExtra("note_id");
-        */
 
         //activity_reminder.xml内ListViewのidと連携
+
         ListView listView = (ListView)findViewById(R.id.customScrollListView);
+
+        listView.setOnItemClickListener(this);
 
         //ListViewに表示する要素を設定
         ArrayList<CustomListItem> listItems = new ArrayList<>();
@@ -67,16 +66,6 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         listView.setAdapter(adapter);
 
     }
-
-    /*
-    public void add(View v) {
-        Intent intent = new Intent(this, ReminderEditActivity.class);
-        String rsName = getResources().getResourceEntryName(v.getId());
-        intent.putExtra("note_id",rsName);
-        intent.putExtra("note","");
-        startActivity(intent);
-    }
-    */
 
     //Navigation Drawer内のメニューを押した時の動作
     @Override
@@ -102,6 +91,16 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //ListView listView =(ListView)parent;
+        //CustomListItem item = (CustomListItem)listView.getItemAtPosition(position);
+
+        Intent intent = new Intent(this, ReminderEditActivity.class);
+        intent.putExtra("time",time);
+        startActivity(intent);
     }
 }
 
