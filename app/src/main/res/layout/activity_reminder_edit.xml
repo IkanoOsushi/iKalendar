@@ -9,24 +9,26 @@
     <EditText
         android:id="@+id/edit"
         android:background="#ffffffff"
+        android:gravity="top|left"
         android:layout_width="0dp"
-        android:layout_height="319dp"
+        android:layout_height="264dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.661"
+        app:layout_constraintVertical_bias="0.677"
         tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="31dp"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintHorizontal_bias="0.557" />
+        android:layout_marginLeft="31dp"
+        android:layout_marginRight="31dp" />
 
     <Button
         android:id="@+id/add"
         android:layout_width="129dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="29dp"
         android:text="追加"
         android:onClick="addClick"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,24 +38,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="137dp"
-        android:layout_height="30dp"
-        android:text="通知設定"
-        android:background="#ffffffff"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/edit"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="19dp" />
-
     <Button
         android:id="@+id/cancel"
         android:layout_width="129dp"
@@ -61,26 +45,44 @@
         android:text="キャンセル"
         android:onClick="cancelClick"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="29dp"
         app:layout_constraintLeft_toRightOf="@+id/add"
         android:layout_marginLeft="71dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.142"
         android:layout_marginStart="71dp"
         android:layout_marginEnd="8dp" />
 
     <TextView
 
         android:id="@+id/EditNowTime"
-        android:layout_width="327dp"
+        android:layout_width="0dp"
         android:layout_height="58dp"
-        android:layout_marginTop="5dp"
-        android:text="selTime"
+        android:layout_marginTop="7dp"
+        android:text="HH:MMの予定を編集中"
         android:gravity="center_horizontal|center_vertical"
-        android:textSize="50sp"
+        android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.508" />
+        app:layout_constraintHorizontal_bias="0.508"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="78dp"
+        android:layout_height="29dp"
+        android:text="内容"
+        android:textSize="25sp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/edit"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintLeft_toLeftOf="@+id/edit" />
 </android.support.constraint.ConstraintLayout>
