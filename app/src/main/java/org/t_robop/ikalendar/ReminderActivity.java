@@ -1,28 +1,41 @@
 package org.t_robop.ikalendar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 import java.util.ArrayList;
+//package org.t_robop.urano.reminder_test;
 
-public class ReminderActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
+
+    private static final int REQUEST_CODE = 1;
+
     ListView listView;
-    static ArrayList<String> arrayList;
-    ArrayAdapter<String> arrayAdapter;
-
-
+    ArrayList<CustomListItem> listItems;
+    CustomListAdapter customListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +44,14 @@ public class ReminderActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //ここから時間取得&表示
+        Date now = new Date(System.currentTimeMillis());
+        DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        String nowText = formatter.format(now);
+
+        TextView tv = (TextView) findViewById(R.id.date);
+        tv.setText(nowText);
+        //ここまで時間取得&表示
 
         //ここからNavigation Drawerのやつ
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -43,55 +64,24 @@ public class ReminderActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //ここまでNavigation Drawerのやつ
 
+        //activity_reminder.xml内ListViewのidと連携
+        listView = (ListView) findViewById(R.id.customScrollListView);
 
-    listView = (ListView)findViewById(R.id.list);
-    arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1);
-    Intent intent = getIntent();
-    final String memo = intent.getStringExtra("memo");
-    int listpos = intent.getIntExtra("pos",-1);
+        listView.setOnItemClickListener(this);
 
+        //ListViewに表示する要素を設定
+        listItems = new ArrayList<>();
 
-    //初回起動時のみ
-        if(arrayList==null){
-        arrayList = new ArrayList<>();
-        //   arrayList.add(memo);
-
-    }
-
-        if(memo != null){
-        if(listpos == -1) {
-            arrayList.add(memo);
+        //ToDo 文字列を予定で初期化してるので、別ActivityからstartActivityで起動されたときに再初期化される　データベースからitemをgetしたい
+        for (int i = 0; i < 24; i++) {
+            CustomListItem defaultItem = new CustomListItem(String.valueOf(i) + ":00", "予定");
+            listItems.add(defaultItem);
         }
-        else{
-            arrayList.set(listpos,memo);
-        }
-    }
 
-        for(int i = 0; i<arrayList.size();i++){
-        arrayAdapter.add(arrayList.get(i));
+        //listItemsをカスタムアダプターに入れてlistViewにセット
+        customListAdapter = new CustomListAdapter(this, R.layout.custom_scrollistview_item, listItems);
+        listView.setAdapter(customListAdapter);
 
-    }
-        listView.setAdapter(arrayAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-        @Override
-        public void onItemClick(AdapterView<?>parent, View view,int position, long id){
-
-            String[] memoText = (String[]) arrayList.toArray(new String[]{});
-            String selectedText = memoText[position];
-            Intent intent = new Intent(ReminderActivity.this, ReminderEditActivity.class);
-            intent.putExtra("pos",position);
-            intent.putExtra("memo",selectedText);
-
-            startActivity(intent);
-        }
-    });
-}
-
-    public void add(View v) {
-        Intent intent = new Intent(this, ReminderEditActivity.class);
-        intent.putExtra("memo","");
-        startActivity(intent);
     }
 
     //Navigation Drawer内のメニューを押した時の動作
@@ -101,16 +91,16 @@ public class ReminderActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this,CalendarActivity.class);
+            Intent intent = new Intent(this, CalendarActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_timetable) {
-            Intent intent = new Intent(this,TimetableActivity.class);
+            Intent intent = new Intent(this, TimetableActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_reminder) {
-            Intent intent = new Intent(this,ReminderActivity.class);
+            Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_setting) {
 
@@ -119,4 +109,46 @@ public class ReminderActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        ListView listView = (ListView) parent;
+        CustomListItem clickedItem = (CustomListItem) listView.getItemAtPosition(position);     //listViewのタップされた場所の情報を変数itemに代入
+
+        String clickedItemTime = clickedItem.getmTime();   //タップされた場所の時間を取得
+
+        Intent intent = new Intent(this, ReminderEditActivity.class);
+        intent.putExtra("time", clickedItemTime);   //タップされた場所の時間
+        intent.putExtra("position", position);      //タップされたposition
+
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    //startActivityForResultで遷移したActivityからのコールバック
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case (REQUEST_CODE):
+                if (resultCode == RESULT_OK) {
+                    //追加ボタンを押して戻ってきたときの処理
+                    String getResultText = data.getStringExtra("note");         //ReminderEditActivityで編集した予定(文字列)の取得
+                    int getResultPosition = data.getIntExtra("position", 0);    //onItemClickのposition
+
+                    CustomListItem editItem = new CustomListItem(String.valueOf(getResultPosition) + ":00", getResultText);     //変更されるListViewを作成
+                    listItems.set(getResultPosition, editItem);     //変更されるListViewの列を更新
+                    //ToDo ここでデータベースにlistItemsを保存(set)して、onCreateでgetできるようにしたい
+
+                    customListAdapter = new CustomListAdapter(this, R.layout.custom_scrollistview_item, listItems);
+                    listView.setAdapter(customListAdapter);
+
+                } else if (resultCode == RESULT_CANCELED) {
+                    //キャンセルボタンを押して戻ってきたときの処理
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
+

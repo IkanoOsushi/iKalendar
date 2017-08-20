@@ -1,25 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="org.t_robop.ikalendar.ReminderEditActivity"
-android:orientation="vertical"
-    android:weightSum="1">
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/edit"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_weight="0.82" />
+        android:background="#ffffffff"
+        android:gravity="top|left"
+        android:layout_width="0dp"
+        android:layout_height="264dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.677"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="31dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginLeft="31dp"
+        android:layout_marginRight="31dp" />
 
     <Button
-        android:id="@+id/button7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.14"
-        android:onClick="set"
-        android:text="追加" />
-</LinearLayout>
+        android:id="@+id/add"
+        android:layout_width="129dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="29dp"
+        android:text="追加"
+        android:onClick="addClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp" />
 
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="129dp"
+        android:layout_height="48dp"
+        android:text="キャンセル"
+        android:onClick="cancelClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="29dp"
+        app:layout_constraintLeft_toRightOf="@+id/add"
+        android:layout_marginLeft="71dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        android:layout_marginStart="71dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+
+        android:id="@+id/EditNowTime"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="7dp"
+        android:text="HH:MMの予定を編集中"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="78dp"
+        android:layout_height="29dp"
+        android:text="内容"
+        android:textSize="25sp"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/edit"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintLeft_toLeftOf="@+id/edit" />
+</android.support.constraint.ConstraintLayout>
