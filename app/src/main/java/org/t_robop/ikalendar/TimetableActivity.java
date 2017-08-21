@@ -83,7 +83,7 @@ public class TimetableActivity extends AppCompatActivity
                     case "button37":
                         Button button37 = (Button)findViewById(R.id.button37);//関連付け
                         button37.setText(timetables.get(i).getTimeTableSub());//教科名表示
-                        switch (timeTableColorData){
+                      //  switch (timeTableColorData){
                            /* case 1:
                                 button37.setBackgroundColor(Color.parseColor("#d5fc5555"));
                                 break;
@@ -114,7 +114,7 @@ public class TimetableActivity extends AppCompatActivity
                             case 10:
                                 button37.setBackgroundColor(Color.parseColor("#d5c4c4c4"));
                                 break;*/
-                        }
+                      //  }
 
                         break;
                     case "button36":

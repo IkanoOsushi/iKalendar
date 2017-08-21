@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
@@ -28,6 +30,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        TextView firstPeriod = (TextView) findViewById(R.id.first);
+        TextView secondPeriod = (TextView) findViewById(R.id.second);
+        TextView thirdPeriod = (TextView) findViewById(R.id.third);
+        TextView fourthPeriod = (TextView) findViewById(R.id.fourth);
+        TextView fifthPeriod = (TextView) findViewById(R.id.fifth);
+
+
         //ここからNavigation Drawerのやつ
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -39,6 +48,11 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //ここまでNavigation Drawerのやつ
 
+        // デフォルトのCalendarオブジェクト
+        Calendar cal = Calendar.getInstance();
+        int weeks = cal.get(Calendar.DAY_OF_WEEK);
+
+        Log.d("aaaa",String.valueOf(weeks));
         //Database初期化
         Realm.init(this);
         realm = Realm.getDefaultInstance();
@@ -52,18 +66,130 @@ public class MainActivity extends AppCompatActivity
             //timetableの配列の要素の数が0の時の実行
             for(int i=0; i<timetables.size(); i++) {
                 //timetablesの要素の数だけ回す
-            Log.d("aaaa",String.valueOf(timetables.get(i).getTimeTableId()));
+                switch(cal.get(Calendar.DAY_OF_WEEK)){
+                    case 2:
+                        switch (String.valueOf(timetables.get(i).getTimeTableId())) {
+                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
+                            case "button37":
+                                firstPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button30":
+                                secondPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button23":
+                                thirdPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button16":
+                                fourthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button6":
+                                fifthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                        }
+                    case 3:
+                        switch (String.valueOf(timetables.get(i).getTimeTableId())) {
+                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
+                            case "button36":
+                                firstPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button29":
+                                secondPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button22":
+                                thirdPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button15":
+                                fourthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button5":
+                                fifthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                        }
+
+                    case 4:
+                        switch (String.valueOf(timetables.get(i).getTimeTableId())) {
+                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
+                            case "button35":
+                                firstPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button28":
+                                secondPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button21":
+                                thirdPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button14":
+                                fourthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button4":
+                                fifthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                        }
+                    case 5:
+                        switch (String.valueOf(timetables.get(i).getTimeTableId())) {
+                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
+                            case "button34":
+                                firstPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button27":
+                                secondPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button20":
+                                thirdPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button13":
+                                fourthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button3":
+                                fifthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                        }
+                    case 6:
+                        switch (String.valueOf(timetables.get(i).getTimeTableId())) {
+                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
+                            case "button33":
+                                firstPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button26":
+                                secondPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button19":
+                                thirdPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button12":
+                                fourthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button2":
+                                fifthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                        }
+                    case 7:
+                        switch (String.valueOf(timetables.get(i).getTimeTableId())) {
+                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
+                            case "button32":
+                                firstPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button25":
+                                secondPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button18":
+                                thirdPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button11":
+                                fourthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                            case "button":
+                                fifthPeriod.setText(timetables.get(i).getTimeTableSub());
+                                break;
+                        }
+
+
+                }
+            Log.d("eeee",String.valueOf(timetables.get(i).getTimeTableId()));
 
 
 
             }}
-
-
-
-                // デフォルトのCalendarオブジェクト
-        Calendar cal = Calendar.getInstance();
-
-        Log.d("aaaaa",String.valueOf(cal));
 
     }
     //Navigation Drawer内のメニューを押した時の動作
