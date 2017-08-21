@@ -613,5 +613,3 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer_item" />
 </android.support.v4.widget.DrawerLayout>
-
-

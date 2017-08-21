@@ -4,6 +4,8 @@ package org.t_robop.ikalendar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,14 +14,26 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
+
+import static android.R.attr.color;
+import static android.R.attr.entryValues;
+import static android.R.attr.id;
+import static android.R.attr.switchMinWidth;
+import static android.R.attr.value;
+import static android.R.id.button1;
+import static java.security.AccessController.getContext;
+import static org.t_robop.ikalendar.R.color.red;
 
 public class TimetableActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -32,7 +46,7 @@ public class TimetableActivity extends AppCompatActivity
         setContentView(R.layout.activity_timetable);
 
         Intent intent =  getIntent();
-        int timeTableColorData =  intent.getIntExtra("colerSelect",0);
+        String timeTableColorData =  intent.getStringExtra("colerSelect");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,9 +83,39 @@ public class TimetableActivity extends AppCompatActivity
                     case "button37":
                         Button button37 = (Button)findViewById(R.id.button37);//関連付け
                         button37.setText(timetables.get(i).getTimeTableSub());//教科名表示
-                        //色のswitch置く予定
-                       // if(timeTableColorData==1){
-                       // button37.setBackgroundColor(Color.parseColor("#d5fc5555"));}
+                        switch (timeTableColorData){
+                           /* case 1:
+                                button37.setBackgroundColor(Color.parseColor("#d5fc5555"));
+                                break;
+                            case 2:
+                                button37.setBackgroundColor(Color.parseColor("#d5fd7ccb"));
+                                break;
+                            case 3:
+                                button37.setBackgroundColor(Color.parseColor("#d5fda956"));
+                                break;
+                            case 4:
+                                button37.setBackgroundColor(Color.parseColor("#d5ffe449"));
+                                break;
+                            case 5:
+                                button37.setBackgroundColor(Color.parseColor("#d5a7ff49"));
+                                break;
+                            case 6:
+                                button37.setBackgroundColor(Color.parseColor("#d529c203"));
+                                break;
+                            case 7:
+                                button37.setBackgroundColor(Color.parseColor("d549dbff"));
+                                break;
+                            case 8:
+                                button37.setBackgroundColor(Color.parseColor("#d53066f9"));
+                                break;
+                            case 9:
+                                button37.setBackgroundColor(Color.parseColor("#d59b49ff"));
+                                break;
+                            case 10:
+                                button37.setBackgroundColor(Color.parseColor("#d5c4c4c4"));
+                                break;*/
+                        }
+
                         break;
                     case "button36":
                         Button button36 = (Button)findViewById(R.id.button36);

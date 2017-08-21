@@ -8,7 +8,7 @@ import io.realm.RealmObject;
 
 public class TimeTable extends RealmObject {
     private String time_table_id;
-    private int time_table_color_id;
+    private String time_table_color_id;
     private String time_table_sub;
     private String time_table_memo;
     private String time_table_class;
@@ -22,11 +22,11 @@ public class TimeTable extends RealmObject {
         this.time_table_id = time_table_id;
     }
 
-    public int getTimeTableColorId() {
+    public String getTimeTableColorId() {
         return time_table_color_id;
     }
 
-    public void setTimeTableColorId(int time_table_color_id) {
+    public void setTimeTableColorId(String time_table_color_id) {
         this.time_table_color_id = time_table_color_id;
     }
 
