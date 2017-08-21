@@ -8,12 +8,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+
+import java.util.Calendar;
+
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-
+    Realm realm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +38,32 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //ここまでNavigation Drawerのやつ
+
+        //Database初期化
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
+
+        //検索用のクエリ作成
+        RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
+        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+        RealmResults<TimeTable> timetables = timetableQuery.findAll();
+
+        if(timetables.size() != 0){
+            //timetableの配列の要素の数が0の時の実行
+            for(int i=0; i<timetables.size(); i++) {
+                //timetablesの要素の数だけ回す
+            Log.d("aaaa",String.valueOf(timetables.get(i).getTimeTableId()));
+
+
+
+            }}
+
+
+
+                // デフォルトのCalendarオブジェクト
+        Calendar cal = Calendar.getInstance();
+
+        Log.d("aaaaa",String.valueOf(cal));
 
     }
     //Navigation Drawer内のメニューを押した時の動作
