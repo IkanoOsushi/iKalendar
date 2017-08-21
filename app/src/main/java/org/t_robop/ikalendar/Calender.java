@@ -15,11 +15,11 @@ public class Calender extends RealmObject {
     private Date calendar_start_date;
     private Date calendar_end_date;
 
-    public int getCalenderId() {
+    public int getCalendarId() {
         return calendar_id;
     }
 
-    public void setCalenderId(int calendar_id) {
+    public void setCalendarId(int calendar_id) {
         this.calendar_id = calendar_id;
     }
 
