@@ -18,7 +18,6 @@ import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 import static org.t_robop.ikalendar.R.*;
-import static org.t_robop.ikalendar.R.id.editText;
 import static org.t_robop.ikalendar.R.id.memoText;
 import static org.t_robop.ikalendar.R.id.subEdit;
 import static org.t_robop.ikalendar.R.id.time;
