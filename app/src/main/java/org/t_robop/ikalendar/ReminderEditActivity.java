@@ -23,7 +23,7 @@ public class ReminderEditActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.edit);
         TextView time = (TextView) findViewById(R.id.EditNowTime);
 
-        time.setText(String.valueOf(getIntentTime));
+        time.setText(String.valueOf(getIntentTime)+"の予定を編集中");
 
     }
 

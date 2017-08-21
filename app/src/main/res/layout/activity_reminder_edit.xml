@@ -83,6 +83,7 @@
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/edit"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="3dp"
-        app:layout_constraintLeft_toLeftOf="@+id/edit" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/edit"
+        android:layout_marginLeft="0dp" />
 </android.support.constraint.ConstraintLayout>

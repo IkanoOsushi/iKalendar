@@ -43,14 +43,16 @@
                 android:layout_weight="5"
                 android:orientation="vertical"
                 android:weightSum="1"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="25dp">
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
 
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="78dp"
+                    android:layout_height="74dp"
                     android:orientation="horizontal"
                     android:weightSum="1"
                     tools:layout_editor_absoluteX="8dp"
@@ -61,16 +63,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="65dp"
                         android:layout_weight="0.97"
-                        android:text="YYYY/MM/DD"
                         android:gravity="center_horizontal|center_vertical"
-                        android:textSize="40sp"/>
+                        android:text="YYYY/MM/DD"
+                        android:textSize="40sp" />
 
                 </LinearLayout>
 
                 <ListView
                     android:id="@+id/customScrollListView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="429dp"
                     android:orientation="vertical">
 
                 </ListView>
