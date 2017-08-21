@@ -144,6 +144,9 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
 
         }
 
+        Intent intent = new Intent(CalenderAddPlanActivity.this,org.t_robop.ikalendar.CalendarActivity.class);
+        startActivity(intent);
+
     }
 
 }
