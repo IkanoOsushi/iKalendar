@@ -52,7 +52,7 @@
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="74dp"
+                    android:layout_height="100dp"
                     android:orientation="horizontal"
                     android:weightSum="1"
                     tools:layout_editor_absoluteX="8dp"

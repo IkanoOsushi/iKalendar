@@ -38,6 +38,8 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
     ListView listView;
     ArrayList<CustomListItem> listItems;
     CustomListAdapter customListAdapter;
+    String getResultText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,17 +120,18 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         CustomListItem clickedItem = (CustomListItem) listView.getItemAtPosition(position);     //listViewのタップされた場所の情報を変数itemに代入
 
         final String clickedItemTime = clickedItem.getmTime();   //タップされた場所の時間を取得
+        final String clickedItemText = clickedItem.getmNoteText();
         final Intent intent = new Intent(this, ReminderEditActivity.class);
 
         AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
         alertDlg.setTitle(position +":00の予定");
-        alertDlg.setMessage("テスト用テキスト");
+        alertDlg.setMessage(clickedItemText);
         alertDlg.setPositiveButton(
                 "編集",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-
+                        intent.putExtra("note",clickedItemText);     //タップされた場所に元々入っているテキスト
                         intent.putExtra("time", clickedItemTime);   //タップされた場所の時間
                         intent.putExtra("position", position);      //タップされたposition
 
@@ -154,7 +157,7 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
             case (REQUEST_CODE):
                 if (resultCode == RESULT_OK) {
                     //追加ボタンを押して戻ってきたときの処理
-                    String getResultText = data.getStringExtra("note");         //ReminderEditActivityで編集した予定(文字列)の取得
+                    getResultText = data.getStringExtra("note");         //ReminderEditActivityで編集した予定(文字列)の取得
                     int getResultPosition = data.getIntExtra("position", 0);    //onItemClickのposition
 
                     CustomListItem editItem = new CustomListItem(String.valueOf(getResultPosition) + ":00", getResultText);     //変更されるListViewを作成
