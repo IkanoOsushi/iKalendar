@@ -14,7 +14,7 @@ import java.util.Calendar;
  * Created by Kishimoto on 2017/08/15.
  */
 
-public class CalenderDatePicker extends android.support.v4.app.DialogFragment implements TimePickerDialog.OnTimeSetListener {
+public class CalendarStartDatePicker extends android.support.v4.app.DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class CalenderDatePicker extends android.support.v4.app.DialogFragment im
         //時刻が選択されたときの処理
 
         CalenderAddPlanActivity callingActivity = (CalenderAddPlanActivity) getActivity();
-        callingActivity.onReturnValue(hourOfDay,minute);
+        callingActivity.onReturnStartDate(hourOfDay,minute);
     }
 
 }

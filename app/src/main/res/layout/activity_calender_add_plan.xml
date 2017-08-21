@@ -43,38 +43,69 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:baselineAligned="false"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="タイトル"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+
                 <EditText
                     android:id="@+id/setPlanName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="タイトル"
                     tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="75dp" />
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="開始時刻"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                 <EditText
-                    android:id="@+id/setPlanTime"
+                    android:id="@+id/setStartPlanTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="開始時刻を選択"
                     tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="75dp" />
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="終了時刻"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                <EditText
+                    android:id="@+id/setEndPlanTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="終了時刻を選択"
+                    tools:layout_editor_absoluteX="0dp"
+                    android:layout_marginTop="8dp"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="setTimeButton"
-                    android:text="時間を選択" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="登録" />
+                    android:onClick="setPlanRegistration"
+                    android:text="登録"
+                    android:layout_marginTop="8dp"/>
             </LinearLayout>
 
         </android.support.constraint.ConstraintLayout>
