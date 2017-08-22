@@ -20,8 +20,16 @@ import com.framgia.library.calendardayview.PopupView;
 import com.framgia.library.calendardayview.data.IEvent;
 import com.framgia.library.calendardayview.data.IPopup;
 import com.framgia.library.calendardayview.decoration.CdvDecorationDefault;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 public class CalenderDayViewActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -31,6 +39,11 @@ public class CalenderDayViewActivity extends AppCompatActivity
     ArrayList<IEvent> events;
     ArrayList<IPopup> popups;
 
+    Realm realm;
+
+    Date dPlanDate;
+
+    final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年 MMM dd日");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +51,15 @@ public class CalenderDayViewActivity extends AppCompatActivity
         setContentView(R.layout.activity_calender_day_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //intentしてきたデータを取得
+        Intent intent = getIntent();
+        String sPlanDate = intent.getStringExtra("date");
+//        try {
+//            dPlanDate = ParseStringToDate(sPlanDate);
+//
+//        } catch (ParseException e) {
+//        }
 
 
         //ここからNavigation Drawerのやつ
@@ -52,7 +74,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
         //ここまでNavigation Drawerのやつ
 
         dayView = (CalendarDayView) findViewById(R.id.calendar);
-        dayView.setLimitTime(9, 22);
+        dayView.setLimitTime(0, 24);
 
         ((CdvDecorationDefault) (dayView.getDecoration())).setOnEventClickListener(
                 new EventView.OnEventClickListener() {
@@ -93,71 +115,106 @@ public class CalenderDayViewActivity extends AppCompatActivity
         events = new ArrayList<>();
 
         {
+
             int eventColor = ContextCompat.getColor(this, R.color.eventColor);
-            Calendar timeStart = Calendar.getInstance();
-            timeStart.set(Calendar.HOUR_OF_DAY, 11);
-            timeStart.set(Calendar.MINUTE, 0);
-            Calendar timeEnd = (Calendar) timeStart.clone();
-            timeEnd.set(Calendar.HOUR_OF_DAY, 15);
-            timeEnd.set(Calendar.MINUTE, 30);
-            CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, "CalenderEvent", "Hockaido", eventColor);
 
-            events.add(event);
+            //Database初期化
+            Realm.init(this);
+            realm = Realm.getDefaultInstance();
+
+            //検索用のクエリ作成
+            RealmQuery<Calender> calenderRealmQuery = realm.where(Calender.class);
+            //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+            RealmResults<Calender> calendars = calenderRealmQuery.findAll();
+
+            if (calendars.size() != 0) {
+                //timetableの配列の要素の数が0じゃない時の実行
+                for (int i = 0; i < calendars.size(); i++) {
+                    if(formatter.format(calendars.get(i).getCalendarstartdate()).equals(sPlanDate)) {
+                        //timetablesの要素の数だけ回す
+                        int startPlanHourOfDay = calendars.get(i).getCalendarStartHourOfDay();
+                        int startPlanMinute = calendars.get(i).getCalendarStartMinute();
+                        int endPlanHourOfDay = calendars.get(i).getCalendarEndHourOfDay();
+                        int endPlanMinute = calendars.get(i).getCalendarEndMinute();
+
+                        Calendar timeStart = Calendar.getInstance();
+                        timeStart.set(Calendar.HOUR_OF_DAY, startPlanHourOfDay);
+                        timeStart.set(Calendar.MINUTE, startPlanMinute);
+                        Calendar timeEnd = (Calendar) timeStart.clone();
+                        timeEnd.set(Calendar.HOUR_OF_DAY, endPlanHourOfDay);
+                        timeEnd.set(Calendar.MINUTE, endPlanMinute);
+                        CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, calendars.get(i).getCalendarTitle(), "Hockaido", eventColor);
+                        events.add(event);
+                    }
+                }
+            }
+
+
+//            Calendar timeStart = Calendar.getInstance();
+//            timeStart.set(Calendar.HOUR_OF_DAY, 11);
+//            timeStart.set(Calendar.MINUTE, 0);
+//            Calendar timeEnd = (Calendar) timeStart.clone();
+//            timeEnd.set(Calendar.HOUR_OF_DAY, 15);
+//            timeEnd.set(Calendar.MINUTE, 30);
+//            CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, "CalenderEvent", "Hockaido", eventColor);
+//
+//            events.add(event);
+//        }
+//
+//        {
+//            int eventColor = ContextCompat.getColor(this, R.color.eventColor);
+//            Calendar timeStart = Calendar.getInstance();
+//            timeStart.set(Calendar.HOUR_OF_DAY, 20);
+//            timeStart.set(Calendar.MINUTE, 00);
+//            Calendar timeEnd = (Calendar) timeStart.clone();
+//            timeEnd.set(Calendar.HOUR_OF_DAY, 22);
+//            timeEnd.set(Calendar.MINUTE, 00);
+//            CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, "Another event", "Hockaido", eventColor);
+//
+//            events.add(event);
+//        }
+
+            popups = new ArrayList<>();
+
+//            {
+//                Calendar timeStart = Calendar.getInstance();
+//                timeStart.set(Calendar.HOUR_OF_DAY, 12);
+//                timeStart.set(Calendar.MINUTE, 0);
+//                Calendar timeEnd = (Calendar) timeStart.clone();
+//                timeEnd.set(Calendar.HOUR_OF_DAY, 13);
+//                timeEnd.set(Calendar.MINUTE, 30);
+//
+//                CalenderPopup popup = new CalenderPopup();
+//                popup.setStartTime(timeStart);
+//                popup.setEndTime(timeEnd);
+//                popup.setImageStart("http://sample.com/image.png");
+//                popup.setTitle("event 1 with title");
+//                popup.setDescription("Yuong alsdf");
+//                popups.add(popup);
+//            }
+//
+//            {
+//                Calendar timeStart = Calendar.getInstance();
+//                timeStart.set(Calendar.HOUR_OF_DAY, 20);
+//                timeStart.set(Calendar.MINUTE, 30);
+//                Calendar timeEnd = (Calendar) timeStart.clone();
+//                timeEnd.set(Calendar.HOUR_OF_DAY, 21);
+//                timeEnd.set(Calendar.MINUTE, 30);
+//
+//                CalenderPopup popup = new CalenderPopup();
+//                popup.setStartTime(timeStart);
+//                popup.setEndTime(timeEnd);
+//                popup.setImageStart("http://sample.com/image.png");
+//                popup.setTitle("event 2 with title");
+//                popup.setDescription("Yuong alsdf");
+//                popups.add(popup);
+//            }
+
+            dayView.setEvents(events);
+            dayView.setPopups(popups);
+
+
         }
-
-        {
-            int eventColor = ContextCompat.getColor(this, R.color.eventColor);
-            Calendar timeStart = Calendar.getInstance();
-            timeStart.set(Calendar.HOUR_OF_DAY, 20);
-            timeStart.set(Calendar.MINUTE, 00);
-            Calendar timeEnd = (Calendar) timeStart.clone();
-            timeEnd.set(Calendar.HOUR_OF_DAY, 22);
-            timeEnd.set(Calendar.MINUTE, 00);
-            CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, "Another event", "Hockaido", eventColor);
-
-            events.add(event);
-        }
-
-        popups = new ArrayList<>();
-
-        {
-            Calendar timeStart = Calendar.getInstance();
-            timeStart.set(Calendar.HOUR_OF_DAY, 12);
-            timeStart.set(Calendar.MINUTE, 0);
-            Calendar timeEnd = (Calendar) timeStart.clone();
-            timeEnd.set(Calendar.HOUR_OF_DAY, 13);
-            timeEnd.set(Calendar.MINUTE, 30);
-
-            CalenderPopup popup = new CalenderPopup();
-            popup.setStartTime(timeStart);
-            popup.setEndTime(timeEnd);
-            popup.setImageStart("http://sample.com/image.png");
-            popup.setTitle("event 1 with title");
-            popup.setDescription("Yuong alsdf");
-            popups.add(popup);
-        }
-
-        {
-            Calendar timeStart = Calendar.getInstance();
-            timeStart.set(Calendar.HOUR_OF_DAY, 20);
-            timeStart.set(Calendar.MINUTE, 30);
-            Calendar timeEnd = (Calendar) timeStart.clone();
-            timeEnd.set(Calendar.HOUR_OF_DAY, 21);
-            timeEnd.set(Calendar.MINUTE, 30);
-
-            CalenderPopup popup = new CalenderPopup();
-            popup.setStartTime(timeStart);
-            popup.setEndTime(timeEnd);
-            popup.setImageStart("http://sample.com/image.png");
-            popup.setTitle("event 2 with title");
-            popup.setDescription("Yuong alsdf");
-            popups.add(popup);
-        }
-
-        dayView.setEvents(events);
-        dayView.setPopups(popups);
-
-
     }
 
 
@@ -185,4 +242,10 @@ public class CalenderDayViewActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+//    public Date ParseStringToDate(String sPlanDate) throws ParseException{
+//
+//        Date dPlanDate = formatter.parse(sPlanDate);
+//        return dPlanDate;
+//
+//    }
 }

@@ -3,6 +3,7 @@ package org.t_robop.ikalendar;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -30,6 +32,8 @@ import java.util.Date;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 @SuppressLint("SimpleDateFormat")
 public class CalendarActivity extends AppCompatActivity
@@ -64,6 +68,7 @@ public class CalendarActivity extends AppCompatActivity
         CaldroidFragment caldroidFragment = new CaldroidFragment();
         Bundle args = new Bundle();
         Calendar cal = Calendar.getInstance();
+        args.putBoolean(CaldroidFragment.SQUARE_TEXT_VIEW_CELL,true);
         args.putInt(CaldroidFragment.MONTH, cal.get(Calendar.MONTH) + 1);
         args.putInt(CaldroidFragment.YEAR, cal.get(Calendar.YEAR));
         caldroidFragment.setArguments(args);
@@ -72,9 +77,9 @@ public class CalendarActivity extends AppCompatActivity
 
             @Override
             public void onSelectDate(Date date, View view) {
-                Toast.makeText(getApplicationContext(), formatter.format(date),
-                        Toast.LENGTH_SHORT).show();
+                String PlanDate = formatter.format(date);
                 Intent intent = new Intent(CalendarActivity.this,org.t_robop.ikalendar.CalenderDayViewActivity.class);
+                intent.putExtra("date",PlanDate);
                 startActivity(intent);
 
             }
@@ -130,6 +135,12 @@ public class CalendarActivity extends AppCompatActivity
 
         android.support.v4.app.FragmentTransaction t = getSupportFragmentManager().beginTransaction();
         t.replace(R.id.calender_layout, caldroidFragment);
+
+        LinearLayout calendarLayout = (LinearLayout) findViewById(R.id.calendar_layout_2);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams)calendarLayout.getLayoutParams();
+        marginLayoutParams.height = MATCH_PARENT;
+        calendarLayout.setLayoutParams(marginLayoutParams);
+
         t.commit();
 
 
@@ -153,7 +164,6 @@ public class CalendarActivity extends AppCompatActivity
             Intent intent = new Intent(this,ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_setting) {
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

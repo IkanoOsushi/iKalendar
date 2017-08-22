@@ -31,6 +31,8 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
 
     Realm realm;
 
+    final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年 MMM dd日");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,6 +131,10 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
         model.setCalendarTitle(PlanName);
         model.setCalendarstartdate(dStartPlanTime);
         model.setCalendarenddate(dEndPlanTime);
+        model.setCalendarStartHourOfDay(planStartHourOfDay);
+        model.setCalendarStartMinute(planStartMinute);
+        model.setCalendarEndHourOfDay(planEndHourOfDay);
+        model.setCalendarEndMinute(planEndMinute);
 
         realm.commitTransaction();
         Toast.makeText(CalenderAddPlanActivity.this,"保存しました",Toast.LENGTH_SHORT).show();
