@@ -43,41 +43,80 @@ public class TimetableEditActivity extends AppCompatActivity {
         final String value = intent.getStringExtra("TTKey");//設定したkeyで取り出す
 
         Realm.init(this);
-
-
         realm = Realm.getDefaultInstance();
+
+
         final Button buckbuttom = (Button) findViewById(R.id.editback);
         final Button savebutton = (Button) findViewById(id.editstorage);
         subText = (EditText) findViewById(id.subEdit);
         roomText = (EditText)findViewById(id.roomEdit);
         teacText =(EditText)findViewById(id.teacEdit);
         memoText=(EditText)findViewById(id.memoEdit);
-        savebutton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+
+        //検索用のクエリ作成
+        RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
+        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+        final RealmResults<TimeTable> timetables = timetableQuery.equalTo("time_table_id",value).findAll();
+        if(timetables.size()!=0){
+
+            savebutton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
 
 
-                realm.beginTransaction();
+                    realm.beginTransaction();
 
-                TimeTable model = realm.createObject(TimeTable.class);
 
-                model.setTimeTableId(value);
-                model.setTimeTableSub(subText.getText().toString());
-                model.setTimeTableClass(roomText.getText().toString());
-                model.setTimeTableTea(teacText.getText().toString());
-                model.setTimeTableMemo(memoText.getText().toString());
-                model.setTimeTableColorId(timeTableColor);
+                    timetables.get(0).setTimeTableId(value);
+                    timetables.get(0).setTimeTableSub(subText.getText().toString());
+                    timetables.get(0).setTimeTableClass(roomText.getText().toString());
+                    timetables.get(0).setTimeTableTea(teacText.getText().toString());
+                    timetables.get(0).setTimeTableMemo(memoText.getText().toString());
+                    timetables.get(0).setTimeTableColorId(timeTableColor);
 
-                realm.commitTransaction();
-                Toast.makeText(TimetableEditActivity.this,"保存しました",Toast.LENGTH_SHORT).show();
+                    realm.commitTransaction();
+                    Toast.makeText(TimetableEditActivity.this,"保存しました",Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent();
-                intent.setClass(TimetableEditActivity.this,TimetableActivity.class);
+                    Intent intent = new Intent();
+                    intent.setClass(TimetableEditActivity.this,TimetableActivity.class);
 
-                intent.putExtra("colerSelect",timeTableColor);
-                startActivity(intent);
+                    intent.putExtra("colerSelect",timeTableColor);
+                    startActivity(intent);
 
-            }
-        });
+                }
+            });
+        }
+        else{
+
+            savebutton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+
+                    realm.beginTransaction();
+
+                    TimeTable model = realm.createObject(TimeTable.class);
+
+                    model.setTimeTableId(value);
+                    model.setTimeTableSub(subText.getText().toString());
+                    model.setTimeTableClass(roomText.getText().toString());
+                    model.setTimeTableTea(teacText.getText().toString());
+                    model.setTimeTableMemo(memoText.getText().toString());
+                    model.setTimeTableColorId(timeTableColor);
+
+                    realm.commitTransaction();
+                    Toast.makeText(TimetableEditActivity.this,"保存しました",Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent();
+                    intent.setClass(TimetableEditActivity.this,TimetableActivity.class);
+
+                    intent.putExtra("colerSelect",timeTableColor);
+                    startActivity(intent);
+
+                }
+            });
+
+
+        }
+
 
 
         buckbuttom.setOnClickListener(new View.OnClickListener() {

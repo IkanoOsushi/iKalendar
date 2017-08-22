@@ -35,5 +35,9 @@ dependencies {
     //Android Week ViewというDayviewも可能なカレンダーのライブラリです
     //compile 'com.github.alamkanak:android-week-view:1.2.6'
     compile 'com.framgia.library.calendardayview:library:1.0.4'
+    //Floating Action Buttonのメニュー版みたいな感じのやつ
+    compile 'com.github.clans:fab:1.6.2'
+
+
     testCompile 'junit:junit:4.12'
 }
