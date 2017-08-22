@@ -11,6 +11,8 @@ import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 import java.text.CollationElementIterator;
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class TableTimeTodayActivity extends AppCompatActivity {
 
@@ -18,22 +20,12 @@ public class TableTimeTodayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taimetable_today);
-        TextView textView = (TextView) findViewById(R.id.textView8);
+
+        Calendar cal = Calendar.getInstance();
+        int week = cal.get(Calendar.DAY_OF_WEEK);
+
 
     }
-/*文字数よりは比率を固定する処理を書く。
- *10文字以上は省略する処理を書く。
-        //文字数を省略する処理
-    /*public TextView getTextView() {
-        //文字数省略の処理
-         if ( > 10) {
-            TextView textView = (TextView) findViewById(R.id.);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
-            textView.setSingleLine(true);
-            return textView;
-        }
-    */
-//日付の進退のボタンの動きを書く
-}
 
+}
 

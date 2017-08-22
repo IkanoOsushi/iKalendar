@@ -102,14 +102,14 @@ public class TimetableEditActivity extends AppCompatActivity {
                     model.setTimeTableMemo(memoText.getText().toString());
                     model.setTimeTableColorId(timeTableColor);
 
-                    realm.commitTransaction();
-                    Toast.makeText(TimetableEditActivity.this,"保存しました",Toast.LENGTH_SHORT).show();
+                realm.commitTransaction();
+                Toast.makeText(TimetableEditActivity.this,"保存しました",Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent();
-                    intent.setClass(TimetableEditActivity.this,TimetableActivity.class);
+                Intent intent = new Intent();
+                intent.setClass(TimetableEditActivity.this,TimetableActivity.class);
 
-                    intent.putExtra("colerSelect",timeTableColor);
-                    startActivity(intent);
+                intent.putExtra("colerSelectkey",timeTableColor);
+                startActivity(intent);
 
                 }
             });
@@ -154,17 +154,17 @@ public class TimetableEditActivity extends AppCompatActivity {
 
                 break;
             case R.id.button48:
-                timeTableColor = "#d529c203";
+                timeTableColor = "#d5a7ff49";
                 Toast.makeText(this, "黄緑を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button49:
-                timeTableColor = "#d549dbff";
+                timeTableColor = "#d529c203";
                 Toast.makeText(this, "緑を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button50:
-                timeTableColor = "#d53066f9";
+                timeTableColor = "#d549dbff";
                 Toast.makeText(this, "水色を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
