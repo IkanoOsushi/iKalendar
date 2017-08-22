@@ -29,6 +29,9 @@ import java.util.Date;
 
 
 import java.util.ArrayList;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 //package org.t_robop.urano.reminder_test;
 
 public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
@@ -78,7 +81,7 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
 
         //ToDo 文字列を予定で初期化してるので、別ActivityからstartActivityで起動されたときに再初期化される　データベースからitemをgetしたい
         for (int i = 0; i < 24; i++) {
-            CustomListItem defaultItem = new CustomListItem(String.valueOf(i) + ":00", "予定");
+            CustomListItem defaultItem = new CustomListItem(String.valueOf(i) + ":00","予定はありません");
             listItems.add(defaultItem);
         }
 
@@ -164,9 +167,6 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
                     listItems.set(getResultPosition, editItem);     //変更されるListViewの列を更新
 
                     //ToDo ここでデータベースにlistItemsを保存(set)して、onCreateでgetできるようにしたい
-
-                    customListAdapter = new CustomListAdapter(this, R.layout.custom_scrollistview_item, listItems);
-                    listView.setAdapter(customListAdapter);
 
                 } else if (resultCode == RESULT_CANCELED) {
                     //キャンセルボタンを押して戻ってきたときの処理
