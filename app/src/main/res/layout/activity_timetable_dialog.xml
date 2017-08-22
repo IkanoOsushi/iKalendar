@@ -18,10 +18,9 @@ android:orientation="vertical">
     android:text="教科名"
 
     android:textSize="26dp"
-    android:id="@+id/subText"/>
-
+/>
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/subjectview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
@@ -33,6 +32,8 @@ android:orientation="vertical">
         android:layout_weight="1"
         android:id="@+id/subEdit"/>
         -->
+        android:text="TextView" />
+
 </LinearLayout>
 
 <LinearLayout
@@ -52,10 +53,10 @@ android:layout_weight="2">
         android:layout_weight="2"
         android:text="教室名"
         android:textSize="20dp"
-        android:id="@+id/roomText"/>
+        />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/classTextview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
@@ -67,6 +68,8 @@ android:layout_weight="2">
          android:layout_weight="1"
          android:id="@+id/roomEdit"/>
          -->
+        android:text="TextView" />
+
 </LinearLayout>
 
 <LinearLayout
@@ -79,11 +82,10 @@ android:layout_weight="2">
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:text="先生名"
-        android:textSize="20dp"
-        android:id="@+id/teacText"/>
+        android:textSize="20dp"/>
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/teacherTextview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
@@ -94,6 +96,8 @@ android:layout_weight="2">
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:id="@+id/teacEdit"/>-->
+        android:text="TextView" />
+
 </LinearLayout>
 </LinearLayout>
 
@@ -105,7 +109,6 @@ android:layout_weight="1"
 android:orientation="vertical">
 
 <TextView
-    android:id="@+id/memoText"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:text="メモ"
@@ -113,7 +116,7 @@ android:orientation="vertical">
     android:layout_weight="4" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/memoTextview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
