@@ -29,7 +29,7 @@ public class TimetableEditActivity extends AppCompatActivity {
     EditText teacText;
     EditText memoText;
     private View inputView;
-    String timeTableColor;
+    String timeTableColor ="#ffffff";
 
 
     @Override
@@ -53,11 +53,16 @@ public class TimetableEditActivity extends AppCompatActivity {
         teacText =(EditText)findViewById(id.teacEdit);
         memoText=(EditText)findViewById(id.memoEdit);
 
+
         //検索用のクエリ作成
         RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
         final RealmResults<TimeTable> timetables = timetableQuery.equalTo("time_table_id",value).findAll();
         if(timetables.size()!=0){
+            subText.setText(timetables.get(0).getTimeTableSub());
+            roomText.setText(timetables.get(0).getTimeTableClass());
+            teacText.setText(timetables.get(0).getTimeTableTea());
+            memoText.setText(timetables.get(0).getTimeTableMemo());
 
             savebutton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {

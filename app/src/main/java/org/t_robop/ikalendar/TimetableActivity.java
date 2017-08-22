@@ -80,6 +80,7 @@ public class TimetableActivity extends AppCompatActivity
                     case "button37":
                         Button button37 = (Button)findViewById(R.id.button37);//関連付け
                         button37.setText(timetables.get(i).getTimeTableSub());//教科名表示
+                        button37.setBackgroundColor(Color.parseColor(timetables.get(i).getTimeTableColorId())); //
                         break;
                     case "button36":
                         Button button36 = (Button)findViewById(R.id.button36);
