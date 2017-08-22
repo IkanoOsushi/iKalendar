@@ -17,9 +17,12 @@
         android:id="@+id/noteText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:background="#ffffffff"
         android:gravity="center_vertical"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:text="予定はありません"/>
         <!--android:text="予定"-->
 
 </LinearLayout>
