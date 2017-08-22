@@ -4,6 +4,8 @@ package org.t_robop.ikalendar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,14 +14,26 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
+
+import static android.R.attr.color;
+import static android.R.attr.entryValues;
+import static android.R.attr.id;
+import static android.R.attr.switchMinWidth;
+import static android.R.attr.value;
+import static android.R.id.button1;
+import static java.security.AccessController.getContext;
+import static org.t_robop.ikalendar.R.color.red;
 
 public class TimetableActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -32,7 +46,7 @@ public class TimetableActivity extends AppCompatActivity
         setContentView(R.layout.activity_timetable);
 
         Intent intent =  getIntent();
-        int timeTableColorData =  intent.getIntExtra("colerSelect",0);
+        String timeTableColorData =  intent.getStringExtra("colerSelectkey");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -60,18 +74,13 @@ public class TimetableActivity extends AppCompatActivity
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
         RealmResults<TimeTable> timetables = timetableQuery.findAll();
 
-        if(timetables.size() != 0){
-            //timetableの配列の要素の数が0の時の実行
-            for(int i=0; i<timetables.size(); i++){
-                //timetablesの要素の数だけ回す
-                switch (String.valueOf(timetables.get(i).getTimeTableId())){
-                    //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
+        if(timetables.size() != 0){//timetableの配列の要素の数が0の時の実行
+            for(int i=0; i<timetables.size(); i++){//timetablesの要素の数だけ回す
+                switch (String.valueOf(timetables.get(i).getTimeTableId())){//string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
                     case "button37":
                         Button button37 = (Button)findViewById(R.id.button37);//関連付け
                         button37.setText(timetables.get(i).getTimeTableSub());//教科名表示
-                        //色のswitch置く予定
-                       // if(timeTableColorData==1){
-                       // button37.setBackgroundColor(Color.parseColor("#d5fc5555"));}
+                        button37.setBackgroundColor(Color.parseColor(timetables.get(i).getTimeTableColorId())); //
                         break;
                     case "button36":
                         Button button36 = (Button)findViewById(R.id.button36);
@@ -201,20 +210,42 @@ public class TimetableActivity extends AppCompatActivity
         LayoutInflater factory = LayoutInflater.from(this);
         inputView = factory.inflate(R.layout.activity_timetable_dialog, null);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this); //アラートダイアログを作る
         builder.setView(inputView);
 
-        builder.setNegativeButton("戻る", new DialogInterface.OnClickListener() {
+        TextView subText = (TextView)inputView.findViewById(R.id.subjectview);
+        TextView classText = (TextView)inputView.findViewById(R.id.classTextview);
+        TextView teaText = (TextView)inputView.findViewById(R.id.teacherTextview);
+        TextView memoText=(TextView)inputView.findViewById(R.id.memoTextview);
+
+        String rsName = getResources().getResourceEntryName(view.getId());
+        //検索用のクエリ作成
+        RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
+        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+        RealmResults<TimeTable> timetables = timetableQuery.equalTo("time_table_id",rsName).findAll();
+
+        if (timetables.size()!=0) {
+            subText.setText(timetables.get(0).getTimeTableSub());
+            classText.setText(timetables.get(0).getTimeTableClass());
+            teaText.setText(timetables.get(0).getTimeTableTea());
+            memoText.setText(timetables.get(0).getTimeTableMemo());
+        }
+
+
+
+            builder.setNegativeButton("戻る", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
+
         builder.setNeutralButton("編集", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent myintent = new Intent(getApplicationContext(), TimetableEditActivity.class);
+                Intent myintent = new Intent(getApplicationContext(), TimetableEditActivity.class);//intentして画面遷移
                 String rsName = getResources().getResourceEntryName(view.getId());
-                myintent.putExtra("TTKey",rsName);
+                myintent.putExtra("TTKey",rsName);//TTキーで受け渡す
+
                 startActivity(myintent);
             }
         });
@@ -228,7 +259,7 @@ public class TimetableActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,ReminderActivity.class);
+            Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
             Intent intent = new Intent(this,CalendarActivity.class);

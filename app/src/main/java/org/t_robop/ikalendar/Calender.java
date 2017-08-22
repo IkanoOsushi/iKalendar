@@ -11,24 +11,24 @@ import io.realm.RealmObject;
 public class Calender extends RealmObject {
 
     private int calendar_id;
-    private String calendar_memo;
+    private String calendar_title;
     private Date calendar_start_date;
     private Date calendar_end_date;
 
-    public int getCalenderId() {
+    public int getCalendarId() {
         return calendar_id;
     }
 
-    public void setCalenderId(int calendar_id) {
+    public void setCalendarId(int calendar_id) {
         this.calendar_id = calendar_id;
     }
 
-    public String getCalendarmemo() {
-        return calendar_memo;
+    public String getCalendarTitle() {
+        return calendar_title;
     }
 
-    public void setCalendarmemo(String calendar_memo) {
-        this.calendar_memo = calendar_memo;
+    public void setCalendarTitle(String calendar_title) {
+        this.calendar_title = calendar_title;
     }
 
     public Date getCalendarstartdate() {

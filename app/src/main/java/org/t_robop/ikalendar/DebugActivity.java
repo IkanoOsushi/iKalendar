@@ -18,14 +18,14 @@ import java.util.ArrayList;
 
 
 public class DebugActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView listView;
     ArrayAdapter arrayAdapter;
     ArrayList<Class> arrayList;
 
     //ここに入れればデバッグアクティビティのリストに追加される
-    Class[] DebugClass={TimetableEditActivity.class,CalendarActivity.class,CalenderDayViewActivity.class,ReminderActivity.class,ReminderActivity.class,TimetableActivity.class,ReminderEditActivity.class,TableTimeTodayActivity.class};
+    Class[] DebugClass = {TimetableEditActivity.class, CalendarActivity.class, CalenderDayViewActivity.class, MainActivity.class, ReminderActivity.class, TimetableActivity.class, ReminderEditActivity.class, TableTimeTodayActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,8 @@ public class DebugActivity extends AppCompatActivity
 
         listView = (ListView) findViewById(R.id.list);
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        arrayList=new ArrayList<>();
-        for (int i=0;i<DebugClass.length;i++){
+        arrayList = new ArrayList<>();
+        for (int i = 0; i < DebugClass.length; i++) {
             arrayList.add(DebugClass[i]);
             arrayAdapter.add(DebugClass[i].getName().toString());
         }
@@ -57,7 +57,7 @@ public class DebugActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(view.getContext(),arrayList.get(position));
+                Intent intent = new Intent(view.getContext(), arrayList.get(position));
                 startActivity(intent);
             }
         });
@@ -70,16 +70,16 @@ public class DebugActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,ReminderActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this,CalendarActivity.class);
+            Intent intent = new Intent(this, CalendarActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_timetable) {
-            Intent intent = new Intent(this,TimetableActivity.class);
+            Intent intent = new Intent(this, TimetableActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_reminder) {
-            Intent intent = new Intent(this,ReminderActivity.class);
+            Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_setting) {
 
@@ -89,6 +89,4 @@ public class DebugActivity extends AppCompatActivity
         return true;
     }
 
-    private class TimetableWeekActivity {
-    }
 }

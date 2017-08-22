@@ -27,7 +27,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 @SuppressLint("SimpleDateFormat")
 public class CalendarActivity extends AppCompatActivity
@@ -35,6 +37,9 @@ public class CalendarActivity extends AppCompatActivity
 
     final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年 MMM dd日");
     final String PATTERN = "yyyy-MM-dd";
+
+    Realm realm;
+
 
 
     @Override
@@ -69,6 +74,9 @@ public class CalendarActivity extends AppCompatActivity
             public void onSelectDate(Date date, View view) {
                 Toast.makeText(getApplicationContext(), formatter.format(date),
                         Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CalendarActivity.this,org.t_robop.ikalendar.CalenderDayViewActivity.class);
+                startActivity(intent);
+
             }
 
             @Override
@@ -99,16 +107,26 @@ public class CalendarActivity extends AppCompatActivity
 
         };
 
-        String data1 = "2016年 1 8日";
-        Date date = new Date();
-        try {
-            date = formatter.parse(data1);
-        } catch (ParseException e) {
+        //Database初期化
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
 
+        //検索用のクエリ作成
+        RealmQuery<Calender> timetableQuery = realm.where(Calender.class);
+        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+        RealmResults<Calender> timetables = timetableQuery.findAll();
+
+        if(timetables.size() != 0) {
+            //timetableの配列の要素の数が0の時の実行
+            for (int i = 0; i < timetables.size(); i++) {
+                //timetablesの要素の数だけ回す
+                Date dPlanDate = timetables.get(i).getCalendarstartdate();
+                caldroidFragment.setCaldroidListener(listener);
+                caldroidFragment.setBackgroundDrawableForDate(getResources().getDrawable(R.drawable.ic_squid), dPlanDate);
+            }
         }
 
         caldroidFragment.setCaldroidListener(listener);
-        caldroidFragment.setBackgroundDrawableForDate(getResources().getDrawable(R.drawable.ic_squid),date);
 
         android.support.v4.app.FragmentTransaction t = getSupportFragmentManager().beginTransaction();
         t.replace(R.id.calender_layout, caldroidFragment);
@@ -123,7 +141,7 @@ public class CalendarActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,ReminderActivity.class);
+            Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
             Intent intent = new Intent(this,CalendarActivity.class);
