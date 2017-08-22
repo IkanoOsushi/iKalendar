@@ -22,6 +22,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -29,6 +32,7 @@ import io.realm.RealmResults;
 import static android.R.attr.color;
 import static android.R.attr.entryValues;
 import static android.R.attr.id;
+import static android.R.attr.layout;
 import static android.R.attr.switchMinWidth;
 import static android.R.attr.value;
 import static android.R.id.button1;
@@ -83,39 +87,6 @@ public class TimetableActivity extends AppCompatActivity
                     case "button37":
                         Button button37 = (Button)findViewById(R.id.button37);//関連付け
                         button37.setText(timetables.get(i).getTimeTableSub());//教科名表示
-                      //  switch (timeTableColorData){
-                           /* case 1:
-                                button37.setBackgroundColor(Color.parseColor("#d5fc5555"));
-                                break;
-                            case 2:
-                                button37.setBackgroundColor(Color.parseColor("#d5fd7ccb"));
-                                break;
-                            case 3:
-                                button37.setBackgroundColor(Color.parseColor("#d5fda956"));
-                                break;
-                            case 4:
-                                button37.setBackgroundColor(Color.parseColor("#d5ffe449"));
-                                break;
-                            case 5:
-                                button37.setBackgroundColor(Color.parseColor("#d5a7ff49"));
-                                break;
-                            case 6:
-                                button37.setBackgroundColor(Color.parseColor("#d529c203"));
-                                break;
-                            case 7:
-                                button37.setBackgroundColor(Color.parseColor("d549dbff"));
-                                break;
-                            case 8:
-                                button37.setBackgroundColor(Color.parseColor("#d53066f9"));
-                                break;
-                            case 9:
-                                button37.setBackgroundColor(Color.parseColor("#d59b49ff"));
-                                break;
-                            case 10:
-                                button37.setBackgroundColor(Color.parseColor("#d5c4c4c4"));
-                                break;*/
-                      //  }
-
                         break;
                     case "button36":
                         Button button36 = (Button)findViewById(R.id.button36);
@@ -245,10 +216,29 @@ public class TimetableActivity extends AppCompatActivity
         LayoutInflater factory = LayoutInflater.from(this);
         inputView = factory.inflate(R.layout.activity_timetable_dialog, null);
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(inputView);
 
-        builder.setNegativeButton("戻る", new DialogInterface.OnClickListener() {
+        TextView subText = (TextView)inputView.findViewById(R.id.textView);
+        TextView classText = (TextView)inputView.findViewById(R.id.textView18);
+        TextView teaText = (TextView)inputView.findViewById(R.id.textView19);
+
+        String rsName = getResources().getResourceEntryName(view.getId());
+        //検索用のクエリ作成
+        RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
+        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+        RealmResults<TimeTable> timetables = timetableQuery.equalTo("time_table_id",rsName).findAll();
+
+        if (timetables.size()!=0) {
+            subText.setText(timetables.get(0).getTimeTableSub());
+            classText.setText(timetables.get(0).getTimeTableClass());
+            teaText.setText(timetables.get(0).getTimeTableTea());
+        }
+
+
+
+            builder.setNegativeButton("戻る", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
