@@ -2,6 +2,7 @@ package org.t_robop.ikalendar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -10,9 +11,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.framgia.library.calendardayview.CalendarDayView;
 import com.framgia.library.calendardayview.EventView;
@@ -55,6 +60,11 @@ public class CalenderDayViewActivity extends AppCompatActivity
         //intentしてきたデータを取得
         Intent intent = getIntent();
         String sPlanDate = intent.getStringExtra("date");
+
+        View inf = getLayoutInflater().inflate(R.layout.view_event, null);
+
+        TextView PlanDateText = (TextView)inf.findViewById(R.id.item_event_header_text1);
+        PlanDateText.setText(sPlanDate);
 //        try {
 //            dPlanDate = ParseStringToDate(sPlanDate);
 //
