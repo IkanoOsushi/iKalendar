@@ -10,19 +10,21 @@
         android:id="@+id/edit"
         android:background="#ffffffff"
         android:gravity="top|left"
-        android:layout_width="0dp"
-        android:layout_height="264dp"
+        android:layout_width="317dp"
+        android:layout_height="336dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.677"
+        app:layout_constraintVertical_bias="0.543"
         tools:layout_constraintRight_creator="1"
         android:layout_marginStart="31dp"
         android:layout_marginEnd="31dp"
         tools:layout_constraintLeft_creator="1"
         android:layout_marginLeft="31dp"
-        android:layout_marginRight="31dp" />
+        android:layout_marginRight="31dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:layout_editor_absoluteY="115dp" />
 
     <Button
         android:id="@+id/add"
@@ -83,6 +85,7 @@
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/edit"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="3dp"
-        app:layout_constraintLeft_toLeftOf="@+id/edit" />
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/edit"
+        android:layout_marginLeft="0dp" />
 </android.support.constraint.ConstraintLayout>
