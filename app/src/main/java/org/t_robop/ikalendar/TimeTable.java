@@ -13,6 +13,7 @@ public class TimeTable extends RealmObject {
     private String time_table_memo;
     private String time_table_class;
     private String time_table_tea;
+    private int time_table_day_of_week;
 
     public String getTimeTableId() {
         return time_table_id;
@@ -62,4 +63,12 @@ public class TimeTable extends RealmObject {
         this.time_table_tea = time_table_tea;
     }
 
+    public int getTimeTableDayOfWeek()  {
+        return time_table_day_of_week;
+    }
+
+    public void setTimeTableDayOfWeek(int time_table_day_of_week){
+        this.time_table_day_of_week = time_table_day_of_week;}
+
 }
+

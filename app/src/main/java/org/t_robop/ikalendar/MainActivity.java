@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         //検索用のクエリ作成
         RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
-        RealmResults<TimeTable> timetables = timetableQuery.findAll();
+        RealmResults<TimeTable> timetables = timetableQuery.equalTo("time_table_day_of_week",week).findAll();
 
         TextView year_text = (TextView)findViewById(R.id.year_text);
 
@@ -102,13 +102,14 @@ public class MainActivity extends AppCompatActivity
                 break;
 
         }
-
+        int dayofweek = cal.get(Calendar.DAY_OF_WEEK);
 
         if(timetables.size() != 0){
             //timetableの配列の要素の数が0の時の実行
             for(int i=0; i<timetables.size(); i++) {
+                Log.d("aaaaa",String.valueOf(timetables.get(i)));
                 //timetablesの要素の数だけ回す
-                switch(cal.get(Calendar.DAY_OF_WEEK)){
+                switch(dayofweek){
                     case 2:
                         switch (String.valueOf(timetables.get(i).getTimeTableId())) {
                             //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
@@ -227,10 +228,6 @@ public class MainActivity extends AppCompatActivity
 
 
                 }
-            Log.d("eeee",String.valueOf(timetables.get(i).getTimeTableId()));
-
-
-
             }}
 
     }
