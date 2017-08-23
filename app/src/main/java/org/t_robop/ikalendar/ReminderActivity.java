@@ -1,8 +1,11 @@
 package org.t_robop.ikalendar;
 
+import android.app.NotificationManager;
+import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -81,7 +85,7 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
 
         //ToDo 文字列を予定で初期化してるので、別ActivityからstartActivityで起動されたときに再初期化される　データベースからitemをgetしたい
         for (int i = 0; i < 24; i++) {
-            CustomListItem defaultItem = new CustomListItem(String.valueOf(i) + ":00","予定はありません");
+            CustomListItem defaultItem = new CustomListItem(String.valueOf(i) + ":00",null);
             listItems.add(defaultItem);
         }
 
@@ -164,17 +168,28 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
                     int getResultPosition = data.getIntExtra("position", 0);    //onItemClickのposition
 
                     CustomListItem editItem = new CustomListItem(String.valueOf(getResultPosition) + ":00", getResultText);     //変更されるListViewを作成
+
                     listItems.set(getResultPosition, editItem);     //変更されるListViewの列を更新
 
                     //ToDo ここでデータベースにlistItemsを保存(set)して、onCreateでgetできるようにしたい
 
-                } else if (resultCode == RESULT_CANCELED) {
-                    //キャンセルボタンを押して戻ってきたときの処理
                 }
                 break;
             default:
                 break;
         }
+
     }
+    /*private void normalNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
+        builder.setSmallIcon(R.drawable.ic_reminder);
+        builder.setContentTitle("iKalender -Reminder");
+        builder.setContentText("この時間に予定が設定されています");
+        builder.setContentInfo("情報欄");
+        builder.setTicker("通知概要");
+        NotificationManager manager =
+                (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
+    }*/
 }
 
