@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import io.realm.Realm;

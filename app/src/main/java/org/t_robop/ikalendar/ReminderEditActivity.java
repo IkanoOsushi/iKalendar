@@ -19,12 +19,13 @@ public class ReminderEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reminder_edit);
 
         String getIntentTime = getIntent().getStringExtra("time");     //ReminderActivityでタップされたListの時間を取得
-
+        Intent intent =getIntent();
+        String note = intent.getStringExtra("note");
         editText = (EditText) findViewById(R.id.edit);
         TextView time = (TextView) findViewById(R.id.EditNowTime);
 
-        time.setText(String.valueOf(getIntentTime));
-
+        time.setText(String.valueOf(getIntentTime)+"の予定を編集中");
+        editText.setText(note);
     }
 
     public void cancelClick(View v) {
@@ -45,3 +46,4 @@ public class ReminderEditActivity extends AppCompatActivity {
 
     }
 }
+

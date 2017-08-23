@@ -1,12 +1,14 @@
 package org.t_robop.ikalendar;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,6 +29,9 @@ import java.util.Date;
 
 
 import java.util.ArrayList;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 //package org.t_robop.urano.reminder_test;
 
 public class ReminderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
@@ -36,6 +41,8 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
     ListView listView;
     ArrayList<CustomListItem> listItems;
     CustomListAdapter customListAdapter;
+    String getResultText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +81,7 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
 
         //ToDo 文字列を予定で初期化してるので、別ActivityからstartActivityで起動されたときに再初期化される　データベースからitemをgetしたい
         for (int i = 0; i < 24; i++) {
-            CustomListItem defaultItem = new CustomListItem(String.valueOf(i) + ":00", "予定");
+            CustomListItem defaultItem = new CustomListItem(String.valueOf(i) + ":00","予定はありません");
             listItems.add(defaultItem);
         }
 
@@ -111,18 +118,39 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+    public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
         ListView listView = (ListView) parent;
         CustomListItem clickedItem = (CustomListItem) listView.getItemAtPosition(position);     //listViewのタップされた場所の情報を変数itemに代入
 
-        String clickedItemTime = clickedItem.getmTime();   //タップされた場所の時間を取得
+        final String clickedItemTime = clickedItem.getmTime();   //タップされた場所の時間を取得
+        final String clickedItemText = clickedItem.getmNoteText();
+        final Intent intent = new Intent(this, ReminderEditActivity.class);
 
-        Intent intent = new Intent(this, ReminderEditActivity.class);
-        intent.putExtra("time", clickedItemTime);   //タップされた場所の時間
-        intent.putExtra("position", position);      //タップされたposition
+        AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
+        alertDlg.setTitle(position +":00の予定");
+        alertDlg.setMessage(clickedItemText);
+        alertDlg.setPositiveButton(
+                "編集",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
 
-        startActivityForResult(intent, REQUEST_CODE);
+                        intent.putExtra("note",clickedItemText);     //タップされた場所に元々入っているテキスト
+                        intent.putExtra("time", clickedItemTime);   //タップされた場所の時間
+                        intent.putExtra("position", position);      //タップされたposition
+
+                        startActivityForResult(intent, REQUEST_CODE);
+                    }
+                });
+        alertDlg.setNegativeButton(
+                "キャンセル",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Cancel ボタンクリック処理
+                    }
+                });
+
+        // 表示
+        alertDlg.create().show();
     }
 
     //startActivityForResultで遷移したActivityからのコールバック
@@ -132,15 +160,13 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
             case (REQUEST_CODE):
                 if (resultCode == RESULT_OK) {
                     //追加ボタンを押して戻ってきたときの処理
-                    String getResultText = data.getStringExtra("note");         //ReminderEditActivityで編集した予定(文字列)の取得
+                    getResultText = data.getStringExtra("note");         //ReminderEditActivityで編集した予定(文字列)の取得
                     int getResultPosition = data.getIntExtra("position", 0);    //onItemClickのposition
 
                     CustomListItem editItem = new CustomListItem(String.valueOf(getResultPosition) + ":00", getResultText);     //変更されるListViewを作成
                     listItems.set(getResultPosition, editItem);     //変更されるListViewの列を更新
-                    //ToDo ここでデータベースにlistItemsを保存(set)して、onCreateでgetできるようにしたい
 
-                    customListAdapter = new CustomListAdapter(this, R.layout.custom_scrollistview_item, listItems);
-                    listView.setAdapter(customListAdapter);
+                    //ToDo ここでデータベースにlistItemsを保存(set)して、onCreateでgetできるようにしたい
 
                 } else if (resultCode == RESULT_CANCELED) {
                     //キャンセルボタンを押して戻ってきたときの処理
