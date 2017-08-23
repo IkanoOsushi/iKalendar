@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_event_container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+    <RelativeLayout
+        android:id="@+id/item_event_header"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/event_header_padding_bottom">
+        <TextView
+            android:id="@+id/item_event_header_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/item_event_header_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/d2b_ic_right"
+            android:drawablePadding="4dp"
+            android:paddingRight="8dp"
+            android:textColor="#ff6378"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/item_event_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/eventColor"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/item_event_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Event"/>
+    </LinearLayout>
+
+</LinearLayout>
