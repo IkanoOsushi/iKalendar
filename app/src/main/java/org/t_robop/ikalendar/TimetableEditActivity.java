@@ -113,7 +113,7 @@ public class TimetableEditActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(TimetableEditActivity.this,TimetableActivity.class);
 
-                intent.putExtra("colerSelect",timeTableColor);
+                intent.putExtra("colerSelectkey",timeTableColor);
                 startActivity(intent);
 
                 }
