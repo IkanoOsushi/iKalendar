@@ -40,14 +40,15 @@ public class TimetableActivity extends AppCompatActivity
     Realm realm;
     private View inputView;
 
+    Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
 
-        Intent intent =  getIntent();
-        String timeTableColorData =  intent.getStringExtra("colerSelectkey");
-
+        Intent intent = getIntent();
+        String timeTableColorData = intent.getStringExtra("colerSelect");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -68,12 +69,24 @@ public class TimetableActivity extends AppCompatActivity
         realm = Realm.getDefaultInstance();
 
 
-
         //検索用のクエリ作成
         RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
         RealmResults<TimeTable> timetables = timetableQuery.findAll();
 
+
+        if(timetables.size() != 0){
+            //timetableの配列の要素の数が0の時の実行
+            for(int i=0; i<timetables.size(); i++){
+                // TODO ボタン振り分けのswitchを除去
+                Button button = (Button) findViewById(getResources().getIdentifier(String.valueOf(timetables.get(i).getTimeTableId()), "id", getApplication().getPackageName()));
+                // TODO カラーコードのswitchを除去しました 以下1行で対応
+                button.setBackgroundColor(Color.parseColor(timeTableColorData));
+            }
+        }
+    }
+
+/*
         if(timetables.size() != 0){//timetableの配列の要素の数が0の時の実行
             for(int i=0; i<timetables.size(); i++){//timetablesの要素の数だけ回す
                 switch (String.valueOf(timetables.get(i).getTimeTableId())){//string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
@@ -204,6 +217,7 @@ public class TimetableActivity extends AppCompatActivity
         }
 
     }
+*/
 
     public void onClick(final View view) {
         //showDialog(CustomViewCallback)
