@@ -5,7 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,6 +50,10 @@ public class TimetableEditActivity extends AppCompatActivity {
         //戻るボタンの処理
         setContentView(layout.activity_timetable_edit);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         Intent intent = getIntent();
         final String value = intent.getStringExtra("TTKey");//設定したkeyで取り出す
@@ -220,4 +226,22 @@ public class TimetableEditActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        boolean result = true;
+        switch (id) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, TimetableActivity.class);
+                startActivity(intent);
+                startActivity(intent);
+                break;
+            default:
+                result = super.onOptionsItemSelected(item);
+
+        }
+        return true;
+    }
+
 }

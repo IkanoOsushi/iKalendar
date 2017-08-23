@@ -1,101 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <TextView
-
-        android:id="@+id/EditNowTime"
+    <!-- ここはNavigation Drawerのxml -->
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="HH:MMの予定を編集中"
-        android:textSize="30sp"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView24"
-            android:layout_width="88dp"
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="内容"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/edit"
-            app:layout_constraintLeft_toLeftOf="@+id/edit"
-            tools:layout_constraintBottom_creator="1"
-            tools:layout_constraintLeft_creator="1" />
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="このリマインダーについて"
-            android:onClick="description"
-            android:layout_gravity="right"/>
-    </LinearLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+        </android.support.design.widget.AppBarLayout>
 
-    <EditText
-        android:id="@+id/edit"
-        android:layout_width="346dp"
-        android:layout_height="372dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginRight="31dp"
-        android:layout_marginStart="31dp"
-        android:background="#ffffffff"
-        android:layout_gravity="center"
-        android:gravity="top|left" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:orientation="horizontal">
+            <!-- ↓ここに各アクティビティのxmlを書く↓ -->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="150dp"
-            android:layout_height="70dp"
-            android:layout_gravity="bottom|left"
-            android:layout_marginLeft="5dp"
-            android:onClick="cancelClick"
-            android:text="キャンセル" />
+                <TextView
 
-        <Button
-            android:id="@+id/space"
-            android:onClick="spaceClick"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_gravity="bottom|center"
-            android:layout_weight="1"
-            android:background="#00000000" />
+                    android:id="@+id/EditNowTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="HH:MMの予定を編集中"
+                    android:textSize="30sp"
+                    app:layout_constraintHorizontal_bias="0.508"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_constraintLeft_creator="1"
+                    tools:layout_constraintRight_creator="1" />
 
-        <Button
-            android:id="@+id/add"
-            android:layout_width="150dp"
-            android:layout_height="70dp"
-            android:layout_gravity="bottom|right"
-            android:layout_marginRight="5dp"
-            android:onClick="addClick"
-            android:text="追加" />
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
 
-</LinearLayout>
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="88dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="内容"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toTopOf="@+id/edit"
+                        app:layout_constraintLeft_toLeftOf="@+id/edit"
+                        tools:layout_constraintBottom_creator="1"
+                        tools:layout_constraintLeft_creator="1" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edit"
+                    android:layout_width="346dp"
+                    android:layout_height="372dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginLeft="31dp"
+                    android:layout_marginRight="31dp"
+                    android:layout_marginStart="31dp"
+                    android:background="#ffffffff"
+                    android:gravity="top|left" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="cancelClick"
+                        android:text="キャンセル" />
+
+                    <Button
+                        android:id="@+id/add"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="addClick"
+                        android:text="追加" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+    <!-- ↑ここに各アクティビティのxmlを書く↑ -->
+
+    </android.support.constraint.ConstraintLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+<android.support.design.widget.NavigationView
+android:id="@+id/nav_view"
+android:layout_width="wrap_content"
+android:layout_height="match_parent"
+android:layout_gravity="start"
+android:fitsSystemWindows="true"
+app:menu="@menu/drawer_item" />
+    </android.support.v4.widget.DrawerLayout>
