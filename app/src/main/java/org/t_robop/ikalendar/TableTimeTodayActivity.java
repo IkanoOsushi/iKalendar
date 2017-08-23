@@ -355,5 +355,3 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
         return true;
     }
 }
-
-
