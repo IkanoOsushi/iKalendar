@@ -59,17 +59,25 @@
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_gravity="bottom|left"
-            android:onClick="cancelClick"
             android:layout_marginLeft="5dp"
+            android:onClick="cancelClick"
             android:text="キャンセル" />
+
+        <Button
+            android:id="@+id/space"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom|center"
+            android:layout_weight="1"
+            android:background="#00000000" />
 
         <Button
             android:id="@+id/add"
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_gravity="bottom|right"
-            android:onClick="addClick"
             android:layout_marginRight="5dp"
+            android:onClick="addClick"
             android:text="追加" />
     </LinearLayout>
 
