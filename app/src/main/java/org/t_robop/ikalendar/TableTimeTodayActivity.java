@@ -31,7 +31,7 @@ import java.text.CollationElementIterator;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class TableTimeTodayActivity extends AppCompatActivity implements View.OnClickListener,NavigationView.OnNavigationItemSelectedListener{
+public class TableTimeTodayActivity extends AppCompatActivity implements View.OnClickListener {
 
     Realm realm;
 
@@ -46,43 +46,34 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
-        Button backbutton =(Button)findViewById(R.id.fooder_exit);
+        Button backbutton = (Button) findViewById(R.id.fooder_exit);
         backbutton.setOnClickListener(this);
-        Button nextbutton =(Button)findViewById(R.id.fooder_next);
+        Button nextbutton = (Button) findViewById(R.id.fooder_next);
         nextbutton.setOnClickListener(this);
 
         Intent intent = this.getIntent();
-        int thisweek = intent.getIntExtra("thisweek",week);
+        int thisweek = intent.getIntExtra("thisweek", week);
         week = thisweek;
 
         //Database初期化
         Realm.init(this);
         realm = Realm.getDefaultInstance();
 
-        //ここからNavigation Drawerのやつ
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        //ここまでNavigation Drawerのやつ
-
-
-        TextView week_text = (TextView)findViewById(R.id.nowDay);
-        TextView tFirst =(TextView)findViewById(R.id.tFirst);
-        TextView tSecond=(TextView)findViewById(R.id.tSecond);
-        TextView tThird=(TextView)findViewById(R.id.tThird);
-        TextView tFourth=(TextView)findViewById(R.id.tFourth);
-        TextView tFifth=(TextView)findViewById(R.id.tFifth);
-        TextView tFirstClass =(TextView)findViewById(R.id.tFirstClass);
-        TextView tSecondClass=(TextView)findViewById(R.id.tSecondClass);
-        TextView tThirdClass=(TextView)findViewById(R.id.tThirdClass);
-        TextView tFourthClass=(TextView)findViewById(R.id.tFourthClass);
-        TextView tFifthClass=(TextView)findViewById(R.id.tFifthClass);
+        TextView week_text = (TextView) findViewById(R.id.nowDay);
+        TextView tFirst = (TextView) findViewById(R.id.tFirst);
+        TextView tSecond = (TextView) findViewById(R.id.tSecond);
+        TextView tThird = (TextView) findViewById(R.id.tThird);
+        TextView tFourth = (TextView) findViewById(R.id.tFourth);
+        TextView tFifth = (TextView) findViewById(R.id.tFifth);
+        TextView tFirstClass = (TextView) findViewById(R.id.tFirstClass);
+        TextView tSecondClass = (TextView) findViewById(R.id.tSecondClass);
+        TextView tThirdClass = (TextView) findViewById(R.id.tThirdClass);
+        TextView tFourthClass = (TextView) findViewById(R.id.tFourthClass);
+        TextView tFifthClass = (TextView) findViewById(R.id.tFifthClass);
 
 
         //検索用のクエリ作成
@@ -90,14 +81,14 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
         RealmResults<TimeTable> timeTables = timetableQuery.findAll();
 
-        RealmResults<TimeTable>timeTablestoday = timetableQuery.equalTo("time_table_day_of_week",thisweek).findAll();
-        if(timeTablestoday.size() != 0){
+        RealmResults<TimeTable> timeTablestoday = timetableQuery.equalTo("time_table_day_of_week", thisweek).findAll();
+        if (timeTablestoday.size() != 0) {
             //timetableの配列の要素の数が0の時の実行
-            for(int i=0; i<timeTablestoday.size(); i++) {
+            for (int i = 0; i < timeTablestoday.size(); i++) {
                 //timetablesの要素の数だけ回す
-                switch(week){
+                switch (week) {
                     case 1:
-                            break;
+                        break;
                     case 2:
                         switch (String.valueOf(timeTablestoday.get(i).getTimeTableId())) {
                             //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
@@ -275,8 +266,9 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
 
                 }
 
-            }}
-        switch(thisweek){
+            }
+        }
+        switch (thisweek) {
             case 1:
                 week_text.setText("日曜日");
                 break;
@@ -301,6 +293,7 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
 
         }
     }
+
     @Override
     public void onClick(View view) {
 
@@ -308,12 +301,12 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
             case R.id.fooder_exit:
                 if (week == 1) {
                     week = 7;
-                    Intent intent = new Intent(this,TableTimeTodayActivity.class);
+                    Intent intent = new Intent(this, TableTimeTodayActivity.class);
                     intent.putExtra("thisweek", week);
                     startActivity(intent);
                 } else {
                     week--;
-                    Intent intent = new Intent(this,TableTimeTodayActivity.class);
+                    Intent intent = new Intent(this, TableTimeTodayActivity.class);
                     intent.putExtra("thisweek", week);
                     startActivity(intent);
                 }
@@ -321,12 +314,12 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
             case R.id.fooder_next:
                 if (week == 7) {
                     week = 1;
-                    Intent intent = new Intent(this,TableTimeTodayActivity.class);
+                    Intent intent = new Intent(this, TableTimeTodayActivity.class);
                     intent.putExtra("thisweek", week);
                     startActivity(intent);
                 } else {
                     week++;
-                    Intent intent = new Intent(this,TableTimeTodayActivity.class);
+                    Intent intent = new Intent(this, TableTimeTodayActivity.class);
                     intent.putExtra("thisweek", week);
                     startActivity(intent);
                 }
@@ -335,61 +328,32 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
     }
 
 
-/*
-public void datachanege() {
-    Calendar cal = Calendar.getInstance();
-    int week = cal.get(Calendar.DAY_OF_WEEK);
-
-    switch (week) {
-        case 1: {
-            //データを曜日ごとに変える
-        }
-    }
-    }
-    */
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.time_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        boolean result = true;
         if (id == R.id.action_call) {
             Intent intent = new Intent(this, TimetableActivity.class);
             startActivity(intent);
         }
-        return true;
-    }
-
-
-    //Navigation Drawer内のメニューを押した時の動作
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this,CalendarActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_timetable) {
-            Intent intent = new Intent(this,TimetableActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_reminder) {
-            Intent intent = new Intent(this,ReminderActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_setting) {
+        switch (id) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, TimetableActivity.class);
+                startActivity(intent);
+                startActivity(intent);
+                break;
+            default:
+                result = super.onOptionsItemSelected(item);
 
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+}
 
 
-    }
