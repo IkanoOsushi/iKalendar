@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -37,7 +38,7 @@ import static java.security.AccessController.getContext;
 import static org.t_robop.ikalendar.R.color.red;
 
 public class TimetableActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
     Realm realm;
     private View inputView;
 
@@ -76,9 +77,9 @@ public class TimetableActivity extends AppCompatActivity
         RealmResults<TimeTable> timetables = timetableQuery.findAll();
 
 
-        if(timetables.size() != 0){
+        if (timetables.size() != 0) {
             //timetableの配列の要素の数が0の時の実行
-            for(int i=0; i<timetables.size(); i++){
+            for (int i = 0; i < timetables.size(); i++) {
                 // TODO ボタン振り分けのswitchを除去
                 Button button = (Button) findViewById(getResources().getIdentifier(String.valueOf(timetables.get(i).getTimeTableId()), "id", getApplication().getPackageName()));
                 // TODO カラーコードのswitchを除去しました 以下1行で対応
@@ -90,8 +91,8 @@ public class TimetableActivity extends AppCompatActivity
     }
 
 
-
     public void onClick(final View view) {
+
         //showDialog(CustomViewCallback)
         LayoutInflater factory = LayoutInflater.from(this);
         inputView = factory.inflate(R.layout.activity_timetable_dialog, null);
@@ -99,18 +100,18 @@ public class TimetableActivity extends AppCompatActivity
         AlertDialog.Builder builder = new AlertDialog.Builder(this); //アラートダイアログを作る
         builder.setView(inputView);
 
-        TextView subText = (TextView)inputView.findViewById(R.id.subjectview);
-        TextView classText = (TextView)inputView.findViewById(R.id.classTextview);
-        TextView teaText = (TextView)inputView.findViewById(R.id.teacherTextview);
-        TextView memoText=(TextView)inputView.findViewById(R.id.memoTextview);
+        TextView subText = (TextView) inputView.findViewById(R.id.subjectview);
+        TextView classText = (TextView) inputView.findViewById(R.id.classTextview);
+        TextView teaText = (TextView) inputView.findViewById(R.id.teacherTextview);
+        TextView memoText = (TextView) inputView.findViewById(R.id.memoTextview);
 
         String rsName = getResources().getResourceEntryName(view.getId());
         //検索用のクエリ作成
         RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
-        RealmResults<TimeTable> timetables = timetableQuery.equalTo("time_table_id",rsName).findAll();
+        RealmResults<TimeTable> timetables = timetableQuery.equalTo("time_table_id", rsName).findAll();
 
-        if (timetables.size()!=0) {
+        if (timetables.size() != 0) {
             subText.setText(timetables.get(0).getTimeTableSub());
             classText.setText(timetables.get(0).getTimeTableClass());
             teaText.setText(timetables.get(0).getTimeTableTea());
@@ -118,25 +119,33 @@ public class TimetableActivity extends AppCompatActivity
         }
 
 
-
-            builder.setNegativeButton("戻る", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("戻る", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
+        if (subText.length() != 0) {
 
-        builder.setNeutralButton("編集", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent myintent = new Intent(getApplicationContext(), TimetableEditActivity.class);//intentして画面遷移
-                String rsName = getResources().getResourceEntryName(view.getId());
-                myintent.putExtra("TTKey",rsName);//TTキーで受け渡す
+            builder.setNeutralButton("編集", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent myintent = new Intent(getApplicationContext(), TimetableEditActivity.class);//intentして画面遷移
+                    String rsName = getResources().getResourceEntryName(view.getId());
+                    myintent.putExtra("TTKey", rsName);//TTキーで受け渡す
 
-                startActivity(myintent);
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
+                    startActivity(myintent);
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else {
+            Intent myintent = new Intent(getApplication(), TimetableEditActivity.class);
+            rsName = getResources().getResourceEntryName(view.getId());
+            myintent.putExtra("TTKey", rsName);//TTキーで受け渡す
+            startActivity(myintent);
+        }
+
+
     }
 
     //Navigation Drawer内のメニューを押した時の動作
@@ -145,16 +154,16 @@ public class TimetableActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this,CalendarActivity.class);
+            Intent intent = new Intent(this, CalendarActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_timetable) {
-            Intent intent = new Intent(this,TimetableActivity.class);
+            Intent intent = new Intent(this, TimetableActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_reminder) {
-            Intent intent = new Intent(this,ReminderActivity.class);
+            Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_setting) {
 
@@ -163,12 +172,14 @@ public class TimetableActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.time_menu, menu);
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
