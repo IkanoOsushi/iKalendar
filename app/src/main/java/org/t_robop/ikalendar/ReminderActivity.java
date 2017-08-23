@@ -192,4 +192,3 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         manager.notify(0, builder.build());
     }*/
 }
-
