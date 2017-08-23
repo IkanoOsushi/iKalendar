@@ -43,7 +43,7 @@
                 tools:layout_editor_absoluteY="8dp"
                 tools:layout_editor_absoluteX="8dp">
 
-                <!--39,40行目、稀に勝手にdpへ書き換わるので注意！-->
+                <!--39,40行目、勝手にdpへ書き換わるので注意！match_parentが正解-->
 
                 <TextView
                     android:id="@+id/date"
