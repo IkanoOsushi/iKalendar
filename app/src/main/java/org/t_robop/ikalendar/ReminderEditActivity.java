@@ -66,5 +66,22 @@ public class ReminderEditActivity extends AppCompatActivity {
         //startActivity(intent);
 
     }
+    public void description(View v){
+        new AlertDialog.Builder(this)
+                .setTitle("このリマインダーについて")
+                .setMessage("従来のリマインダーと違い、" +
+                        "設定できる範囲は一日分となっています。\n" +
+                        "そのため利用用途についても大きく異なります。\n" +
+                        "\n崩れてしまった生活リズムの再構築をしたい方、" +
+                        "治したい、新たに付けたい生活習慣のある方を対象とし、" +
+                        "思い通りの生活習慣へ徐々に変えていく手助けをすることを目的とした" +
+                        "「ルーティーンリマインダー」です。\n" +
+                        "\n手順として、\n普段の生活パターンを一通り登録し\n" +
+                        "治したい、新たに付けたい習慣を加えて" +
+                        "登録したタイムラインを毎日確認して、矯正を行います。\n" +
+                        "\n利用者のより良い生活へのサポートを一役買うことができれば幸いです")
+                .setPositiveButton("OK", null)
+                .show();
+    }
 }
 
