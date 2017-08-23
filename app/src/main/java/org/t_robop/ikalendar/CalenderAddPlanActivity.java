@@ -56,6 +56,9 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         //Database初期化
         Realm.init(this);
         realm = Realm.getDefaultInstance();
@@ -117,41 +120,50 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年 MM月 dd日 HH:mm");
 
-        sStartPlanTime = (planDate +" "+String.valueOf(planStartHourOfDay)+":"+String.valueOf(planStartMinute));
-        Date dStartPlanTime= sdf.parse(sStartPlanTime);
+        if(PlanName.equals("") || planStartHourOfDay == 0 || planEndHourOfDay == 0){
 
-        sEndPlanTime = (planDate +" "+String.valueOf(planEndHourOfDay)+":"+String.valueOf(planEndMinute));
-        Date dEndPlanTime= sdf.parse(sEndPlanTime);
-
-        //realm追加開始
-        realm.beginTransaction();
-
-        Calender model = realm.createObject(Calender.class);
-
-        model.setCalendarTitle(PlanName);
-        model.setCalendarstartdate(dStartPlanTime);
-        model.setCalendarenddate(dEndPlanTime);
-        model.setCalendarStartHourOfDay(planStartHourOfDay);
-        model.setCalendarStartMinute(planStartMinute);
-        model.setCalendarEndHourOfDay(planEndHourOfDay);
-        model.setCalendarEndMinute(planEndMinute);
-
-        realm.commitTransaction();
-        Toast.makeText(CalenderAddPlanActivity.this,"保存しました",Toast.LENGTH_SHORT).show();
-        //検索用のクエリ作成
-        RealmQuery<Calender> timetableQuery = realm.where(Calender.class);
-        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
-        RealmResults<Calender> timetables = timetableQuery.findAll();
-        for(int i=0; i<timetables.size(); i++) {
-
-            Log.d("eeee",String.valueOf(timetables.get(i).getCalendarTitle()));
-            Log.d("eeee",String.valueOf(timetables.get(i).getCalendarstartdate()));
-            Log.d("eeee",String.valueOf(timetables.get(i).getCalendarenddate()));
-
+            Toast.makeText(getApplicationContext(), "項目に入力してください",
+                    Toast.LENGTH_SHORT).show();
         }
 
-        Intent intent = new Intent(CalenderAddPlanActivity.this,org.t_robop.ikalendar.CalendarActivity.class);
-        startActivity(intent);
+
+        else {
+            sStartPlanTime = (planDate + " " + String.valueOf(planStartHourOfDay) + ":" + String.valueOf(planStartMinute));
+            Date dStartPlanTime = sdf.parse(sStartPlanTime);
+
+            sEndPlanTime = (planDate + " " + String.valueOf(planEndHourOfDay) + ":" + String.valueOf(planEndMinute));
+            Date dEndPlanTime = sdf.parse(sEndPlanTime);
+
+            //realm追加開始
+            realm.beginTransaction();
+
+            Calender model = realm.createObject(Calender.class);
+
+            model.setCalendarTitle(PlanName);
+            model.setCalendarstartdate(dStartPlanTime);
+            model.setCalendarenddate(dEndPlanTime);
+            model.setCalendarStartHourOfDay(planStartHourOfDay);
+            model.setCalendarStartMinute(planStartMinute);
+            model.setCalendarEndHourOfDay(planEndHourOfDay);
+            model.setCalendarEndMinute(planEndMinute);
+
+            realm.commitTransaction();
+            Toast.makeText(CalenderAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
+//        //検索用のクエリ作成
+//        RealmQuery<Calender> timetableQuery = realm.where(Calender.class);
+//        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+//        RealmResults<Calender> timetables = timetableQuery.findAll();
+//        for(int i=0; i<timetables.size(); i++) {
+//
+//            Log.d("eeee",String.valueOf(timetables.get(i).getCalendarTitle()));
+//            Log.d("eeee",String.valueOf(timetables.get(i).getCalendarstartdate()));
+//            Log.d("eeee",String.valueOf(timetables.get(i).getCalendarenddate()));
+//
+//        }
+
+            Intent intent = new Intent(CalenderAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
+            startActivity(intent);
+        }
 
     }
 

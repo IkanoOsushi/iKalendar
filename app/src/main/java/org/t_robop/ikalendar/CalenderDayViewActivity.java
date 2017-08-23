@@ -1,6 +1,7 @@
 package org.t_robop.ikalendar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
@@ -54,12 +55,18 @@ public class CalenderDayViewActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calender_day_view);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         //intentしてきたデータを取得
         Intent intent = getIntent();
         String sPlanDate = intent.getStringExtra("date");
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(sPlanDate);
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         View inf = getLayoutInflater().inflate(R.layout.view_event, null);
 
@@ -72,16 +79,6 @@ public class CalenderDayViewActivity extends AppCompatActivity
 //        }
 
 
-        //ここからNavigation Drawerのやつ
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        //ここまでNavigation Drawerのやつ
 
         dayView = (CalendarDayView) findViewById(R.id.calendar);
         dayView.setLimitTime(0, 24);
