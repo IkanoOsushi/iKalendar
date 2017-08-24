@@ -47,7 +47,7 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
     ArrayList<CustomListItem> listItems;
     CustomListAdapter customListAdapter;
     String getResultText;
-
+    int d_position;
     Realm realm;
 
 
@@ -208,6 +208,14 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
                         startActivityForResult(intent, REQUEST_CODE);
                     }
                 });
+        alertDlg.setNeutralButton(
+                "削除",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        d_position = position;
+                        delete(null);
+                    }
+                });
         alertDlg.setNegativeButton(
                 "キャンセル",
                 new DialogInterface.OnClickListener() {
@@ -243,15 +251,39 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         }
 
     }
-    /*private void normalNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
-        builder.setSmallIcon(R.drawable.ic_reminder);
-        builder.setContentTitle("iKalender -Reminder");
-        builder.setContentText("この時間に予定が設定されています");
-        builder.setContentInfo("情報欄");
-        builder.setTicker("通知概要");
-        NotificationManager manager =
-                (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
-        manager.notify(0, builder.build());
-    }*/
+    public void delete(View v){
+        new AlertDialog.Builder(this)
+                .setTitle("登録内容の削除")
+                .setMessage("本当に削除しますか？")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        //検索用のクエリ作成
+                        RealmQuery<Reminder> reminderRealmQuery = realm.where(Reminder.class);
+                        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+                        final RealmResults<Reminder> reminders = reminderRealmQuery.equalTo("reminder_id",d_position).findAll();
+                        if(reminders.size()!=0){
+                            realm.beginTransaction();
+                            reminders.get(0).setReminderMemo("");
+                            reminders.get(0).setReminderTime(String.valueOf(d_position));
+                            reminders.get(0).setReminderId(d_position);
+                            realm.commitTransaction();
+                        }
+                        else{
+                            realm.beginTransaction();
+
+                            Reminder model = realm.createObject(Reminder.class);
+                            model.setReminderId(d_position);
+                            model.setReminderMemo("");
+                            model.setReminderTime(String.valueOf(d_position));
+                            realm.commitTransaction();
+                        }
+                        CustomListItem editItem = new CustomListItem(String.valueOf(d_position) + ":00", "");
+                        listItems.set(d_position,editItem);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();}
 }
