@@ -1,6 +1,7 @@
 package org.t_robop.ikalendar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
@@ -49,17 +50,24 @@ public class CalenderDayViewActivity extends AppCompatActivity
     Date dPlanDate;
 
     final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年 MMM dd日");
+    final SimpleDateFormat dateformatter = new SimpleDateFormat("yyyy HH 時 mm 分");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calender_day_view);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         //intentしてきたデータを取得
         Intent intent = getIntent();
-        String sPlanDate = intent.getStringExtra("date");
+        final String sPlanDate = intent.getStringExtra("date");
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(sPlanDate);
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         View inf = getLayoutInflater().inflate(R.layout.view_event, null);
 
@@ -72,16 +80,6 @@ public class CalenderDayViewActivity extends AppCompatActivity
 //        }
 
 
-        //ここからNavigation Drawerのやつ
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        //ここまでNavigation Drawerのやつ
 
         dayView = (CalendarDayView) findViewById(R.id.calendar);
         dayView.setLimitTime(0, 24);
@@ -96,6 +94,27 @@ public class CalenderDayViewActivity extends AppCompatActivity
                     @Override
                     public void onEventViewClick(View view, EventView eventView, IEvent data) {
                         Log.e("TAG", "onEventViewClick:" + data.getName());
+
+                        String sPlanTitle = data.getName();
+
+                        String sPlanStartTime = (data.getStartTime().get(Calendar.HOUR_OF_DAY)+ " 時 " + data.getStartTime().get(Calendar.MINUTE) + " 分");
+
+                        String sPlanEndTime = (data.getEndTime().get(Calendar.HOUR_OF_DAY) + " 時 " + data.getEndTime().get(Calendar.MINUTE) + " 分");
+
+                        Bundle editPlanData = new Bundle();
+                        editPlanData.putString("PlanTitle",sPlanTitle);
+                        editPlanData.putString("PlanDate",sPlanDate);
+                        editPlanData.putInt("StartHourOfDay",data.getStartTime().get(Calendar.HOUR_OF_DAY));
+                        editPlanData.putInt("StartMinute",data.getStartTime().get(Calendar.MINUTE));
+                        editPlanData.putInt("EndHourOfDay",data.getEndTime().get(Calendar.HOUR_OF_DAY));
+                        editPlanData.putInt("EndMinute",data.getEndTime().get(Calendar.MINUTE));
+                        editPlanData.putString("StartTime",sPlanStartTime);
+                        editPlanData.putString("EndTime",sPlanEndTime);
+                        editPlanData.putBoolean("EditFlag",true);
+
+                        Intent intent = new Intent(CalenderDayViewActivity.this,org.t_robop.ikalendar.CalenderAddPlanActivity.class);
+                        intent.putExtras(editPlanData);
+                        startActivity(intent);
                         if (data instanceof CalenderEvent) {
                             // change event (ex: set event color)
                             dayView.setEvents(events);

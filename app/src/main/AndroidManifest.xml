@@ -23,8 +23,10 @@
         <activity android:name=".ReminderEditActivity" />
         <activity android:name=".TableTimeTodayActivity" />
         <activity android:name=".TimetableEditActivity" />
-        <activity android:name=".CalenderDayViewActivity" />
-        <activity android:name=".CalenderAddPlanActivity"></activity>
+        <activity android:name=".CalenderDayViewActivity"
+            android:parentActivityName=".CalendarActivity"/>
+        <activity android:name=".CalenderAddPlanActivity"
+            android:parentActivityName=".CalendarActivity"></activity>
     </application>
 
 </manifest>
