@@ -23,10 +23,10 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
 
     int planStartHourOfDay;
     int planStartMinute;
-
     int planEndHourOfDay;
     int planEndMinute;
 
+    //上書きか新規作成化を判別するためのflag
     boolean editFlag = false;
 
     String beforeEditTitle;
@@ -49,8 +49,15 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
         //intentしてきたデータを取得
         Intent i = getIntent();
         String PlanDate = i.getStringExtra("date");
+        String PlanDateFromDayView = i.getStringExtra("dayviewdate");
 
-        planDate = PlanDate;
+        boolean fromDayViewFlag = i.getBooleanExtra("fromDayView",false);
+
+        if(fromDayViewFlag == true) {
+            planDate = PlanDateFromDayView;
+        }else {
+            planDate = PlanDate;
+        }
 
         editFlag = getIntent().getBooleanExtra("EditFlag",false);
 
