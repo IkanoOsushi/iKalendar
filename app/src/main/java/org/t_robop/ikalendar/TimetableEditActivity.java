@@ -175,52 +175,52 @@ public class TimetableEditActivity extends AppCompatActivity {
     public void colerSelected(View v) {
         switch (v.getId()) {
             case R.id.button44:
-                timeTableColor="#d5fc5555";
+                timeTableColor="#befe6969";
                 Toast.makeText(this, "赤を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button45:
-                timeTableColor = "#d5fd7ccb";
+                timeTableColor = "#beff9bd8";
                 Toast.makeText(this, "ピンクを選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button46:
-                timeTableColor ="#d5fda956";
+                timeTableColor ="#c8fda956";
                 Toast.makeText(this, "オレンジを選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button47:
-                timeTableColor ="#e4ffff7a";
+                timeTableColor ="#d5fde439";
                 Toast.makeText(this, "黄色を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button48:
-                timeTableColor = "#d5a7ff49";
+                timeTableColor = "#c7a7ff49";
                 Toast.makeText(this, "黄緑を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button49:
-                timeTableColor = "#d529c203";
+                timeTableColor = "#c751c533";
                 Toast.makeText(this, "緑を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button50:
-                timeTableColor = "#d549dbff";
+                timeTableColor = "#ca49dbff";
                 Toast.makeText(this, "水色を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button51:
-                timeTableColor = "#d53066f9";
+                timeTableColor = "#c95986ff";
                 Toast.makeText(this, "青を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button52:
-                timeTableColor ="#d59b49ff" ;
+                timeTableColor ="#c5b273ff" ;
                 Toast.makeText(this, "紫を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.button53:
-                timeTableColor = "#d5c4c4c4";
+                timeTableColor = "#bec4c4c4";
                 Toast.makeText(this, "グレーを選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
