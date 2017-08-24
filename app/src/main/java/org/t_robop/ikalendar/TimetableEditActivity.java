@@ -190,7 +190,7 @@ public class TimetableEditActivity extends AppCompatActivity {
 
                 break;
             case R.id.button47:
-                timeTableColor ="#d5ffe449";
+                timeTableColor ="#e4ffff7a";
                 Toast.makeText(this, "黄色を選択しました。", Toast.LENGTH_SHORT).show();
 
                 break;
