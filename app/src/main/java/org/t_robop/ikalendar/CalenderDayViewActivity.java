@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -45,6 +46,8 @@ public class CalenderDayViewActivity extends AppCompatActivity
     ArrayList<IEvent> events;
     ArrayList<IPopup> popups;
 
+    String sPlanDate;
+
     Realm realm;
 
     Date dPlanDate;
@@ -59,7 +62,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
 
         //intentしてきたデータを取得
         Intent intent = getIntent();
-        final String sPlanDate = intent.getStringExtra("date");
+        sPlanDate = intent.getStringExtra("date");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(sPlanDate);
@@ -179,65 +182,8 @@ public class CalenderDayViewActivity extends AppCompatActivity
             }
 
 
-//            Calendar timeStart = Calendar.getInstance();
-//            timeStart.set(Calendar.HOUR_OF_DAY, 11);
-//            timeStart.set(Calendar.MINUTE, 0);
-//            Calendar timeEnd = (Calendar) timeStart.clone();
-//            timeEnd.set(Calendar.HOUR_OF_DAY, 15);
-//            timeEnd.set(Calendar.MINUTE, 30);
-//            CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, "CalenderEvent", "Hockaido", eventColor);
-//
-//            events.add(event);
-//        }
-//
-//        {
-//            int eventColor = ContextCompat.getColor(this, R.color.eventColor);
-//            Calendar timeStart = Calendar.getInstance();
-//            timeStart.set(Calendar.HOUR_OF_DAY, 20);
-//            timeStart.set(Calendar.MINUTE, 00);
-//            Calendar timeEnd = (Calendar) timeStart.clone();
-//            timeEnd.set(Calendar.HOUR_OF_DAY, 22);
-//            timeEnd.set(Calendar.MINUTE, 00);
-//            CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, "Another event", "Hockaido", eventColor);
-//
-//            events.add(event);
-//        }
-
             popups = new ArrayList<>();
 
-//            {
-//                Calendar timeStart = Calendar.getInstance();
-//                timeStart.set(Calendar.HOUR_OF_DAY, 12);
-//                timeStart.set(Calendar.MINUTE, 0);
-//                Calendar timeEnd = (Calendar) timeStart.clone();
-//                timeEnd.set(Calendar.HOUR_OF_DAY, 13);
-//                timeEnd.set(Calendar.MINUTE, 30);
-//
-//                CalenderPopup popup = new CalenderPopup();
-//                popup.setStartTime(timeStart);
-//                popup.setEndTime(timeEnd);
-//                popup.setImageStart("http://sample.com/image.png");
-//                popup.setTitle("event 1 with title");
-//                popup.setDescription("Yuong alsdf");
-//                popups.add(popup);
-//            }
-//
-//            {
-//                Calendar timeStart = Calendar.getInstance();
-//                timeStart.set(Calendar.HOUR_OF_DAY, 20);
-//                timeStart.set(Calendar.MINUTE, 30);
-//                Calendar timeEnd = (Calendar) timeStart.clone();
-//                timeEnd.set(Calendar.HOUR_OF_DAY, 21);
-//                timeEnd.set(Calendar.MINUTE, 30);
-//
-//                CalenderPopup popup = new CalenderPopup();
-//                popup.setStartTime(timeStart);
-//                popup.setEndTime(timeEnd);
-//                popup.setImageStart("http://sample.com/image.png");
-//                popup.setTitle("event 2 with title");
-//                popup.setDescription("Yuong alsdf");
-//                popups.add(popup);
-//            }
 
             dayView.setEvents(events);
             dayView.setPopups(popups);
@@ -271,10 +217,33 @@ public class CalenderDayViewActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-//    public Date ParseStringToDate(String sPlanDate) throws ParseException{
-//
-//        Date dPlanDate = formatter.parse(sPlanDate);
-//        return dPlanDate;
-//
-//    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.calender_add, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        boolean result = true;
+        if (id == R.id.action_call) {
+            Intent intent = new Intent(this, CalenderAddPlanActivity.class);
+            intent.putExtra("dayviewdate",sPlanDate);
+            intent.putExtra("fromDayView",true);
+            startActivity(intent);
+        }
+        switch (id) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, CalendarActivity.class);
+                startActivity(intent);
+                startActivity(intent);
+                break;
+            default:
+                result = super.onOptionsItemSelected(item);
+
+        }
+        return true;
+    }
 }
