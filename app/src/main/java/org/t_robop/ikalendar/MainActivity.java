@@ -11,8 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import io.realm.CalenderRealmProxy;
@@ -24,6 +26,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     Realm realm;
+    ListView listView;
+    ArrayList<CustomListItem> listItems;
+    CustomListAdapter customListAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,9 @@ public class MainActivity extends AppCompatActivity
         TextView thirdPeriod = (TextView) findViewById(R.id.third);
         TextView fourthPeriod = (TextView) findViewById(R.id.fourth);
         TextView fifthPeriod = (TextView) findViewById(R.id.fifth);
+
+        listView = (ListView) findViewById(R.id.main_ListView);
+
 
 
         //ここからNavigation Drawerのやつ
@@ -62,6 +71,34 @@ public class MainActivity extends AppCompatActivity
         //Database初期化
         Realm.init(this);
         realm = Realm.getDefaultInstance();
+
+        //ListViewに表示する要素を設定
+        listItems = new ArrayList<>();
+        //検索用のクエリ作成
+        RealmQuery<Reminder> reminderRealmQuery = realm.where(Reminder.class);
+        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
+        RealmResults<Reminder> reminders = reminderRealmQuery.findAll();
+//        if(reminders.size()!=0){
+//            for(int i=0;i<reminders.size();i++){
+//                CustomListItem defaultItem = new CustomListItem(String.valueOf(reminders.get(i).getReminderTime()), String.valueOf(reminders.get(i).getReminderMemo()));
+//                listItems.add(defaultItem);
+//
+//            }
+//        }
+        for(int i=0;i<reminders.size();i++) {
+            if (!String.valueOf(reminders.get(i).getReminderMemo()).equals("")){
+                    CustomListItem defaultItem = new CustomListItem(String.valueOf(reminders.get(i).getReminderTime()), String.valueOf(reminders.get(i).getReminderMemo()));
+                    listItems.add(defaultItem);
+
+
+            }
+            else{
+            }
+        }
+        //listItemsをカスタムアダプターに入れてlistViewにセット
+        customListAdapter = new CustomListAdapter(this, R.layout.custom_scrollistview_item, listItems);
+        listView.setAdapter(customListAdapter);
+
 
         //検索用のクエリ作成
         RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
@@ -248,8 +285,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_reminder) {
             Intent intent = new Intent(this,ReminderActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_setting) {
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
