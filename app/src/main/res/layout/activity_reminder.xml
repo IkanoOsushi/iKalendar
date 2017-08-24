@@ -36,14 +36,16 @@
             <!-- ↓ここに各アクティビティのxmlを書く↓ -->
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:orientation="vertical"
                 android:weightSum="1"
-                tools:layout_editor_absoluteY="8dp"
-                tools:layout_editor_absoluteX="8dp">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <!--39,40行目、稀に勝手にdpへ書き換わるので注意！-->
+                <!--39,40行目、勝手にdpへ書き換わるので注意！match_parentが正解-->
 
                 <TextView
                     android:id="@+id/date"

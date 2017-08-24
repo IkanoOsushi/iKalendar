@@ -10,8 +10,9 @@ import io.realm.RealmObject;
 
 public class Reminder extends RealmObject {
     private int reminder_id;
-    private Date reminder_time;
+    private String reminder_time;
     private String reminder_memo;
+    private String reminder_today;
 
     public int getReminderId() {
         return reminder_id;
@@ -21,11 +22,11 @@ public class Reminder extends RealmObject {
         this.reminder_id = reminder_id;
     }
 
-    public Date getReminderTime() {
+    public String getReminderTime() {
         return reminder_time;
     }
 
-    public void setReminderTime(Date reminder_time) {
+    public void setReminderTime(String reminder_time) {
         this.reminder_time = reminder_time;
     }
 
@@ -36,5 +37,8 @@ public class Reminder extends RealmObject {
     public void setReminderMemo(String reminder_memo) {
         this.reminder_memo = reminder_memo;
     }
+
+    public String getReminderToday(){return reminder_today;}
+    public void setReminderToday(String reminder_today){this.reminder_today = reminder_today;}
 
 }

@@ -5,13 +5,18 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.sql.Time;
+import java.util.Arrays;
+import java.util.Calendar;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
@@ -30,7 +35,14 @@ public class TimetableEditActivity extends AppCompatActivity {
     EditText memoText;
     private View inputView;
     String timeTableColor ="#ffffff";
+    int weeks;
 
+    String[] mon = {"button37","button30","button23","button16","button6"};
+    String[] tus = {"button36","button29","button22","button15","button5"};
+    String[] wed = {"button35","button28","button21","button14","button4"};
+    String[] thu = {"button34","button27","button20","button13","button3"};
+    String[] fri = {"button33","button26","button19","button12","button2"};
+    String[] sat = {"button32","button25","button18","button11","button"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +50,32 @@ public class TimetableEditActivity extends AppCompatActivity {
         //戻るボタンの処理
         setContentView(layout.activity_timetable_edit);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         Intent intent = getIntent();
         final String value = intent.getStringExtra("TTKey");//設定したkeyで取り出す
+
+        if(Arrays.asList(mon).contains(value)){
+            weeks=2;
+        }
+       else if(Arrays.asList(tus).contains(value)){
+            weeks=3;
+        }
+      else  if(Arrays.asList(wed).contains(value)){
+            weeks=4;
+        }
+        else if(Arrays.asList(thu).contains(value)){
+            weeks=5;
+        }
+       else if(Arrays.asList(fri).contains(value)){
+            weeks=6;
+        }
+       else if(Arrays.asList(sat).contains(value)){
+            weeks=7;
+        }
 
         Realm.init(this);
         realm = Realm.getDefaultInstance();
@@ -70,13 +105,13 @@ public class TimetableEditActivity extends AppCompatActivity {
 
                     realm.beginTransaction();
 
-
                     timetables.get(0).setTimeTableId(value);
                     timetables.get(0).setTimeTableSub(subText.getText().toString());
                     timetables.get(0).setTimeTableClass(roomText.getText().toString());
                     timetables.get(0).setTimeTableTea(teacText.getText().toString());
                     timetables.get(0).setTimeTableMemo(memoText.getText().toString());
                     timetables.get(0).setTimeTableColorId(timeTableColor);
+                    timetables.get(0).setTimeTableDayOfWeek(weeks);
 
                     realm.commitTransaction();
                     Toast.makeText(TimetableEditActivity.this,"保存しました",Toast.LENGTH_SHORT).show();
@@ -106,6 +141,7 @@ public class TimetableEditActivity extends AppCompatActivity {
                     model.setTimeTableTea(teacText.getText().toString());
                     model.setTimeTableMemo(memoText.getText().toString());
                     model.setTimeTableColorId(timeTableColor);
+                    model.setTimeTableDayOfWeek(weeks);
 
                 realm.commitTransaction();
                 Toast.makeText(TimetableEditActivity.this,"保存しました",Toast.LENGTH_LONG).show();
@@ -190,4 +226,22 @@ public class TimetableEditActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        boolean result = true;
+        switch (id) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, TimetableActivity.class);
+                startActivity(intent);
+                startActivity(intent);
+                break;
+            default:
+                result = super.onOptionsItemSelected(item);
+
+        }
+        return true;
+    }
+
 }
