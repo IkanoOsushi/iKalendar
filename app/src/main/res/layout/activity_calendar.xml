@@ -43,7 +43,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:id="@+id/calendar_layout_2"
-                tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints"
+                android:background="#FFFFFF">
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -24,13 +24,5 @@
         </menu>
     </item>
 
-    <item android:title="Settings">
-        <menu>
-            <item
-                android:id="@+id/nav_setting"
-                android:title="Settings" />
-        </menu>
-    </item>
-
 </menu>
 
