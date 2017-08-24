@@ -27,7 +27,7 @@ public class CalendarEndDatePicker extends android.support.v4.app.DialogFragment
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         //時刻が選択されたときの処理
 
-        CalenderAddPlanActivity callingActivity = (CalenderAddPlanActivity) getActivity();
+        CalendarAddPlanActivity callingActivity = (CalendarAddPlanActivity) getActivity();
         callingActivity.onReturnEndDate(hourOfDay,minute);
     }
 
