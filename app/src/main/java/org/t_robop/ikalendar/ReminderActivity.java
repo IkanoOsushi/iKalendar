@@ -282,6 +282,10 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
                         }
                         CustomListItem editItem = new CustomListItem(String.valueOf(d_position) + ":00", "");
                         listItems.set(d_position,editItem);
+
+                        Intent intent=new Intent(ReminderActivity.this,ReminderActivity.class);
+                        startActivity(intent);
+
                     }
                 })
                 .setNegativeButton("Cancel", null)
