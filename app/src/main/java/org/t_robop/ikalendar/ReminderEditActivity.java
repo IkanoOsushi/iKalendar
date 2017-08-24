@@ -1,5 +1,6 @@
 package org.t_robop.ikalendar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -43,10 +44,40 @@ public class ReminderEditActivity extends AppCompatActivity {
         time.setText(String.valueOf(getIntentTime)+"の予定を編集中");
         editText.setText(note);
     }
+    public void description(View v){
+        new AlertDialog.Builder(this)
+                .setTitle("このリマインダーについて")
+                .setMessage("従来のリマインダーと違い、" +
+                        "設定できる範囲は一日分となっています。\n" +
+                        "そのため利用用途についても大きく異なります。\n" +
+                        "\n崩れてしまった生活リズムの再構築をしたい方、" +
+                        "治したい、新たに付けたい生活習慣のある方を対象とし、" +
+                        "思い通りの生活習慣へ徐々に変えていく手助けをすることを目的とした" +
+                        "「ルーティーンリマインダー」です。\n" +
+                        "\n手順として、\n普段の生活パターンを一通り登録し\n" +
+                        "治したい、新たに付けたい習慣を加えて" +
+                        "登録したタイムラインを毎日確認して、矯正を行います。\n" +
+                        "\n利用者のより良い生活へのサポートを一役買うことができれば幸いです")
+                .setPositiveButton("OK", null)
+                .show();
+    }
 
     public void cancelClick(View v) {
         finish();
     }
+    public void delete(View v){
+        new AlertDialog.Builder(this)
+                .setTitle("登録内容の削除")
+                .setMessage("本当に削除しますか？")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        editText.setText("");
+                        addClick(null);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();}
 
     public void addClick(View v) {
         int getIntentPosition = getIntent().getIntExtra("position",0);  //ReminderActivityのListViewでタップされたpositionを取得

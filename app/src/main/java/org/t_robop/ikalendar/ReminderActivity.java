@@ -245,15 +245,4 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         }
 
     }
-    /*private void normalNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
-        builder.setSmallIcon(R.drawable.ic_reminder);
-        builder.setContentTitle("iKalender -Reminder");
-        builder.setContentText("この時間に予定が設定されています");
-        builder.setContentInfo("情報欄");
-        builder.setTicker("通知概要");
-        NotificationManager manager =
-                (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
-        manager.notify(0, builder.build());
-    }*/
 }
