@@ -179,9 +179,10 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
                 //検索用のクエリ作成
                 RealmQuery<Calender> calenderQuery = realm.where(Calender.class);
                 //インスタンス生成
-                final RealmResults<Calender> calenders = calenderQuery.equalTo("calendar_title",beforeEditTitle).equalTo("calendar_start_hourofday",beforeEditStartHourOfDay).equalTo("calendar_start_minute",beforeEditStartMinute).equalTo("calendar_end_hourofday",beforeEditEndHourOfDay).equalTo("calendar_end_minute",beforeEditEndMinute).findAll();
-                //final RealmResults<Calender> calenders = calenderQuery.findAll();
-                if(calenders.size()!=0) {
+                //final RealmResults<Calender> calenders = calenderQuery.equalTo("calendar_title",beforeEditTitle).equalTo("calendar_end_minute",beforeEditEndMinute).findAll();
+                final RealmResults<Calender> calenders = calenderQuery.findAll();
+                for(int i = 0;i < calenders.size();i++){
+                if(calenders.get(i).getCalendarTitle().equals(beforeEditTitle) && calenders.get(i).getCalendarStartHourOfDay() == beforeEditStartHourOfDay && calenders.get(i).getCalendarStartMinute() == beforeEditStartMinute && calenders.get(i).getCalendarEndHourOfDay() == beforeEditEndHourOfDay && calenders.get(i).getCalendarEndMinute() == beforeEditEndMinute) {
                     realm.beginTransaction();
 
                     calenders.get(0).setCalendarTitle(PlanName);
@@ -197,6 +198,7 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(CalenderAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
                     startActivity(intent);
+                }
                 }
             }
             else {
