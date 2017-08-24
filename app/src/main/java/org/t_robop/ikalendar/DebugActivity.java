@@ -25,7 +25,7 @@ public class DebugActivity extends AppCompatActivity
     ArrayList<Class> arrayList;
 
     //ここに入れればデバッグアクティビティのリストに追加される
-    Class[] DebugClass = {TimetableEditActivity.class, CalendarActivity.class, CalenderDayViewActivity.class, MainActivity.class, ReminderActivity.class, TimetableActivity.class, ReminderEditActivity.class, TableTimeTodayActivity.class};
+    Class[] DebugClass = {TimetableEditActivity.class, CalendarActivity.class, CalendarDayViewActivity.class, MainActivity.class, ReminderActivity.class, TimetableActivity.class, ReminderEditActivity.class, TableTimeTodayActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,6 @@ public class DebugActivity extends AppCompatActivity
         } else if (id == R.id.nav_reminder) {
             Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_setting) {
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -178,8 +178,6 @@ public class ReminderActivity extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.nav_reminder) {
             Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_setting) {
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

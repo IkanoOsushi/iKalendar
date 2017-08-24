@@ -42,8 +42,8 @@
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -67,23 +67,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
+
                             <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
                                 android:id="@+id/year_text"
-                                android:textSize="50dp"/>
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textSize="50dp" />
                         </LinearLayout>
-
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/month_day"
-                            android:textSize="50dp"/>
-                        </LinearLayout>
+                            android:layout_height="1dp"
+                            android:background="#000000"></LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -91,18 +85,36 @@
                             android:layout_weight="1">
 
                             <TextView
+                                android:id="@+id/month_day"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:textSize="50dp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#000000"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <TextView
                                 android:id="@+id/week_text"
-                                android:textSize="50dp"/>
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textSize="50dp" />
 
                         </LinearLayout>
-
-
-
 
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#000000"></LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -116,181 +128,218 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="1限"
-                                android:textSize="40dp"
-                                android:gravity="center"
-                                />
-                        </LinearLayout>
-                        <LinearLayout
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
-                            <TextView
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:text="1限"
+                                    android:textSize="40dp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/first"
-                                android:textSize="40dp"
-                                android:gravity="center"
-                                />
+                                android:layout_weight="1">
 
+                                <TextView
+                                    android:id="@+id/first"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:textSize="40dp" />
+
+                            </LinearLayout>
                         </LinearLayout>
-                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#000000"></LinearLayout>
+
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="horizontal">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:gravity="center"
                                     android:text="2限"
-                                    android:textSize="40dp"
-                                    android:gravity="center"
-                                    android:background="@drawable/text_border"
-                                    />
+                                    android:textSize="40dp" />
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
+
                                 <TextView
+                                    android:id="@+id/second"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/second"
-                                    android:textSize="40dp"
                                     android:gravity="center"
-                                    android:background="@drawable/text_border"
-                                    />
+                                    android:textSize="40dp" />
 
                             </LinearLayout>
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#000000"></LinearLayout>
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="horizontal">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:gravity="center"
                                     android:text="3限"
                                     android:textSize="40dp"
-                                    android:gravity="center"
-                                    android:background="@drawable/text_border"
 
                                     />
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
+
                                 <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
                                     android:id="@+id/third"
-                                    android:textSize="40dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
                                     android:gravity="center"
-                                    />
+                                    android:textSize="40dp" />
 
                             </LinearLayout>
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#000000"></LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="horizontal">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:gravity="center"
                                     android:text="4限"
-                                    android:textSize="40dp"
-                                    android:gravity="center"
-                                    />
+                                    android:textSize="40dp" />
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
+
                                 <TextView
+                                    android:id="@+id/fourth"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/fourth"
-                                    android:textSize="40dp"
                                     android:gravity="center"
-                                    />
+                                    android:textSize="40dp" />
 
                             </LinearLayout>
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#000000"></LinearLayout>
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="horizontal">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:gravity="center"
                                     android:text="5限"
-                                    android:textSize="40dp"
-                                    android:gravity="center"
-                                    />
+                                    android:textSize="40dp" />
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
+
                                 <TextView
+                                    android:id="@+id/fifth"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:id="@+id/fifth"
-                                    android:textSize="40dp"
                                     android:gravity="center"
-                                    />
+                                    android:textSize="40dp" />
 
                             </LinearLayout>
                         </LinearLayout>
-
 
 
                     </LinearLayout>
 
 
-
                 </LinearLayout>
-                <RelativeLayout
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#000000"></LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2">
 
+                    <ListView
+                        android:id="@+id/main_ListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-
-                </RelativeLayout>
-
+                    </ListView>
+                </LinearLayout>
 
 
             </LinearLayout>

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ikalendar_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".DebugActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,13 +18,14 @@
         </activity>
         <activity android:name=".ReminderActivity" />
         <activity android:name=".TimetableActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".ReminderEditActivity" />
         <activity android:name=".TableTimeTodayActivity" />
         <activity android:name=".TimetableEditActivity" />
-        <activity android:name=".CalenderDayViewActivity" />
-        <activity android:name=".CalenderAddPlanActivity"></activity>
+        <activity android:name=".CalendarDayViewActivity"
+            android:parentActivityName=".CalendarActivity"/>
+        <activity android:name=".CalendarAddPlanActivity"
+            android:parentActivityName=".CalendarActivity"></activity>
     </application>
 
 </manifest>
