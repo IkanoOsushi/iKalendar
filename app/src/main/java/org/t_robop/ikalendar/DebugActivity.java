@@ -81,7 +81,6 @@ public class DebugActivity extends AppCompatActivity
         } else if (id == R.id.nav_reminder) {
             Intent intent = new Intent(this, ReminderActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_setting) {
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
