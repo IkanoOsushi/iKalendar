@@ -127,7 +127,7 @@ public class CalendarActivity extends AppCompatActivity
                 //timetablesの要素の数だけ回す
                 Date dPlanDate = timetables.get(i).getCalendarstartdate();
                 caldroidFragment.setCaldroidListener(listener);
-                caldroidFragment.setBackgroundDrawableForDate(getResources().getDrawable(R.drawable.ic_squid), dPlanDate);
+                caldroidFragment.setBackgroundDrawableForDate(getResources().getDrawable(R.drawable.ic_red_2), dPlanDate);
             }
         }
 

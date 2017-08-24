@@ -27,11 +27,19 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
     int planEndHourOfDay;
     int planEndMinute;
 
+    boolean editFlag = false;
+
+    String beforeEditTitle;
+    String beforeEditStartTime;
+    String beforeEditEndTime;
+    int beforeEditStartHourOfDay;
+    int beforeEditStartMinute;
+    int beforeEditEndHourOfDay;
+    int beforeEditEndMinute;
+
     String planDate;
 
     Realm realm;
-
-    final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年 MMM dd日");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +52,40 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
 
         planDate = PlanDate;
 
+        editFlag = getIntent().getBooleanExtra("EditFlag",false);
+
+        EditText setPlanName = (EditText)findViewById(R.id.setPlanName);
         EditText setStartPlanTime = (EditText)findViewById(R.id.setStartPlanTime);
         EditText setEndPlanTime = (EditText)findViewById(R.id.setEndPlanTime);
+
+        if ( editFlag == true ){
+
+            setPlanName.setText(getIntent().getStringExtra("PlanTitle"));
+            setStartPlanTime.setText(getIntent().getStringExtra("StartTime"));
+            setEndPlanTime.setText(getIntent().getStringExtra("EndTime"));
+
+            planDate = getIntent().getStringExtra("PlanDate");
+
+            beforeEditTitle = getIntent().getStringExtra("PlanTitle");
+            beforeEditStartTime = getIntent().getStringExtra("StartTime");
+            beforeEditEndTime = getIntent().getStringExtra("EndTime");
+            beforeEditStartHourOfDay = getIntent().getIntExtra("StartHourOfDay",0);
+            beforeEditStartMinute = getIntent().getIntExtra("StartMinute",0);
+            beforeEditEndHourOfDay = getIntent().getIntExtra("EndHourOfDay",0);
+            beforeEditEndMinute = getIntent().getIntExtra("EndMinute",0);
+
+            planStartHourOfDay = getIntent().getIntExtra("StartHourOfDay",0);
+            planStartMinute = getIntent().getIntExtra("StartMinute",0);
+            planEndHourOfDay = getIntent().getIntExtra("EndHourOfDay",0);
+            planEndMinute = getIntent().getIntExtra("EndMinute",0);
+        }
 
         setStartPlanTime.setOnTouchListener(startOtl);
         setEndPlanTime.setOnTouchListener(endOtl);
 
         //アクションバーをセット
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(PlanDate + " 予定を追加");
+        toolbar.setTitle(planDate + " 予定を追加");
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
@@ -120,12 +153,16 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年 MM月 dd日 HH:mm");
 
-        if(PlanName.equals("") || planStartHourOfDay == 0 || planEndHourOfDay == 0){
+        if((PlanName.equals("") || planStartHourOfDay == 0 || planEndHourOfDay == 0) && editFlag == false){
 
             Toast.makeText(getApplicationContext(), "項目に入力してください",
                     Toast.LENGTH_SHORT).show();
         }
 
+        else if(planStartHourOfDay > planEndHourOfDay || (planStartHourOfDay == planEndHourOfDay && planStartMinute > planEndMinute)){
+            Toast.makeText(getApplicationContext(), "開始時刻と終了時刻を正しく入力してください",
+                    Toast.LENGTH_SHORT).show();
+        }
 
         else {
             sStartPlanTime = (planDate + " " + String.valueOf(planStartHourOfDay) + ":" + String.valueOf(planStartMinute));
@@ -135,34 +172,52 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
             Date dEndPlanTime = sdf.parse(sEndPlanTime);
 
             //realm追加開始
-            realm.beginTransaction();
+            //realm.beginTransaction();
 
-            Calender model = realm.createObject(Calender.class);
+            if(editFlag == true){
 
-            model.setCalendarTitle(PlanName);
-            model.setCalendarstartdate(dStartPlanTime);
-            model.setCalendarenddate(dEndPlanTime);
-            model.setCalendarStartHourOfDay(planStartHourOfDay);
-            model.setCalendarStartMinute(planStartMinute);
-            model.setCalendarEndHourOfDay(planEndHourOfDay);
-            model.setCalendarEndMinute(planEndMinute);
+                //検索用のクエリ作成
+                RealmQuery<Calender> calenderQuery = realm.where(Calender.class);
+                //インスタンス生成
+                final RealmResults<Calender> calenders = calenderQuery.equalTo("calendar_title",beforeEditTitle).equalTo("calendar_start_hourofday",beforeEditStartHourOfDay).equalTo("calendar_start_minute",beforeEditStartMinute).equalTo("calendar_end_hourofday",beforeEditEndHourOfDay).equalTo("calendar_end_minute",beforeEditEndMinute).findAll();
+                //final RealmResults<Calender> calenders = calenderQuery.findAll();
+                if(calenders.size()!=0) {
+                    realm.beginTransaction();
 
-            realm.commitTransaction();
-            Toast.makeText(CalenderAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
-//        //検索用のクエリ作成
-//        RealmQuery<Calender> timetableQuery = realm.where(Calender.class);
-//        //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
-//        RealmResults<Calender> timetables = timetableQuery.findAll();
-//        for(int i=0; i<timetables.size(); i++) {
-//
-//            Log.d("eeee",String.valueOf(timetables.get(i).getCalendarTitle()));
-//            Log.d("eeee",String.valueOf(timetables.get(i).getCalendarstartdate()));
-//            Log.d("eeee",String.valueOf(timetables.get(i).getCalendarenddate()));
-//
-//        }
+                    calenders.get(0).setCalendarTitle(PlanName);
+                    calenders.get(0).setCalendarstartdate(dStartPlanTime);
+                    calenders.get(0).setCalendarenddate(dEndPlanTime);
+                    calenders.get(0).setCalendarStartHourOfDay(planStartHourOfDay);
+                    calenders.get(0).setCalendarEndHourOfDay(planEndHourOfDay);
+                    calenders.get(0).setCalendarStartMinute(planStartMinute);
+                    calenders.get(0).setCalendarEndMinute(planEndMinute);
 
-            Intent intent = new Intent(CalenderAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
-            startActivity(intent);
+                    realm.commitTransaction();
+                    Toast.makeText(CalenderAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(CalenderAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
+                    startActivity(intent);
+                }
+            }
+            else {
+                realm.beginTransaction();
+
+                Calender model = realm.createObject(Calender.class);
+
+                model.setCalendarTitle(PlanName);
+                model.setCalendarstartdate(dStartPlanTime);
+                model.setCalendarenddate(dEndPlanTime);
+                model.setCalendarStartHourOfDay(planStartHourOfDay);
+                model.setCalendarStartMinute(planStartMinute);
+                model.setCalendarEndHourOfDay(planEndHourOfDay);
+                model.setCalendarEndMinute(planEndMinute);
+
+                realm.commitTransaction();
+                Toast.makeText(CalenderAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(CalenderAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
+                startActivity(intent);
+            }
         }
 
     }
