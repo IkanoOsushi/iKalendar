@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 import com.framgia.library.calendardayview.data.IPopup;
 import java.util.Calendar;
 
-public class CalenderPopup implements IPopup {
+public class CalendarPopup implements IPopup {
 
     Calendar startTime;
     Calendar endTime;
@@ -22,7 +22,7 @@ public class CalenderPopup implements IPopup {
 
     String quote;
 
-    public CalenderPopup() {
+    public CalendarPopup() {
 
     }
 

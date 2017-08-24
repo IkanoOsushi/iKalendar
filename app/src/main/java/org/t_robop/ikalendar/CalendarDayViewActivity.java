@@ -3,22 +3,17 @@ package org.t_robop.ikalendar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.framgia.library.calendardayview.CalendarDayView;
@@ -28,7 +23,6 @@ import com.framgia.library.calendardayview.data.IEvent;
 import com.framgia.library.calendardayview.data.IPopup;
 import com.framgia.library.calendardayview.decoration.CdvDecorationDefault;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,7 +32,7 @@ import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-public class CalenderDayViewActivity extends AppCompatActivity
+public class CalendarDayViewActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     CalendarDayView dayView;
@@ -58,7 +52,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calender_day_view);
+        setContentView(R.layout.activity_calendar_day_view);
 
         //intentしてきたデータを取得
         Intent intent = getIntent();
@@ -115,10 +109,10 @@ public class CalenderDayViewActivity extends AppCompatActivity
                         editPlanData.putString("EndTime",sPlanEndTime);
                         editPlanData.putBoolean("EditFlag",true);
 
-                        Intent intent = new Intent(CalenderDayViewActivity.this,org.t_robop.ikalendar.CalenderAddPlanActivity.class);
+                        Intent intent = new Intent(CalendarDayViewActivity.this,CalendarAddPlanActivity.class);
                         intent.putExtras(editPlanData);
                         startActivity(intent);
-                        if (data instanceof CalenderEvent) {
+                        if (data instanceof CalendarEvent) {
                             // change event (ex: set event color)
                             dayView.setEvents(events);
                         }
@@ -175,7 +169,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
                         Calendar timeEnd = (Calendar) timeStart.clone();
                         timeEnd.set(Calendar.HOUR_OF_DAY, endPlanHourOfDay);
                         timeEnd.set(Calendar.MINUTE, endPlanMinute);
-                        CalenderEvent event = new CalenderEvent(1, timeStart, timeEnd, calendars.get(i).getCalendarTitle(), "Hockaido", eventColor);
+                        CalendarEvent event = new CalendarEvent(1, timeStart, timeEnd, calendars.get(i).getCalendarTitle(), "Hockaido", eventColor);
                         events.add(event);
                     }
                 }
@@ -227,7 +221,7 @@ public class CalenderDayViewActivity extends AppCompatActivity
         int id = item.getItemId();
         boolean result = true;
         if (id == R.id.action_call) {
-            Intent intent = new Intent(this, CalenderAddPlanActivity.class);
+            Intent intent = new Intent(this, CalendarAddPlanActivity.class);
             intent.putExtra("dayviewdate",sPlanDate);
             intent.putExtra("fromDayView",true);
             startActivity(intent);

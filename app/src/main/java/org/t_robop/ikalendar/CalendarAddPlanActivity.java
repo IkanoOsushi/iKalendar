@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -19,7 +18,7 @@ import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-public class CalenderAddPlanActivity extends AppCompatActivity {
+public class CalendarAddPlanActivity extends AppCompatActivity {
 
     int planStartHourOfDay;
     int planStartMinute;
@@ -44,7 +43,7 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calender_add_plan);
+        setContentView(R.layout.activity_calendar_add_plan);
 
         //intentしてきたデータを取得
         Intent i = getIntent();
@@ -201,9 +200,9 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
                     calenders.get(0).setCalendarEndMinute(planEndMinute);
 
                     realm.commitTransaction();
-                    Toast.makeText(CalenderAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CalendarAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(CalenderAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
+                    Intent intent = new Intent(CalendarAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
                     startActivity(intent);
                 }
                 }
@@ -222,9 +221,9 @@ public class CalenderAddPlanActivity extends AppCompatActivity {
                 model.setCalendarEndMinute(planEndMinute);
 
                 realm.commitTransaction();
-                Toast.makeText(CalenderAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CalendarAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(CalenderAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
+                Intent intent = new Intent(CalendarAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
                 startActivity(intent);
             }
         }
