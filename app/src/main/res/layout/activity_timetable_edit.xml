@@ -184,7 +184,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d5fc5555"
+                            android:background="#befe6969"
                             android:onClick="colerSelected"
                             android:tag="赤" />
 
@@ -195,7 +195,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d5fd7ccb"
+                            android:background="#beff9bd8"
                             android:onClick="colerSelected"
                             android:tag="ピンク" />
 
@@ -206,7 +206,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d5fda956"
+                            android:background="#c8fda956"
                             android:onClick="colerSelected"
                             android:tag="オレンジ" />
 
@@ -217,7 +217,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d5ffe449"
+                            android:background="#d5fde439"
                             android:onClick="colerSelected"
                             android:tag="黄色" />
 
@@ -228,7 +228,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d5a7ff49"
+                            android:background="#c7a7ff49"
                             android:onClick="colerSelected"
                             android:tag="黄緑" />
 
@@ -247,7 +247,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d529c203"
+                            android:background="#c751c533"
                             android:onClick="colerSelected"
                             android:tag="緑" />
 
@@ -258,7 +258,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d549dbff"
+                            android:background="#ca49dbff"
                             android:onClick="colerSelected"
                             android:tag="水色" />
 
@@ -269,7 +269,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d53066f9"
+                            android:background="#c95986ff"
                             android:onClick="colerSelected"
                             android:tag="青" />
 
@@ -280,7 +280,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d59b49ff"
+                            android:background="#c5b273ff"
                             android:onClick="colerSelected"
                             android:tag="紫" />
 
@@ -291,7 +291,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="#d5c4c4c4"
+                            android:background="#bec4c4c4"
                             android:onClick="colerSelected"
                             android:tag="グレー" />
 
