@@ -42,15 +42,12 @@ public class TimetableActivity extends AppCompatActivity
     Realm realm;
     private View inputView;
 
-    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
 
-        Intent intent = getIntent();
-        String timeTableColorData = intent.getStringExtra("colerSelect");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -124,24 +121,28 @@ public class TimetableActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which) {
             }
         });
+        builder.setNeutralButton("編集", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent myintent = new Intent(getApplicationContext(), TimetableEditActivity.class);//intentして画面遷移
+                String rsName = getResources().getResourceEntryName(view.getId());
+                myintent.putExtra("buttonId", rsName);//buttonIDを渡す
+
+                String tag = (String) view.getTag();
+                myintent.putExtra("buttonTag",Integer.parseInt(tag));
+                startActivity(myintent);
+            }
+        });
+
         if (subText.length() != 0) {
-
-            builder.setNeutralButton("編集", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent myintent = new Intent(getApplicationContext(), TimetableEditActivity.class);//intentして画面遷移
-                    String rsName = getResources().getResourceEntryName(view.getId());
-                    myintent.putExtra("TTKey", rsName);//TTキーで受け渡す
-
-                    startActivity(myintent);
-                }
-            });
             AlertDialog dialog = builder.create();
             dialog.show();
         } else {
             Intent myintent = new Intent(getApplication(), TimetableEditActivity.class);
             rsName = getResources().getResourceEntryName(view.getId());
-            myintent.putExtra("TTKey", rsName);//TTキーで受け渡す
+            myintent.putExtra("buttonId", rsName);//buttonIDを渡す
+            String tag = (String) view.getTag();
+            myintent.putExtra("buttonTag",Integer.parseInt(tag));
             startActivity(myintent);
         }
 
