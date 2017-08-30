@@ -14,6 +14,17 @@ public class TimeTable extends RealmObject {
     private String time_table_class;
     private String time_table_tea;
     private int time_table_day_of_week;
+    private int timeTableRow;
+
+
+    public int getTimeTableRow() {
+        return timeTableRow;
+    }
+
+    public void setTimeTableRow(int timeTableRow) {
+        this.timeTableRow = timeTableRow;
+    }
+
 
     public String getTimeTableId() {
         return time_table_id;

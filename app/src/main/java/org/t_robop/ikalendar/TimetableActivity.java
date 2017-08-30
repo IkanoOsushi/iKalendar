@@ -40,7 +40,6 @@ import static org.t_robop.ikalendar.R.color.red;
 public class TimetableActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Realm realm;
-    private View inputView;
 
 
     @Override
@@ -81,6 +80,7 @@ public class TimetableActivity extends AppCompatActivity
                 Button button = (Button) findViewById(getResources().getIdentifier(String.valueOf(timetables.get(i).getTimeTableId()), "id", getApplication().getPackageName()));
                 // TODO カラーコードのswitchを除去しました 以下1行で対応
                 button.setBackgroundColor(Color.parseColor(timetables.get(i).getTimeTableColorId()));
+                System.out.println("aaaaaaaaaaaa"+timetables.get(i).getTimeTableColorId());
                 //教科名表示
                 button.setText(timetables.get(i).getTimeTableSub());
             }
@@ -89,6 +89,7 @@ public class TimetableActivity extends AppCompatActivity
 
 
     public void onClick(final View view) {
+        View inputView;
 
         //showDialog(CustomViewCallback)
         LayoutInflater factory = LayoutInflater.from(this);
@@ -153,18 +154,18 @@ public class TimetableActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        Intent intent = null;
         int id = item.getItemId();
         if (id == R.id.nav_main) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            intent = new Intent(this, MainActivity.class);
         } else if (id == R.id.nav_calendar) {
-            Intent intent = new Intent(this, CalendarActivity.class);
-            startActivity(intent);
+            intent = new Intent(this, CalendarActivity.class);
         } else if (id == R.id.nav_timetable) {
-            Intent intent = new Intent(this, TimetableActivity.class);
-            startActivity(intent);
+            intent = new Intent(this, TimetableActivity.class);
         } else if (id == R.id.nav_reminder) {
-            Intent intent = new Intent(this, ReminderActivity.class);
+            intent = new Intent(this, ReminderActivity.class);
+        }
+        if (intent != null){
             startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

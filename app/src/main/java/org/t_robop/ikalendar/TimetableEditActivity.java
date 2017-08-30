@@ -122,8 +122,9 @@ public class TimetableEditActivity extends AppCompatActivity {
 
     // 上書き用
     void realmSave(TimeTable model,String timeTableId,String timeTableSub,String timeTableClass,String timeTableTea,
-                   String timeTableMemo,String timeTableColorId,int week){
+                   String timeTableMemo,String timeTableColorId,int week,String buttonId){
 
+        realm.beginTransaction();
         model.setTimeTableId(timeTableId);
         model.setTimeTableSub(timeTableSub);
         model.setTimeTableClass(timeTableClass);
@@ -132,13 +133,15 @@ public class TimetableEditActivity extends AppCompatActivity {
         model.setTimeTableColorId(timeTableColorId);
         model.setTimeTableDayOfWeek(week);
 
+        model.setTimeTableRow(idToRow(buttonId));
+
         realm.commitTransaction();
 
     }
 
     // 新規作成用
     void realmSave(String timeTableId,String timeTableSub,String timeTableClass,String timeTableTea,
-                   String timeTableMemo,String timeTableColorId,int week){
+                   String timeTableMemo,String timeTableColorId,int week,String buttonId){
         realm.beginTransaction();
         TimeTable model = realm.createObject(TimeTable.class);
         model.setTimeTableId(timeTableId);
@@ -149,15 +152,23 @@ public class TimetableEditActivity extends AppCompatActivity {
         model.setTimeTableColorId(timeTableColorId);
         model.setTimeTableDayOfWeek(week);
 
+        model.setTimeTableRow(idToRow(buttonId));
+
         realm.commitTransaction();
 
+    }
+    int idToRow(String buttonId){
+        int num =  Integer.valueOf(buttonId.substring(6,8));
+
+
+        return (int) (num/6.1f);
     }
     void editstorageClick(TimeTable timetable,String buttonId,String sub,String room,String teac,String memo,int week){
         if (timetable == null){
             realmSave(buttonId,sub,room,teac,memo,
-                    timeTableColor,week);
+                    timeTableColor,week,buttonId);
         }else{
-            realmSave(timetable,buttonId,sub,room,teac,memo, timeTableColor,week);
+            realmSave(timetable,buttonId,sub,room,teac,memo, timeTableColor,week,buttonId);
         }
         Toast.makeText(TimetableEditActivity.this,"保存しました",Toast.LENGTH_LONG).show();
         Intent intent = new Intent();

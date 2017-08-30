@@ -36,8 +36,13 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
     Realm realm;
 
     Calendar cal = Calendar.getInstance();
+    // 何曜日を表示するか
     int week = cal.get(Calendar.DAY_OF_WEEK);
+    String[] weekStr = {"日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"};
 
+
+    TextView[] subjectText = new TextView[5];
+    TextView[] classText = new TextView[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,236 +67,36 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
         Realm.init(this);
         realm = Realm.getDefaultInstance();
 
+        subjectText[0] = (TextView) findViewById(R.id.tFirst);
+        subjectText[1] = (TextView) findViewById(R.id.tSecond);
+        subjectText[2] = (TextView) findViewById(R.id.tThird);
+        subjectText[3] = (TextView) findViewById(R.id.tFourth);
+        subjectText[4] = (TextView) findViewById(R.id.tFifth);
+
+        classText[0] = (TextView) findViewById(R.id.tFirstClass);
+        classText[1] = (TextView) findViewById(R.id.tSecondClass);
+        classText[2] = (TextView) findViewById(R.id.tThirdClass);
+        classText[3] = (TextView) findViewById(R.id.tFourthClass);
+        classText[4] = (TextView) findViewById(R.id.tFifthClass );
 
         TextView week_text = (TextView) findViewById(R.id.nowDay);
-        TextView tFirst = (TextView) findViewById(R.id.tFirst);
-        TextView tSecond = (TextView) findViewById(R.id.tSecond);
-        TextView tThird = (TextView) findViewById(R.id.tThird);
-        TextView tFourth = (TextView) findViewById(R.id.tFourth);
-        TextView tFifth = (TextView) findViewById(R.id.tFifth);
-        TextView tFirstClass = (TextView) findViewById(R.id.tFirstClass);
-        TextView tSecondClass = (TextView) findViewById(R.id.tSecondClass);
-        TextView tThirdClass = (TextView) findViewById(R.id.tThirdClass);
-        TextView tFourthClass = (TextView) findViewById(R.id.tFourthClass);
-        TextView tFifthClass = (TextView) findViewById(R.id.tFifthClass);
-
 
         //検索用のクエリ作成
         RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
-        RealmResults<TimeTable> timeTables = timetableQuery.findAll();
+        //RealmResults<TimeTable> timeTables = timetableQuery.findAll();
 
-        RealmResults<TimeTable> timeTablestoday = timetableQuery.equalTo("time_table_day_of_week", thisweek).findAll();
+        RealmResults<TimeTable> timeTablestoday = timetableQuery.equalTo("time_table_day_of_week", thisweek).findAll().sort("time_table_id");
         if (timeTablestoday.size() != 0) {
-            //timetableの配列の要素の数が0の時の実行
             for (int i = 0; i < timeTablestoday.size(); i++) {
-                //timetablesの要素の数だけ回す
-                switch (week) {
-                    case 1:
-                        break;
-                    case 2:
-                        switch (String.valueOf(timeTablestoday.get(i).getTimeTableId())) {
-                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
-                            case "button37":
-                                tFirst.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFirstClass.setText(timeTablestoday.get(i).getTimeTableClass());
-                                break;
-                            case "button30":
-                                tSecond.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tSecondClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button23":
-                                tThird.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tThirdClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button16":
-                                tFourth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFourthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button6":
-                                tFifth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFifthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                        }
-                    case 3:
-                        switch (String.valueOf(timeTablestoday.get(i).getTimeTableId())) {
-                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
-                            case "button36":
-                                tFirst.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFirstClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button29":
-                                tSecond.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tSecondClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button22":
-                                tThird.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tThirdClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button15":
-                                tFourth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFourthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button5":
-                                tFifth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFifthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                        }
-
-                    case 4:
-                        switch (String.valueOf(timeTablestoday.get(i).getTimeTableId())) {
-                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
-                            case "button35":
-                                tFirst.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFirstClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button28":
-                                tSecond.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tSecondClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button21":
-                                tThird.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tThirdClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button14":
-                                tFourth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFourthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button4":
-                                tFifth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFifthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                        }
-                    case 5:
-                        switch (String.valueOf(timeTablestoday.get(i).getTimeTableId())) {
-                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
-                            case "button34":
-                                tFirst.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFirstClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button27":
-                                tSecond.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tSecondClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button20":
-                                tThird.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tThirdClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button13":
-                                tFourth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFourthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button3":
-                                tFifth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFifthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                        }
-                    case 6:
-                        switch (String.valueOf(timeTablestoday.get(i).getTimeTableId())) {
-                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
-                            case "button33":
-                                tFirst.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFirstClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button26":
-                                tSecond.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tSecondClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button19":
-                                tThird.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tThirdClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button12":
-                                tFourth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFourthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button2":
-                                tFifth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFifthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                        }
-                    case 7:
-                        switch (String.valueOf(timeTablestoday.get(i).getTimeTableId())) {
-                            //string型（ボタン名）に直してtimetablesのi番目のIDをとってきて条件分け
-                            case "button32":
-                                tFirst.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFirstClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button25":
-                                tSecond.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tSecondClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button18":
-                                tThird.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tThirdClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button11":
-                                tFourth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFourthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                            case "button":
-                                tFifth.setText(timeTablestoday.get(i).getTimeTableSub());
-                                tFifthClass.setText(timeTablestoday.get(i).getTimeTableClass());
-
-                                break;
-                        }
-
-                }
+                System.out.println("vavavava" + timeTablestoday.get(i).getTimeTableRow());
+                subjectText[timeTablestoday.get(i).getTimeTableRow()].setText(timeTablestoday.get(i).getTimeTableSub());
+                classText[timeTablestoday.get(i).getTimeTableRow()].setText(timeTablestoday.get(i).getTimeTableClass());
 
             }
         }
-        switch (thisweek) {
-            case 1:
-                week_text.setText("日曜日");
-                break;
-            case 2:
-                week_text.setText("月曜日");
-                break;
-            case 3:
-                week_text.setText("火曜日");
-                break;
-            case 4:
-                week_text.setText("水曜日");
-                break;
-            case 5:
-                week_text.setText("木曜日");
-                break;
-            case 6:
-                week_text.setText("金曜日");
-                break;
-            case 7:
-                week_text.setText("土曜日");
-                break;
 
-        }
+        week_text.setText(weekStr[thisweek-1]);
     }
 
     @Override
@@ -354,4 +159,5 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
         }
         return true;
     }
+
 }
