@@ -94,11 +94,11 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/tFirst"
+                                android:id="@+id/subject1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
                         </LinearLayout>
 
@@ -109,11 +109,11 @@
                             android:background="#c7e0fd">
 
                             <TextView
-                                android:id="@+id/tSecond"
+                                android:id="@+id/subject2"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
 
                         </LinearLayout>
@@ -124,11 +124,11 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/tThird"
+                                android:id="@+id/subject3"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
                         </LinearLayout>
 
@@ -139,11 +139,11 @@
                             android:background="#c7e0fd">
 
                             <TextView
-                                android:id="@+id/tFourth"
+                                android:id="@+id/subject4"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
 
                         </LinearLayout>
@@ -154,11 +154,11 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/tFifth"
+                                android:id="@+id/subject5"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
 
                         </LinearLayout>
@@ -213,11 +213,11 @@
                             android:background="#c7e0fd">
 
                             <TextView
-                                android:id="@+id/tFirstClass"
+                                android:id="@+id/class1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
                         </LinearLayout>
 
@@ -227,11 +227,11 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/tSecondClass"
+                                android:id="@+id/class2"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
 
                         </LinearLayout>
@@ -243,11 +243,11 @@
                             android:background="#c7e0fd">
 
                             <TextView
-                                android:id="@+id/tThirdClass"
+                                android:id="@+id/class3"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
                         </LinearLayout>
 
@@ -257,11 +257,11 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/tFourthClass"
+                                android:id="@+id/class4"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
 
                         </LinearLayout>
@@ -273,11 +273,11 @@
                             android:background="#c7e0fd">
 
                             <TextView
-                                android:id="@+id/tFifthClass"
+                                android:id="@+id/class5"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:maxLines="1"
                                 android:ellipsize="end"
+                                android:maxLines="1"
                                 android:textSize="35dp" />
 
                         </LinearLayout>

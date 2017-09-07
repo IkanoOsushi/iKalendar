@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.Calender;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -19,6 +19,11 @@ import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
 
+import org.t_robop.ikalendar.MainActivity;
+import org.t_robop.ikalendar.R;
+import org.t_robop.ikalendar.ReminderActivity;
+import org.t_robop.ikalendar.TimetableActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,8 +39,6 @@ public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年 MMM dd日");
-    final String PATTERN = "yyyy-MM-dd";
-
     Realm realm;
 
 

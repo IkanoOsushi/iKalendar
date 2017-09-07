@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.Calender;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -8,10 +8,10 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 /**
- * Created by Kishimoto on 2017/08/21.
+ * Created by Kishimoto on 2017/08/15.
  */
 
-public class CalendarEndDatePicker extends android.support.v4.app.DialogFragment implements TimePickerDialog.OnTimeSetListener {
+public class CalendarStartDatePicker extends android.support.v4.app.DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class CalendarEndDatePicker extends android.support.v4.app.DialogFragment
         //時刻が選択されたときの処理
 
         CalendarAddPlanActivity callingActivity = (CalendarAddPlanActivity) getActivity();
-        callingActivity.onReturnEndDate(hourOfDay,minute);
+        callingActivity.onReturnStartDate(hourOfDay,minute);
     }
 
 }

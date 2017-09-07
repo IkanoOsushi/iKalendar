@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import org.t_robop.ikalendar.database.Reminder;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;

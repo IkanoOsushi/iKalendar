@@ -1,13 +1,11 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.database;
 
-import java.util.Date;
+import org.t_robop.ikalendar.Calender.Calender;
+import org.t_robop.ikalendar.database.Reminder;
+import org.t_robop.ikalendar.database.TimeTable;
 
-import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmModel;
 import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
-import io.realm.annotations.PrimaryKey;
 
 
 public class DataBase extends RealmObject {

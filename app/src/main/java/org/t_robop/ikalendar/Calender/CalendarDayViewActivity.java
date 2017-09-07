@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.Calender;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,10 +23,13 @@ import com.framgia.library.calendardayview.data.IEvent;
 import com.framgia.library.calendardayview.data.IPopup;
 import com.framgia.library.calendardayview.decoration.CdvDecorationDefault;
 
+import org.t_robop.ikalendar.R;
+import org.t_robop.ikalendar.ReminderActivity;
+import org.t_robop.ikalendar.TimetableActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
@@ -44,10 +47,8 @@ public class CalendarDayViewActivity extends AppCompatActivity
 
     Realm realm;
 
-    Date dPlanDate;
 
     final SimpleDateFormat formatter = new SimpleDateFormat("yyyy年 MMM dd日");
-    final SimpleDateFormat dateformatter = new SimpleDateFormat("yyyy HH 時 mm 分");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +71,7 @@ public class CalendarDayViewActivity extends AppCompatActivity
 
         TextView PlanDateText = (TextView)inf.findViewById(R.id.item_event_header_text1);
         PlanDateText.setText(sPlanDate);
-//        try {
-//            dPlanDate = ParseStringToDate(sPlanDate);
-//
-//        } catch (ParseException e) {
-//        }
+
 
 
 
@@ -140,7 +137,7 @@ public class CalendarDayViewActivity extends AppCompatActivity
 
         events = new ArrayList<>();
 
-        {
+
 
             int eventColor = ContextCompat.getColor(this, R.color.eventColor);
 
@@ -183,7 +180,7 @@ public class CalendarDayViewActivity extends AppCompatActivity
             dayView.setPopups(popups);
 
 
-        }
+
     }
 
 

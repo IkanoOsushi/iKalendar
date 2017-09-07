@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.database;
 
 import io.realm.RealmObject;
 

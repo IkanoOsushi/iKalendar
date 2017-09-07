@@ -42,8 +42,8 @@
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -149,7 +149,7 @@
                                 android:layout_weight="1">
 
                                 <TextView
-                                    android:id="@+id/first"
+                                    android:id="@+id/subject1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
@@ -189,7 +189,7 @@
                                 android:layout_weight="1">
 
                                 <TextView
-                                    android:id="@+id/second"
+                                    android:id="@+id/subject2"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
@@ -230,7 +230,7 @@
                                 android:layout_weight="1">
 
                                 <TextView
-                                    android:id="@+id/third"
+                                    android:id="@+id/subject3"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
@@ -268,7 +268,7 @@
                                 android:layout_weight="1">
 
                                 <TextView
-                                    android:id="@+id/fourth"
+                                    android:id="@+id/subject4"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
@@ -307,7 +307,7 @@
                                 android:layout_weight="1">
 
                                 <TextView
-                                    android:id="@+id/fifth"
+                                    android:id="@+id/subject5"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"

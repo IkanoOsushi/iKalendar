@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="org.t_robop.ikalendar.CalendarDayViewActivity"
+    tools:context="org.t_robop.ikalendar.Calender.CalendarDayViewActivity"
     tools:showIn="@layout/activity_calendar_day_view">
 
 </android.support.constraint.ConstraintLayout>

@@ -1,35 +1,22 @@
 package org.t_robop.ikalendar;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import org.t_robop.ikalendar.database.TimeTable;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-import java.text.CollationElementIterator;
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class TableTimeTodayActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -67,31 +54,26 @@ public class TableTimeTodayActivity extends AppCompatActivity implements View.On
         Realm.init(this);
         realm = Realm.getDefaultInstance();
 
-        subjectText[0] = (TextView) findViewById(R.id.tFirst);
-        subjectText[1] = (TextView) findViewById(R.id.tSecond);
-        subjectText[2] = (TextView) findViewById(R.id.tThird);
-        subjectText[3] = (TextView) findViewById(R.id.tFourth);
-        subjectText[4] = (TextView) findViewById(R.id.tFifth);
+        for (int i = 0; i < subjectText.length; i++){
+            // i+1の理由は、 iは0からだが、時間割は1からのため
+            subjectText[i] = (TextView) findViewById(getResources().getIdentifier("subject"+(i+1), "id", getApplication().getPackageName()));
+            classText[i] = (TextView)findViewById(getResources().getIdentifier("class"+(i+1), "id", getApplication().getPackageName()));
+        }
 
-        classText[0] = (TextView) findViewById(R.id.tFirstClass);
-        classText[1] = (TextView) findViewById(R.id.tSecondClass);
-        classText[2] = (TextView) findViewById(R.id.tThirdClass);
-        classText[3] = (TextView) findViewById(R.id.tFourthClass);
-        classText[4] = (TextView) findViewById(R.id.tFifthClass );
 
         TextView week_text = (TextView) findViewById(R.id.nowDay);
 
         //検索用のクエリ作成
         RealmQuery<TimeTable> timetableQuery = realm.where(TimeTable.class);
         //インスタンス生成し、その中にすべてのデータを入れる 今回なら全てのデータ
-        //RealmResults<TimeTable> timeTables = timetableQuery.findAll();
-
         RealmResults<TimeTable> timeTablestoday = timetableQuery.equalTo("time_table_day_of_week", thisweek).findAll().sort("time_table_id");
         if (timeTablestoday.size() != 0) {
             for (int i = 0; i < timeTablestoday.size(); i++) {
-                System.out.println("vavavava" + timeTablestoday.get(i).getTimeTableRow());
-                subjectText[timeTablestoday.get(i).getTimeTableRow()].setText(timeTablestoday.get(i).getTimeTableSub());
-                classText[timeTablestoday.get(i).getTimeTableRow()].setText(timeTablestoday.get(i).getTimeTableClass());
+
+                int hour = timeTablestoday.get(i).getTimeTableRow();
+
+                subjectText[hour].setText(timeTablestoday.get(i).getTimeTableSub());
+                classText[hour].setText(timeTablestoday.get(i).getTimeTableClass());
 
             }
         }

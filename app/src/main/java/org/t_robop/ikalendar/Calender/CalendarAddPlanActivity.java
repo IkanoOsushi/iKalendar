@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.Calender;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +9,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.t_robop.ikalendar.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -202,7 +204,7 @@ public class CalendarAddPlanActivity extends AppCompatActivity {
                     realm.commitTransaction();
                     Toast.makeText(CalendarAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(CalendarAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
+                    Intent intent = new Intent(CalendarAddPlanActivity.this, CalendarActivity.class);
                     startActivity(intent);
                 }
                 }
@@ -223,7 +225,7 @@ public class CalendarAddPlanActivity extends AppCompatActivity {
                 realm.commitTransaction();
                 Toast.makeText(CalendarAddPlanActivity.this, "保存しました", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(CalendarAddPlanActivity.this, org.t_robop.ikalendar.CalendarActivity.class);
+                Intent intent = new Intent(CalendarAddPlanActivity.this, CalendarActivity.class);
                 startActivity(intent);
             }
         }

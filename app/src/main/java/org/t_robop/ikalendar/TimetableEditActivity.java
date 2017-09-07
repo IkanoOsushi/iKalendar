@@ -1,32 +1,21 @@
 package org.t_robop.ikalendar;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.sql.Time;
-import java.util.Arrays;
-import java.util.Calendar;
+import org.t_robop.ikalendar.database.TimeTable;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
 import static org.t_robop.ikalendar.R.*;
-import static org.t_robop.ikalendar.R.id.memoText;
-import static org.t_robop.ikalendar.R.id.subEdit;
-import static org.t_robop.ikalendar.R.id.time;
 
 public class TimetableEditActivity extends AppCompatActivity {
     Realm realm;

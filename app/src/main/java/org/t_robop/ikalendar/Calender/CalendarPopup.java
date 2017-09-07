@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.Calender;
 
 /**
  * Created by Kishimoto on 2017/08/06.

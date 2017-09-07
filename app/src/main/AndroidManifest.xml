@@ -18,14 +18,14 @@
         </activity>
         <activity android:name=".ReminderActivity" />
         <activity android:name=".TimetableActivity" />
-        <activity android:name=".CalendarActivity" />
+        <activity android:name=".Calender.CalendarActivity" />
         <activity android:name=".ReminderEditActivity" />
         <activity android:name=".TableTimeTodayActivity" />
         <activity android:name=".TimetableEditActivity" />
-        <activity android:name=".CalendarDayViewActivity"
-            android:parentActivityName=".CalendarActivity"/>
-        <activity android:name=".CalendarAddPlanActivity"
-            android:parentActivityName=".CalendarActivity"></activity>
+        <activity android:name=".Calender.CalendarDayViewActivity"
+            android:parentActivityName=".Calender.CalendarActivity"/>
+        <activity android:name=".Calender.CalendarAddPlanActivity"
+            android:parentActivityName=".Calender.CalendarActivity"></activity>
     </application>
 
 </manifest>
