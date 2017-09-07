@@ -22,7 +22,7 @@
         <activity android:name=".Activity.ReminderEditActivity" />
         <activity android:name=".Activity.TableTimeTodayActivity" />
         <activity android:name=".Activity.TimetableEditActivity" />
-        <activity android:name=".Calender.CalendarDayViewActivity"
+        <activity android:name=".Activity.CalendarDayViewActivity"
             android:parentActivityName=".Activity.CalendarActivity"/>
         <activity android:name=".Activity.CalendarAddPlanActivity"
             android:parentActivityName=".Activity.CalendarActivity"></activity>

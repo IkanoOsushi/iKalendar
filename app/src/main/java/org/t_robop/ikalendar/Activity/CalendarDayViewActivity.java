@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar.Calender;
+package org.t_robop.ikalendar.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,11 +23,9 @@ import com.framgia.library.calendardayview.data.IEvent;
 import com.framgia.library.calendardayview.data.IPopup;
 import com.framgia.library.calendardayview.decoration.CdvDecorationDefault;
 
-import org.t_robop.ikalendar.Activity.CalendarActivity;
-import org.t_robop.ikalendar.Activity.CalendarAddPlanActivity;
+import org.t_robop.ikalendar.Calender.CalendarEvent;
+import org.t_robop.ikalendar.Calender.Calender;
 import org.t_robop.ikalendar.R;
-import org.t_robop.ikalendar.Activity.ReminderActivity;
-import org.t_robop.ikalendar.Activity.TimetableActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

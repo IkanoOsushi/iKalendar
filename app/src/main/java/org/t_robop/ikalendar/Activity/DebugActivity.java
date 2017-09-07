@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import org.t_robop.ikalendar.Calender.CalendarDayViewActivity;
 import org.t_robop.ikalendar.R;
 
 import java.util.ArrayList;

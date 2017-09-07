@@ -19,7 +19,6 @@ import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
 
-import org.t_robop.ikalendar.Calender.CalendarDayViewActivity;
 import org.t_robop.ikalendar.Calender.Calender;
 import org.t_robop.ikalendar.R;
 

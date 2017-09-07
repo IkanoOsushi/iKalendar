@@ -45,6 +45,7 @@ public class ReminderEditActivity extends AppCompatActivity {
         time.setText(String.valueOf(getIntentTime)+"の予定を編集中");
         editText.setText(note);
     }
+    //TODO Stringsにまとめると良いかも
     public void description(View v){
         new AlertDialog.Builder(this)
                 .setTitle("このリマインダーについて")
