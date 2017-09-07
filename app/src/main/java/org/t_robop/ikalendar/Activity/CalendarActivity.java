@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar.Calender;
+package org.t_robop.ikalendar.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -19,10 +19,9 @@ import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
 
-import org.t_robop.ikalendar.MainActivity;
+import org.t_robop.ikalendar.Calender.CalendarDayViewActivity;
+import org.t_robop.ikalendar.Calender.Calender;
 import org.t_robop.ikalendar.R;
-import org.t_robop.ikalendar.ReminderActivity;
-import org.t_robop.ikalendar.TimetableActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

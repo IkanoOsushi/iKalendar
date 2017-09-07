@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,7 +17,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.t_robop.ikalendar.Calender.CalendarActivity;
+import org.t_robop.ikalendar.CustomListAdapter;
+import org.t_robop.ikalendar.CustomListItem;
+import org.t_robop.ikalendar.R;
 import org.t_robop.ikalendar.database.Reminder;
 
 import java.text.DateFormat;

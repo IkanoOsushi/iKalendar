@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.Activity;
 
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
@@ -14,8 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import org.t_robop.ikalendar.Calender.CalendarActivity;
 import org.t_robop.ikalendar.Calender.CalendarDayViewActivity;
+import org.t_robop.ikalendar.R;
 
 import java.util.ArrayList;
 

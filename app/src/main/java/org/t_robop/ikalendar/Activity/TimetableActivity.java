@@ -1,4 +1,4 @@
-package org.t_robop.ikalendar;
+package org.t_robop.ikalendar.Activity;
 
 
 import android.content.DialogInterface;
@@ -19,7 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.t_robop.ikalendar.Calender.CalendarActivity;
+import org.t_robop.ikalendar.R;
 import org.t_robop.ikalendar.database.TimeTable;
 
 import io.realm.Realm;

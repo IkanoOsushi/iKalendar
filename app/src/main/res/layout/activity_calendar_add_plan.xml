@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.t_robop.ikalendar.Calender.CalendarAddPlanActivity">
+    tools:context="org.t_robop.ikalendar.Activity.CalendarAddPlanActivity">
 
 
     <!-- match_parentが自動補正される　要修正 -->
